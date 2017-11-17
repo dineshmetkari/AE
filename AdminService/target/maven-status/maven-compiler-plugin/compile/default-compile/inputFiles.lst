@@ -1,0 +1,8 @@
+/home/ashish/Desktop/workspace/AdminService/src/main/java/com/stackroute/serviceadmin/repository/AdminRepository.java
+/home/ashish/Desktop/workspace/AdminService/src/main/java/com/stackroute/serviceadmin/MainClass.java
+/home/ashish/Desktop/workspace/AdminService/src/main/java/com/stackroute/serviceadmin/exception/UserAlreadyExistException.java
+/home/ashish/Desktop/workspace/AdminService/src/main/java/com/stackroute/serviceadmin/domain/AdminBean.java
+/home/ashish/Desktop/workspace/AdminService/src/main/java/com/stackroute/serviceadmin/controller/AdminController.java
+/home/ashish/Desktop/workspace/AdminService/src/main/java/com/stackroute/serviceadmin/service/AdminServiceImpl.java
+/home/ashish/Desktop/workspace/AdminService/src/main/java/com/stackroute/serviceadmin/service/AdminService.java
+/home/ashish/Desktop/workspace/AdminService/src/main/java/com/stackroute/serviceadmin/config/SpringMongoConfig.java
