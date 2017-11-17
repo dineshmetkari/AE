@@ -1,16 +1,43 @@
 package com.stackroute.assessmentengine.engineService.domain;
 public class Display {
-	private String content;
+	private String question;
+	private String option;
+private String msg;
+    public String getMsg() {
+	return msg;
+}
 
-    public Display() {
+public void setMsg(String msg) {
+	this.msg = msg;
+}
+
+	public Display() {
+    }
+	public Display(String m) {
+		this.msg=m;
+	}
+
+    public Display(String question,String options) {
+        this.question=question;
+        this.option=options;
     }
 
-    public Display(String content) {
-        this.content = content;
-    }
+	public String getQuestion() {
+		return question;
+	}
 
-    public String getContent() {
-        return content;
-    }
+	public void setQuestion(String question) {
+		this.question = question;
+	}
+
+	public String getOption() {
+		return option;
+	}
+
+	public void setOption(String option) {
+		this.option = option;
+	}
+
+    
 
 }
