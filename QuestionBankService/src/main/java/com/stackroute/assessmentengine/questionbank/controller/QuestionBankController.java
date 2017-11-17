@@ -28,6 +28,7 @@ public class QuestionBankController {
 		return ResponseEntity.ok(questionBankService.getquestion(id));
 		
 	}
+	@CrossOrigin("*")
 	@RequestMapping(method=RequestMethod.POST,value="/questions")
 	public ResponseEntity<String> addQuestion(@RequestBody QuestionBank questionBank) {
 		
@@ -48,13 +49,15 @@ public class QuestionBankController {
 		 
 		 return ResponseEntity.ok("Question Deleted successfully");
 	}
-	
-	@RequestMapping(method=RequestMethod.GET,value="/specquestions/{subject}/{topic}/{level}/{complexity}/{questionType}")
-	public ResponseEntity<List<QuestionBank>> getSpecificQuestions(@PathVariable String subject,@PathVariable String topic,@PathVariable String level,@PathVariable String complexity,@PathVariable String questionType) {
+	@CrossOrigin("*")
+	@RequestMapping(method=RequestMethod.GET,value="/specquestions/{subject}/{topic}/{level}/{complexity}/{questionType}/{num}")
+	public ResponseEntity<List<QuestionBank>> getSpecificQuestions(@PathVariable String subject,@PathVariable String topic,@PathVariable String level,@PathVariable String complexity,@PathVariable String questionType,@PathVariable String num) {
 		
-		return ResponseEntity.ok( questionBankService.getSpecificquestions(subject,topic,level,complexity,questionType));
+		return ResponseEntity.ok( questionBankService.getSpecificquestions(subject,topic,level,complexity,questionType,num));
 		
 	}
+	
+	
 	
 
 }
