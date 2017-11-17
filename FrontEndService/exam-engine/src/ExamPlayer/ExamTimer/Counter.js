@@ -25,9 +25,9 @@ class Counter extends Component {
                           x.setState({ss:59});
                           x.setState({mm:59});
                           x.setState({hh:hh-1});
-                          
+
                         }else{
-                          
+
                         }
                       }
                     }
@@ -35,9 +35,7 @@ class Counter extends Component {
     return <div><h4>Time Remainning: {hh}:{mm}:{ss}</h4></div>;
   }
 }
-      
+
 
 
 export default Counter;
-
-
