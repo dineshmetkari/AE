@@ -1,0 +1,26 @@
+mongodb:
+ container_name : mongo-db
+ image: mongo
+ ports:
+  - "27017:27017"
+
+zookeeper:
+
+ image: wurstmeister/zookeeper
+ ports:
+ - "2181:2181"
+kafka:
+ build: .
+ ports:
+  - "9092"
+ environment:
+  KAFKA_ADVERTISED_HOST_NAME: localhost
+  KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+
+
+studentdocker:
+ build: ./StudentService
+ ports:
+  - "8083:8083"
+ links:
+  - mongodb
