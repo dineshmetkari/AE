@@ -13,6 +13,7 @@ import org.springframework.kafka.core.ProducerFactory;
 import org.springframework.kafka.support.serializer.JsonSerializer;
 
 import com.stackroute.assessmentengine.engineService.domain.Question;
+import com.stackroute.assessmentengine.engineService.domain.QuestionBean;
 import com.stackroute.assessmentengine.engineService.message.KafkaProducer;
 
 
@@ -40,6 +41,15 @@ public class KafkaProducerConfig {
   @Bean
   public KafkaTemplate<String, Question> kafkaTemplate() {
     return new KafkaTemplate<>(producerFactory());
+  }
+  @Bean
+  public ProducerFactory<String, QuestionBean> producerFactory1() {
+    return new DefaultKafkaProducerFactory<>(producerConfigs());
+  }
+
+  @Bean
+  public KafkaTemplate<String, QuestionBean> kafkaTemplate1() {
+    return new KafkaTemplate<>(producerFactory1());
   }
 
   @Bean
