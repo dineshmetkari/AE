@@ -1,0 +1,28 @@
+kafka:
+  bootstrap-servers: 172.23.238.133:9092
+  topic:
+    json: Question
+  topic2:
+    json2: responseQuestion
+  
+    
+    
+    
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    serviceUrl:
+      defaultZone: http://172.23.238.205:8071//eureka/
+  instance:
+    hostname: localhost
+    
+spring:
+  application:
+    name: ResultService
+  kafka:
+    consumer:
+      group-id: QuestionResult
+      
+server:
+  port: 8020
