@@ -1,7 +1,11 @@
 package com.stackroute.assessmentengine.questionbank.domain;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
+
+import com.mongodb.BasicDBObject;
+
+import java.util.*;
 
 public class QuestionList {
 	private String id;
@@ -9,6 +13,8 @@ public class QuestionList {
 	private List<Options> options;
 	private String correctAnswer;
 	private String marksAlloted;
+	private BasicDBObject cdate;
+	
 	
 	public String getId() {
 		return id;
@@ -50,20 +56,33 @@ public class QuestionList {
 		this.marksAlloted = marksAlloted;
 	}
 	
-
 	public QuestionList(String id, String question, List<Options> options, String correctAnswer, String marksAlloted) {
 		super();
+		
 		this.id = id;
 		this.question = question;
 		this.options = options;
 		this.correctAnswer = correctAnswer;
 		this.marksAlloted = marksAlloted;
 	}
+	
+	Date now = new Date();
+
+	BasicDBObject timeNow = new BasicDBObject("date", now);
 
 	public QuestionList() {
 		super();
 		// TODO Auto-generated constructor stub
 		this.options=new ArrayList<>();
+	}
+
+	public BasicDBObject getCdate() {
+		return cdate;
+	}
+
+	public void setCdate() {
+		
+		this.cdate = timeNow;
 	}
 	
 	

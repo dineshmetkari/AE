@@ -1,13 +1,11 @@
 import React from 'react';
-import {Link} from 'react-router';
-import {browserHistory} from 'react';
 
 class ComponentNotFound extends React.Component{
 
 	render(){
 	return (
 	      <div>
-	            <h1>User Not Found !!! <Link to="/login">Login</Link> with valid Username and Password </h1>
+	            <h1>Component Not Found!</h1>
 	      </div>);
 	}
 }
