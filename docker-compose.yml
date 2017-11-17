@@ -15,8 +15,6 @@ kafka:
  environment:
   KAFKA_ADVERTISED_HOST_NAME: localhost
   KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-
-
 studentdocker:
  build: .
  ports:
@@ -31,4 +29,7 @@ authenticationservice:
  build: ./AuthenticationService
  ports:
   - "8088:8088"
-  
+configserver:
+ build: ./ConfigService/config-server
+ ports:
+  - "8888:8888"
