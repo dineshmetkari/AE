@@ -45,6 +45,12 @@ public class ExamCreationServiceImpl implements ExamCreationService{
 		return "Data saved ";
 	}
 
+	@Override
+	public List<QuestionPaper> getByOne(String questionId) {
+		
+		return examCreationRepository.findByPaperName(questionId);
+	}
+
 //	
 //	@Autowired
 //	private ExamCreationRepository examCreationRepository;

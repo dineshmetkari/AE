@@ -13,7 +13,7 @@ public class QuestionPaper
 		
 	}
 	
-	
+	private String questionId;
 	private String subject;
 	private String topic;
 	private String level;
@@ -22,16 +22,19 @@ public class QuestionPaper
 	private String question;
 	private String[] options;
 	
-	public String[] getOptions() {
-		return options;
-	}
-	public void setOptions(String[] options) {
-		this.options = options;
-	}
+	
 	private String correctAnswer;
 	private String marksAlloted;
 	
 	
+	
+	
+	public String getQuestionId() {
+		return questionId;
+	}
+	public void setQuestionId(String questionId) {
+		this.questionId = questionId;
+	}
 	public String getSubject() {
 		return subject;
 	}
@@ -81,9 +84,16 @@ public class QuestionPaper
 	public void setMarksAlloted(String marksAlloted) {
 		this.marksAlloted = marksAlloted;
 	}
-	public QuestionPaper(String subject, String topic, String level, String complexity, String questionType,
+	public String[] getOptions() {
+		return options;
+	}
+	public void setOptions(String[] options) {
+		this.options = options;
+	}
+	public QuestionPaper(String questionId,String subject, String topic, String level, String complexity, String questionType,
 			String question, String[] options, String correctAnswer, String marksAlloted) {
 		super();
+		this.questionId=questionId;
 		this.subject = subject;
 		this.topic = topic;
 		this.level = level;

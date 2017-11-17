@@ -16,6 +16,7 @@ public interface ExamCreationService
 		
 public String createQuestionPaper(QuestionPaper questionPaper);
 public List<QuestionPaper> getAll();
+public List<QuestionPaper> getByOne(String questionId);
 
 public String exSave(Ex ex);
 
