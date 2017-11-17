@@ -1,4 +1,4 @@
-package com.stackroute.servicestudent.exception;
+package com.stackroute.serviceadmin.exception;
 
 public class UserAlreadyExistException extends Exception{
 

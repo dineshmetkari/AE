@@ -1,4 +1,4 @@
-package com.stackroute.servicestudent;
+package com.stackroute.serviceadmin;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

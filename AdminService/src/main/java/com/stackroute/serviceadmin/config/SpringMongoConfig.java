@@ -1,4 +1,4 @@
-package com.stackroute.servicestudent.config;
+package com.stackroute.serviceadmin.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -13,5 +13,4 @@ public class SpringMongoConfig{
 		return mongoTemplate;
 
 	}
-
 }

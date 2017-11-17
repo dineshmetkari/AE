@@ -1,16 +1,9 @@
-package com.stackroute.servicestudent.service;
+package com.stackroute.serviceadmin.service;
 
-import java.util.List;
-
-import com.stackroute.servicestudent.domain.StudentBean;
-import com.stackroute.servicestudent.exception.UserAlreadyExistException;
+import com.stackroute.serviceadmin.domain.AdminBean;
 
 
-public interface StudentService {
-	public List<StudentBean> getAllUsers();
-	public StudentBean getUserById(String id);
-	public StudentBean addUser(StudentBean userBean) throws UserAlreadyExistException;
-	public StudentBean updateUser(StudentBean userBean);
-	public String deleteUser(String id);
+public interface AdminService {
+	public AdminBean updateUser(AdminBean userBean);
 	public String getLoginDetails(String emailId,String password);
 }

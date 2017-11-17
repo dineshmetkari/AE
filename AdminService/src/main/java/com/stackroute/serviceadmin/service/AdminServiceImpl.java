@@ -1,4 +1,4 @@
-package com.stackroute.servicestudent.service;
+package com.stackroute.serviceadmin.service;
 
 import java.util.List;
 
@@ -10,51 +10,23 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
-import com.stackroute.servicestudent.config.SpringMongoConfig;
-import com.stackroute.servicestudent.domain.StudentBean;
-import com.stackroute.servicestudent.exception.UserAlreadyExistException;
-import com.stackroute.servicestudent.repository.StudentRepository;
+import com.stackroute.serviceadmin.config.SpringMongoConfig;
+import com.stackroute.serviceadmin.domain.AdminBean;
+import com.stackroute.serviceadmin.repository.AdminRepository;
 @Service
-public class StudentServiceImpl implements StudentService{
+public class AdminServiceImpl implements AdminService{
 
 	ApplicationContext ctx = new AnnotationConfigApplicationContext(SpringMongoConfig.class);
 	MongoOperations mongoOperation = (MongoOperations) ctx.getBean("mongoTemplate");
 
 	@Autowired
-	StudentRepository studentRepository;
-	StudentBean userBean;
+	AdminRepository adminRepository;
+	AdminBean userBean;
 
-	@Override
-	public List<StudentBean> getAllUsers() {
+		@Override
+	public AdminBean updateUser(AdminBean userBean) {
 
-		return (List<StudentBean>) studentRepository.findAll();
-	}
-
-	@Override
-	public StudentBean getUserById(String id) {
-
-		return studentRepository.findOne(id);
-	}
-
-	@Override
-	public StudentBean addUser(StudentBean userBean) throws UserAlreadyExistException{
-
-
-			return studentRepository.save(userBean);
-		}
-
-
-
-	@Override
-	public StudentBean updateUser(StudentBean userBean) {
-
-		return studentRepository.save(userBean);
-	}
-
-	@Override
-	public String deleteUser(String id) {
-		studentRepository.delete(id);
-		return "";
+		return adminRepository.save(userBean);
 	}
 
 	@Override
@@ -64,12 +36,12 @@ public class StudentServiceImpl implements StudentService{
 		query11.addCriteria(Criteria.where("emailId").in(emailId)
 				.andOperator(Criteria.where("password").in(password)));
 
-		List<StudentBean> userTest11 = mongoOperation.find(query11, StudentBean.class);
-		//System.out.println("query11 - " + query11.toString());
-		for (StudentBean syudentlogin : userTest11) {
-			//System.out.println("userTest11 - " + questionBank);
+		List<AdminBean> userTest11 = mongoOperation.find(query11, AdminBean.class);
+		System.out.println("query11 - " + query11.toString());
+		for (AdminBean adminlogin : userTest11) {
+			System.out.println("userTest11 - " + adminlogin);
 		}
-		//System.out.println(userTest11.toString());
+		System.out.println(userTest11.toString());
 		return userTest11.toString();
 	}
 }

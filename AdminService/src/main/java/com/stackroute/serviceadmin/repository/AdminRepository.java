@@ -1,10 +1,8 @@
-package com.stackroute.servicestudent.repository;
+package com.stackroute.serviceadmin.repository;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
-import org.springframework.data.repository.CrudRepository;
+import com.stackroute.serviceadmin.domain.AdminBean;
 
-import com.stackroute.servicestudent.domain.StudentBean;
-
-public interface StudentRepository extends MongoRepository<StudentBean, String>{
+public interface AdminRepository extends MongoRepository<AdminBean, String>{
 
 }
