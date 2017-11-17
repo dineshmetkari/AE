@@ -5,12 +5,11 @@ mongodb:
   - "27017:27017"
 
 zookeeper:
-
  image: wurstmeister/zookeeper
  ports:
  - "2181:2181"
 kafka:
- build: .
+ build: ./StudentService
  ports:
   - "9092"
  environment:
@@ -19,8 +18,17 @@ kafka:
 
 
 studentdocker:
- build: ./StudentService
+ build: .
  ports:
   - "8083:8083"
  links:
   - mongodb
+eurekaserver:
+ build: ./DiscoveryRegistryService
+ ports:
+  - "8070:8070"
+authenticationservice:
+ build: ./AuthenticationService
+ ports:
+  - "8088:8088"
+  
