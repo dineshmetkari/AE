@@ -5,25 +5,19 @@ import axios from 'axios';
 import request from 'superagent';
 import {Link} from 'react-router';
 
-
 const style = {
  margin: 15,
 marginLeft: 600
 };
-let email=[];
-//let emailobj=null;
-
 export default class  Register extends React.Component {
- constructor(props)   {
+ constructor(props) {
    super(props);
    this.onSubmit=this.handleSubmit.bind(this);
 
    this.state = {
            fields: {},
            errors: {},
-           password: "",
-           recheck: "",
-           result: []
+
        }
 }
 
@@ -33,16 +27,14 @@ handleValidation(){
   let fields = this.state.fields;
         let errors = {};
         let formIsValid = true;
-        this.setState({password:""});
-        this.setState({confirmPassword:""});
-        // console.log("here pwd"+password+"cpwd"+confirmPassword);
+
         //studentName
         if(!fields["sname"]){
            formIsValid = false;
            errors["sname"] = "Can not be empty";
         }
         if(typeof fields["sname"] !== "undefined"){
-             if(!fields["sname"].match(/^[a-zA-Z]+(?:[ ]?[a-zA-Z])*$/)){
+             if(!fields["sname"].match(/^[a-zA-Z]+$/)){
                  formIsValid = false;
                  errors["sname"] = "Only letters";
              }
@@ -100,44 +92,21 @@ handleValidation(){
              }
         }
 
-
-        //Password
-        if(!fields["password"]){
-           formIsValid = false;
-           errors["password"] = "Can not be empty";
-        }
-
-
-        //confirmPassword
-        if(!fields["confirmPassword"]){
-           formIsValid = false;
-           errors["confirmPassword"] = "Can not be empty";
-        }
-        if(typeof fields["confirmPassword"] !== "undefined"){
-            //  if(!fields["password"]==fields["confirmPassword"]){
-            //      formIsValid = false;
-            //      errors["confirmPassword"] = "Password and confirmPassword must be match";
-            //  }
-              if(!(this.refs.password.getValue()==this.refs.confirmPassword.getValue())){
-                    formIsValid = false;
-                     errors["confirmPassword"] = "Password and confirmPassword must be match";
-              }
-        }
-
-
-
-
-
-
         this.setState({errors: errors});
        return formIsValid;
 }
 
 
 handleSubmit(e) {
-  var t=this;
    e.preventDefault();
-   const emailId=this.refs.emailId.getValue();
+
+   if(this.handleValidation()){
+           alert("Form submitted");
+        }else{
+           alert("Form has errors.")
+        }
+   var self = this;
+
    const payload = {
 
    studentName: this.refs.sname.getValue(),
@@ -145,71 +114,22 @@ handleSubmit(e) {
    contactNumber: this.refs.contact.getValue(),
    skillSet: this.refs.skill.getValue(),
    address: this.refs.address.getValue(),
-   password:this.refs.password.getValue()
+   password:this.refs.password.getValue(),
+   confirmPassword:this.refs.confirmpassword.getValue()
 };
-
 console.log(payload);
-
-
-
-      if(this.handleValidation())
-      {
-                  //   fetch('http://localhost:8083/students/',{
-                  //   method: 'GET',
-                  //   })
-                  //   .then(function(response) {
-                  //   return response.json()
-                  //   }).then(function(body) {
-                  //   console.log(body);
-                  //   var res=Object.values(body);
-                  //   let emailobj;
-                  //   res.map(function(x){
-                  //     emailobj=x.emailId;
-                  //     email.push(emailobj);
-                  //   });
-                  //   t.setState({
-                  //     result : email });
-                  // });
-
-
-
-                  let a = this.refs.emailId.getValue();
-
-
-                    let ur='http://localhost:8083/students/specificusers/'+a+'/';
-                    axios.get(ur).then((response) => {
-                      this.setState({
-                        data  : response.data
-                      });
-                      let output= this.state.data;
-                      //console.log("Output for Login : " + output);
-                      if(output == "User Already existed"){
-                        alert("User Already existed");
-                        return;
-                      }else{
-                        request
-                        .post('http://localhost:8083/students')
-                        .set('Content-type', 'application/json')
-                        .send(payload)
-                        .end((res, err) =>{
-                          if(res) {
-                            console.log("this is res", res.body);
-                          } else {
-                            console.log("this is err", err);
-                          }
-                        })
-                         alert("Registration successfully completed");
-                        browserHistory.push('/error');
-                        return;
-                      }
-
-                    });
-
-        }else{
-           alert("Registration not done!! give proper data")
-        }
-  // var self = this;
-}
+request
+.post('http://localhost:8083/students')
+.set('Content-type', 'application/json')
+.send(payload)
+.end((res, err) =>{
+  if(res) {
+    console.log("this is res", res.body);
+  } else {
+    console.log("this is err", err);
+  }
+})
+ }
 
  handleChange(field, e){
         let fields = this.state.fields;
@@ -217,22 +137,13 @@ console.log(payload);
         this.setState({fields});
     }
 
-// handleChangeConfirm = (e) =>{
-//   console.log("confirm password", e.target.value);
-//   this.setState({recheck: e.target.value})
-//     // if(this.state.password.startsWith(this.state.recheck)){
-//     //
-//     // } else {
-//     //   this.setState({error : "not valid"});
-//     // }
-//     console.log(this.state.password+"here"+this.state.recheck);
-//     if(this.state.password===this.state.recheck){
-// this.setState({error : "valid"});
-//     } else {
-//       this.setState({error : "not valid"});
-//     }
-//
-//   };
+handleChangeConfirm = (e) =>{
+  console.log("confirm password", e.target.value);
+  this.setState({recheck: e.target.value}, () => {
+    this.state.password;
+    this.state.recheck;
+  });
+}
 
 render() {
    return (
@@ -253,11 +164,9 @@ render() {
      <TextField ref='address' hintText="Enter your address ex:Bangalore,hyd" floatingLabelText="Address" onChange={this.handleChange.bind(this, "address")} value={this.state.fields["address"]}/>
      <span style={{color: "red"}}>{this.state.errors["address"]}</span>
      <br/>
-     <TextField ref='password' hintText="Enter your password" type="password" floatingLabelText="Password" onChange={this.handleChange.bind(this, "password")} value={this.state.fields["password"]}/>
-       <span style={{color: "red"}}>{this.state.errors["password"]}</span>
+     <TextField ref='password' hintText="Enter your password" type="password" floatingLabelText="Password" />
      <br/>
-     <TextField ref='confirmPassword' hintText="Enter your confirmpassword" type="password" floatingLabelText="Confirm Password" onChange={this.handleChange.bind(this, "confirmPassword")} value={this.state.fields["confirmPassword"]}/>
-     <span style={{color: "red"}}>{this.state.errors["confirmPassword"]}</span>
+     <TextField ref='confirmPassword' hintText="Enter your confirmpassword" type="password" floatingLabelText="Confirm Password" onChange={this.handleChangeConfirm.bind(this)}/>
      <br/>
      <br/>
 
