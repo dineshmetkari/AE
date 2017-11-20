@@ -24,12 +24,15 @@ import VisibilityOff from 'material-ui/svg-icons/action/visibility-off';
       marginBottom: 20,
       marginLeft: 20
     },
+    drawer:{
+      width: '53%'
+    }
   };
 class PreviewMcq extends React.Component{
   constructor(props){
     super(props)
     this.state={
-                open: true,
+                open: false,
                 question:'',
                 optionA:'',
                 optionB:'',
@@ -50,7 +53,7 @@ class PreviewMcq extends React.Component{
   render(){
     return(
       <div>
-        <Drawer width={719} openSecondary={true} open={this.state.open}>
+        <Drawer width={styles.drawer.width} docked={false} openSecondary={true} open={this.state.open} onRequestChange={this.toggleDrawer}>
           <AppBar
             title="MCQ Preview"
             iconClassNameRight="muidocs-icon-navigation-expand-more"

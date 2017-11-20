@@ -30,6 +30,10 @@ class McqQuestion extends React.Component{
   <TextField
         hintText="Type your Question here"
         fullWidth={true}
+        multiLine={true}
+        rows={2}
+        rowsMax={4}
+        style={styles.padding}
         onChange={(e) => {this.handleQuestion(e.target.value)
                           this.sendQuestion(e.target.value)}
                   }

@@ -14,13 +14,16 @@ import {Card, CardText} from 'material-ui/Card';
     },
     questionStyle:{
       marginLeft: 20
+    },
+    drawer:{
+      width: '53%'
     }
   };
 class PreviewTrueFalse extends React.Component{
   constructor(props){
     super(props)
     this.state={
-                open: true,
+                open: false,
                 question:'',
                 checkedTrue: false,
                 checkedFalse: false
@@ -30,7 +33,7 @@ class PreviewTrueFalse extends React.Component{
   render(){
     return(
       <div>
-        <Drawer width={719} openSecondary={true} open={this.state.open}>
+        <Drawer width={styles.drawer.width} docked={false} openSecondary={true} open={this.state.open} onRequestChange={this.toggleDrawer}>
           <AppBar
             title="True False Preview"
             iconClassNameRight="muidocs-icon-navigation-expand-more"
@@ -59,13 +62,15 @@ class PreviewTrueFalse extends React.Component{
     </Drawer>
     </div>
 );}
-toggleDrawer(){
-  this.setState({open: false});
-}
 componentWillReceiveProps(newProps){
   this.setState({open : newProps.open});
   this.setState({question: newProps.question});
 }
+toggleDrawer(){
+  console.log("called request change");
+  this.setState({open: false});
+}
+
 updateCheckTrue() {
     this.setState((oldState) => {
       return {
@@ -80,6 +85,7 @@ updateCheckTrue() {
         };
       });
     }
+
 }
 
 export default PreviewTrueFalse;

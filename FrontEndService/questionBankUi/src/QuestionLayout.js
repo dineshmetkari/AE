@@ -10,6 +10,9 @@ import {Link} from 'react-router';
 import request from 'superagent';
 import axios from 'axios';
 const style = {
+  drawer:{
+    width: '100%'
+  },
   margin: 12,
 };
 export default class QuestionLayout extends React.Component {
@@ -30,6 +33,7 @@ export default class QuestionLayout extends React.Component {
                   complexity: '',
                   type: '',
                   topic: '',
+                  level: '',
                   question: '',
                   answer: '',
                   optionA: '',
@@ -50,7 +54,7 @@ export default class QuestionLayout extends React.Component {
   render() {
     return (
       <div>
-        <Drawer width={1439} openSecondary={true} open={this.state.mcq} >
+        <Drawer width={style.drawer.width} openSecondary={true} open={this.state.mcq} >
           <AppBar title="MCQ Question" />
           < McqQuestion onSubmit = {this.getQuestion} getAnswer = {this.getAnswer}
                         optionA = {this.getOptionA} optionB = {this.getOptionB}
@@ -65,7 +69,7 @@ export default class QuestionLayout extends React.Component {
             />
 
         </Drawer>
-        <Drawer width={1439} openSecondary={true} open={this.state.tf} >
+        <Drawer width={style.drawer.width} openSecondary={true} open={this.state.tf} >
           <AppBar title="True or False Question" />
           < TFQuestion onSubmit = {this.getQuestion} getAnswer = {this.getAnswer}/>
             <RaisedButton label="cancel" default={true} style={style} onClick = {this.props.setDefault }/>
@@ -90,26 +94,41 @@ export default class QuestionLayout extends React.Component {
     if(this.state.domainValue === 1){
       this.setState({domain: "java"});
     }
-    if(this.state.domainValue === 2){
+    else if(this.state.domainValue === 2){
       this.setState({domin: "python"});
     }
-    if(this.state.domainValue ===3){
+    else if(this.state.domainValue ===3){
       this.setState({domain: "database"});
     }
     if(this.state.topicValue ===1){
       this.setState({topic: "Strings"});
     }
-    if(this.state.topicValue ===2){
+    else if(this.state.topicValue ===2){
       this.setState({topic: "collections"});
     }
     if(this.state.complexityValue ===1){
       this.setState({complexity: "easy"});
     }
-    if(this.state.complexityValue ===2){
+    else if(this.state.complexityValue ===2){
       this.setState({complexity: "medium"});
     }
-    if(this.state.complexityValue ===3){
+    else if(this.state.complexityValue ===3){
       this.setState({complexity: "hard"});
+    }
+    if(this.state.levelValue === 1) {
+      this.setState({level: "l1"});
+    }
+    else if(this.state.levelValue === 2) {
+      this.setState({level: "l2"});
+    }
+    else if(this.state.levelValue === 3) {
+      this.setState({level: "l3"});
+    }
+    if(this.state.typeValue === 1){
+      this.setState({type : "mcq"});
+    }
+    else if(this.state.typeValue === 2){
+      this.setState({type : "tf"});
     }
   }
   openPreview(){
@@ -137,6 +156,11 @@ export default class QuestionLayout extends React.Component {
     this.setState({answer: value});
   }
   save(e){
+    console.log(this.state.complexity);
+    console.log(this.state.level);
+    console.log(this.state.topic);
+    console.log(this.state.domain);
+    console.log(this.state.type);
     e.preventDefault();
     // domain = this.state.domain;
     //  complexity: this.state.complexity;
@@ -157,10 +181,10 @@ export default class QuestionLayout extends React.Component {
             "topic":this.state.topic,
             "levelList":[
                 {
-                    "level":this.state.levelValue,
+                    "level":this.state.level,
                     "complexityList":[
                         {
-                            "complexity":this.state.complexityValue,
+                            "complexity":this.state.complexity,
                             "questionTypeList":[
                                 {
                                     "questionType":this.state.type,
