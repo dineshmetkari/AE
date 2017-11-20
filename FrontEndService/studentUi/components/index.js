@@ -5,8 +5,10 @@ import Main from './container/Main';
 import Nav from './container/Nav';
 import ComponentNotFound from './container/ComponentNotFound';
 import Register from './container/Register';
-import Login from './container/Login';
+import StudentLogin from './container/StudentLogin';
 import StudentHome from './container/StudentHome';
+import AdminLogin from './container/AdminLogin';
+import HomePage from './container/HomePage';
 import {browserHistory, Route, Router, IndexRoute}  from 'react-router';
 
 
@@ -29,9 +31,13 @@ ReactDom.render(
 				<Route path="/" component={Index} >
                 <IndexRoute component={Main} />
 								<Route path="/register" component={Register}/>
-								<Route path="/login" component={Login}/>
+								<Route path="/error" component={ComponentNotFound}/>
+								<Route path="/studentLogin" component={StudentLogin}/>
 								<Route path="/loginMain" component={StudentHome}/>
-                <Route path='*' component={ComponentNotFound} />
+              	<Route path='/adminLogin' component={AdminLogin} />
+								<Route path='/home' component={HomePage} />
+								<Route path='/logout' component={HomePage} />
+								<Route path='*' component={ComponentNotFound} />
         </Route>
 				</Router> , document.getElementById('root')
 );
