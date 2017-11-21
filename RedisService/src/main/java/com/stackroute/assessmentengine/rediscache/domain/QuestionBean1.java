@@ -1,23 +1,14 @@
-package com.stackroute.assessmentengine.engineService.domain;
-
+package com.stackroute.assessmentengine.rediscache.domain;
+import java.io.Serializable;
 import java.util.List;
 
-public class QuestionBean {
-	    private String noOfQuestions;
+import org.springframework.data.redis.core.RedisHash;
+import org.springframework.stereotype.Component;
+
+public class QuestionBean1  {
+	    private String msg;
 	    
-	   
-
-		private String msg;
-	    
-        public String getMsg() {
-			return msg;
-		}
-
-		public void setMsg(String msg) {
-			this.msg = msg;
-		}
-
-		private String examId;
+        private String examId;
 
 	    private String studentId;
 
@@ -52,10 +43,8 @@ public class QuestionBean {
 	    private String examEndTime;
 
 	    private String marksAttained;
-
-	    public QuestionBean() {
-	    	
-	    }
+	    
+	   
 
 	    public String getExamId() {
 			return examId;
@@ -80,13 +69,7 @@ public class QuestionBean {
 		public void setQuestionId(String questionId) {
 			this.questionId = questionId;
 		}
-		 public String getNoOfQuestions() {
-				return noOfQuestions;
-			}
 
-			public void setNoOfQuestions(String noOfQuestions) {
-				this.noOfQuestions = noOfQuestions;
-			}
 		public String getQuestion() {
 			return question;
 		}
@@ -207,11 +190,11 @@ public class QuestionBean {
 			this.marksAttained = marksAttained;
 		}
 
-		public QuestionBean(String examId, String studentId, String questionId, String question,
+		public QuestionBean1(String examId, String studentId, String questionId, String question,
 				List<String> Options, String correctAnswer, String userAnswer, String questionType,
 				String subject, String level, String complexity, String marksAlloted, String timeTakenInSeconds,
 				String questionStartTime, String questionEndTime, String examStartTime, String examEndTime,
-				String marksAttained,String noofquestions) {
+				String marksAttained) {
 			super();
 			this.examId = examId;
 			this.studentId = studentId;
@@ -231,35 +214,26 @@ public class QuestionBean {
 			this.examStartTime = examStartTime; 	
 			this.examEndTime = examEndTime;
 			this.marksAttained = marksAttained;
-			this.noOfQuestions=noofquestions;
+			
 		}
-		public QuestionBean(String k)
+		public QuestionBean1(String k)
 		{
 			this.msg=k;
 		}
+		public QuestionBean1() {
+	    	
+	    }
 
 		@Override
 		public String toString() {
-			return "QuestionBean [noOfQuestions=" + noOfQuestions + ", msg=" + msg + ", examId=" + examId
-					+ ", studentId=" + studentId + ", questionId=" + questionId + ", question=" + question
-					+ ", Options=" + Options + ", correctAnswer=" + correctAnswer + ", userAnswer=" + userAnswer
-					+ ", questionType=" + questionType + ", subject=" + subject + ", level=" + level + ", complexity="
-					+ complexity + ", marksAlloted=" + marksAlloted + ", timeTakenInSeconds=" + timeTakenInSeconds
-					+ ", questionStartTime=" + questionStartTime + ", questionEndTime=" + questionEndTime
-					+ ", examStartTime=" + examStartTime + ", examEndTime=" + examEndTime + ", marksAttained="
-					+ marksAttained + "]";
+			return "QuestionBean [msg=" + msg + ", examId=" + examId + ", studentId=" + studentId + ", questionId="
+					+ questionId + ", question=" + question + ", Options=" + Options + ", correctAnswer="
+					+ correctAnswer + ", userAnswer=" + userAnswer + ", questionType=" + questionType + ", subject="
+					+ subject + ", level=" + level + ", complexity=" + complexity + ", marksAlloted=" + marksAlloted
+					+ ", timeTakenInSeconds=" + timeTakenInSeconds + ", questionStartTime=" + questionStartTime
+					+ ", questionEndTime=" + questionEndTime + ", examStartTime=" + examStartTime + ", examEndTime="
+					+ examEndTime + ", marksAttained=" + marksAttained + "]";
 		}
-
-//		@Override
-//		public String toString() {
-//			return "QuestionBean [msg=" + msg + ", examId=" + examId + ", studentId=" + studentId + ", questionId="
-//					+ questionId + ", question=" + question + ", Options=" + Options + ", correctAnswer="
-//					+ correctAnswer + ", userAnswer=" + userAnswer + ", questionType=" + questionType + ", subject="
-//					+ subject + ", level=" + level + ", complexity=" + complexity + ", marksAlloted=" + marksAlloted
-//					+ ", timeTakenInSeconds=" + timeTakenInSeconds + ", questionStartTime=" + questionStartTime
-//					+ ", questionEndTime=" + questionEndTime + ", examStartTime=" + examStartTime + ", examEndTime="
-//					+ examEndTime + ", marksAttained=" + marksAttained + "]";
-//		}
 
 	
 

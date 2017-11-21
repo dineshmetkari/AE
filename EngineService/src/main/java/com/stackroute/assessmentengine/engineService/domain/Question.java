@@ -1,10 +1,11 @@
 package com.stackroute.assessmentengine.engineService.domain;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-@JsonIgnoreProperties(ignoreUnknown = true)
-public class Question {
+//@JsonIgnoreProperties(ignoreUnknown = true)
+public class Question implements Serializable{
 	private String examStatus;
 	
 

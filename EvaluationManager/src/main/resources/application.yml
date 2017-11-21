@@ -1,0 +1,14 @@
+kafka:
+  bootstrap-servers: 172.23.238.133:9092
+  topic:
+    json: Evaluationmanager
+    json1: EvaluationRouter
+    json2: ExamStatus
+    json3: ResultManager
+    
+server:
+  port: 8095
+  
+spring:
+  application:
+    name: EvaluationManager_service
