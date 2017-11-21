@@ -34,6 +34,7 @@ constructor(props){
      if(output == "Login Successfull"){
        loggedin : true;
        browserHistory.push({pathname : '/loginMain', state : this.state.name});
+       
        return;
      }else{
        loggedin : false;

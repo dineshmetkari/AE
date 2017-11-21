@@ -9,17 +9,23 @@ const style = {
 };
 let obj={};
 let res=[];
+
 export default class ResultsHome extends React.Component{
 	constructor(props){
 		super(props);
+    var user=this.props.location.name;
 		this.state={data: [],
 			content:null
 		}
 		this.onSubmit=this.getResult.bind(this);
 		this.onSubmit= this.onSubmit.bind(this);
 	}
+  //console.log("rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr"+user);
   getResult(){
+
+  
 		var x=this;
+          // console.log("rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr"+user);
 				let result=[];
           fetch('http://localhost:8086/results/sai@gmail.com/',{
           method: 'GET'
@@ -48,6 +54,8 @@ onSubmit(){
 
 
 	render(){
+  var us=this.props.location.name;
+    console.log(us);
 		var {content} = this.state;
 
 													if(content){

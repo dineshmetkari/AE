@@ -7,8 +7,10 @@ import ComponentNotFound from './container/ComponentNotFound';
 import Register from './container/Register';
 import StudentLogin from './container/StudentLogin';
 import StudentHome from './container/StudentHome';
+import ResultsHome from './container/ResultsHome';
 import AdminLogin from './container/AdminLogin';
 import HomePage from './container/HomePage';
+import AdminHome from './container/AdminHome';
 import {browserHistory, Route, Router, IndexRoute}  from 'react-router';
 
 
@@ -35,7 +37,9 @@ ReactDom.render(
 								<Route path="/studentLogin" component={StudentLogin}/>
 								<Route path="/loginMain" component={StudentHome}/>
               	<Route path='/adminLogin' component={AdminLogin} />
+								<Route path='/adminMain' component={AdminHome} />
 								<Route path='/home' component={HomePage} />
+								<Route path='results/:name' component={ResultsHome}/>
 								<Route path='/logout' component={HomePage} />
 								<Route path='*' component={ComponentNotFound} />
         </Route>

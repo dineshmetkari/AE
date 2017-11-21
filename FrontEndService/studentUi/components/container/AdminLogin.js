@@ -18,7 +18,7 @@ constructor(props){
  handleLogin(){
    let a = this.refs.emailId.getValue();
    let b =this.refs.password.getValue();
-   let ur='http://localhost:8080/admin/adminlogin/'+a+'/'+b;
+   let ur='http://localhost:8089/admin/adminlogin/'+a+'/'+b;
    axios.get(ur).then((response) => {
      this.setState({
        data  : response.data,
@@ -31,7 +31,7 @@ constructor(props){
      if(output == "Login Successfull"){
        loggedin : true;
 
-       browserHistory.push({pathname : '/loginMain', state : this.state.name});
+       browserHistory.push({pathname : '/adminMain', state : this.state.name});
        return;
      }else{
        loggedin : false;
