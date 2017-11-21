@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import Paper from 'material-ui/Paper';
+import './Pagination.css';
+
 class Pagination extends Component{
 
 		
 	constructor(props){
 		super(props);
 		this.state ={
-			QuestionCount:this.props.questionCount,
+			QuestionCount:'10'
 		}
 		this.handleClick=this.handleClick.bind(this);
 	}
@@ -18,7 +20,7 @@ class Pagination extends Component{
  render(){
  	const {QuestionCount} = this.state;
  	const QuestionNumbers=[];
- 	for(var i=1; i<= QuestionCount; i++){QuestionNumbers.push(i);}
+ 	for(var i=1; i<= this.props.qCount ; i++){QuestionNumbers.push(i);}
 
  	const renderQuestionNumbers = QuestionNumbers.map(QuestionNumber => {
           return (
@@ -35,7 +37,7 @@ class Pagination extends Component{
         	
  	return(
  		<div>
- 		<ul style={{cursor:'pointer'}}>
+ 		<ul className="Pager">
               {renderQuestionNumbers}
             </ul>
  		</div>

@@ -7,13 +7,23 @@ import Counter from './Counter';
 const divStyle={
   width:'1000px',
   margin:'auto',
-  textAlign:'right'
+  textAlign:'center'
 }
 class ExamTimer extends Component{
+  constructor(props){
+    super(props);
+    this.state={
+
+    }
+  }
+
+  getTimerFlag(flag){
+    this.props.sendTimerFlag(flag);
+  }
   render () {
     return (
       <div style={divStyle}>
-       <Counter hh={3} mm={1} ss={2}/>
+       <Counter hh={1} mm={30} ss={0} sendTimerFlag={this.getTimerFlag.bind(this)}/>
       </div>
     )
   }

@@ -10,10 +10,13 @@ class MCQTemplate extends Component{
 	}
 
 	handleChange(event){
+
+		this.props.setSelectedAnswer(event.target.value);
 		this.setState({
-			answered: event.target.value
+			answered:event.target.value
 		});
 	}
+
 	
 	render(){
 		if(this.props.jsonData != null){

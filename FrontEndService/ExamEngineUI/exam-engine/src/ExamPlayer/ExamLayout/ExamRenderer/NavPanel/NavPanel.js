@@ -11,6 +11,7 @@ class NavPanel extends Component{
 		// this.onNavClick=this.onNavClick.bind(this);
 		this.onNavPrevClick=this.onNavPrevClick.bind(this);
 		this.onNavNextClick=this.onNavNextClick.bind(this);
+		this.submit=this.submit.bind(this);
 	}
 
 	onNavPrevClick(){
@@ -36,10 +37,9 @@ class NavPanel extends Component{
 	render(){
 		return(
 		<div style={{display:'flex', flexDirection:'row', justifyContent:'space-between', marginRight:'50px', marginLeft:'50px', alignItems:'center'}}>
-		
 
 		<Pagination 
-			questionCount={this.props.questionCount}
+			qCount={this.props.questionCount}
 			onPagerClick={this.getQfromPager.bind(this)}  
 			style={{display:'flex', marginTop:''}} />
 		
@@ -56,7 +56,7 @@ class NavPanel extends Component{
 				label="Mark" primary={true} />
 			</div>
 			<div style={{marginTop:'5px'}}>
-				<RaisedButton label="Submit" onclick={this.submit} fullWidth={true} backgroundColor="#ff0000" labelColor="white" />
+				<RaisedButton label="Submit" onClick={this.submit} fullWidth={true} backgroundColor="#4d9900" labelColor="white" />
 			</div>
 		</div>
 

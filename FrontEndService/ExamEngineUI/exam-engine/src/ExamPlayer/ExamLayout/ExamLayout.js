@@ -3,8 +3,8 @@ import ExamRenderer from './ExamRenderer/ExamRenderer';
 import Paper from 'material-ui/Paper';
 
 const divStyle={
-	height:'500px',
-	width:'1000px',
+	height:'400px',
+	width:'800px',
 	border:'2px solid',
 	margin:'auto',
 }
@@ -16,7 +16,7 @@ class ExamLayout extends Component{
 	render(){
 		return(
 			<Paper style={divStyle} zDepth={3}>
-			<ExamRenderer msg={this.props.msg} />
+			<ExamRenderer flag={this.props.flag} />
 			</Paper>
 	);
 	}
