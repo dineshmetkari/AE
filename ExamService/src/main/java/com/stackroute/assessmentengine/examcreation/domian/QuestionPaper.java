@@ -24,7 +24,7 @@ public class QuestionPaper
 	
 	
 	private String correctAnswer;
-	private String marksAlloted;
+	private String marksAllotted;
 	
 	
 	
@@ -79,10 +79,10 @@ public class QuestionPaper
 		this.correctAnswer = correctAnswer;
 	}
 	public String getMarksAlloted() {
-		return marksAlloted;
+		return marksAllotted;
 	}
 	public void setMarksAlloted(String marksAlloted) {
-		this.marksAlloted = marksAlloted;
+		this.marksAllotted = marksAlloted;
 	}
 	public String[] getOptions() {
 		return options;
@@ -102,7 +102,7 @@ public class QuestionPaper
 		this.question = question;
 		this.options = options;
 		this.correctAnswer = correctAnswer;
-		this.marksAlloted = marksAlloted;
+		this.marksAllotted = marksAlloted;
 	}
 	
 	
