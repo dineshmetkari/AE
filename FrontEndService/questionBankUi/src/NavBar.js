@@ -1,14 +1,15 @@
-import React from 'react';
-import AppBar from 'material-ui/AppBar';
+import React, { Component } from 'react';
+import logo from './logo1.png';
 
-/**
- * A simple example of `AppBar` with an icon on the right.
- * By default, the left icon is a navigation-menu.
- */
-const NavBar = () => (
-  <AppBar
-    title="Question Blueprint"
-    iconClassNameRight="muidocs-icon-navigation-expand-more"
-  />
-);
-export default NavBar;
+class AppBar extends Component{
+    render(){
+        return(
+        <div style={{height:'55px', width:'100vw',backgroundColor:'#00bcd4 '}}>
+        <img src={logo} alt="logo" style={{height:'50px',width:'250px', marginTop:'2px'}}  />
+        </div>
+    );
+    }
+
+}
+
+export default AppBar;

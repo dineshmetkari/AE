@@ -6,9 +6,7 @@ import McqQuestion from './McqQuestion';
 import TFQuestion from './TFQuestion';
 import PreviewTrueFalse from './PreviewTrueFalse';
 import PreviewMcq from './PreviewMcq';
-import {Link} from 'react-router';
 import request from 'superagent';
-import axios from 'axios';
 const style = {
   drawer:{
     width: '100%'

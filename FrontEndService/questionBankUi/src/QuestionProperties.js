@@ -6,7 +6,7 @@ import MenuItem from 'material-ui/MenuItem';
 import QuestionLayout from './QuestionLayout';
 import {Card, CardHeader} from 'material-ui/Card';
 import TextField from 'material-ui/TextField';
-import {Link} from 'react-router';
+import Background from './image.jpg'
 const styles = {
   customWidth:{
     width: 150
@@ -22,8 +22,8 @@ const styles = {
     marginTop:100,
     width: 650,
     height: 350,
-
-    padding: 5
+    padding: 5,
+    backgroundImage: 'url(${Background})',
     },
     cardHeader:{
       marginLeft: 170,
@@ -34,13 +34,14 @@ const styles = {
     marginLeft: 280,
     marginTop:0,
     position: 'absolute',
-
-
     },
     ul:{
       paddingLeft: 9,
       display: "inline-block",
       textAlign: "center"
+    },
+    background:{
+      backgroundImage: 'url(${Background})',
     },
 };
 class QuestionProperties extends React.Component {
@@ -62,15 +63,10 @@ constructor(props){
   }
   render() {
     return (
-      <div className="QuestionProperties">
-      <header>
-      <AppBar
-        title="Question Blueprints"
-        iconClassNameRight="muidocs-icon-navigation-expand-more"
-      />
-      </header>
+      <div className="QuestionProperties" style = {styles.background}>
+
       <br/>
-      <Card style={styles.cardWidth}>
+      <Card style={styles.cardWidth} >
         <CardHeader
           title="Enter the Question Details Below"
           style={styles.cardHeader}
@@ -80,7 +76,7 @@ constructor(props){
           <DropDownMenu value={this.state.domainValue} onChange={this.handleDomainChange}  style={styles.customWidth}>
             <MenuItem value={1} primaryText="Java" />
             <MenuItem value={2} primaryText="Python" />
-            <MenuItem value={3} primaryText="DB Conectivty requred" />
+            <MenuItem value={3} primaryText="Database" />
           </DropDownMenu>
         </li>
         <li style= {styles.ul}>

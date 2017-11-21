@@ -7,10 +7,12 @@ import registerServiceWorker from './registerServiceWorker';
 import QuestionProperties from './QuestionProperties';
 import QuestionLayout from './QuestionLayout';
 import {HashRouter, Route,Link} from 'react-router-dom'
+import AppBar from './NavBar'
 class Index extends React.Component{
   render(){
     return(
       <MuiThemeProvider>
+      <AppBar />
       <App />
       </MuiThemeProvider>
     )
@@ -19,7 +21,7 @@ class Index extends React.Component{
 ReactDom.render(
   <HashRouter>
     <div>
-    <Route path="/" component= {Index} />
+    <Route path="/questionsetup" component= {Index} />
       <Route path = "/questionDetails" component={QuestionLayout} />
     </div>
     </HashRouter>
