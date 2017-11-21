@@ -1,34 +1,54 @@
 import React from 'react';
 import {Link} from 'react-router';
-import FontIcon from 'material-ui/FontIcon';
-import IconButton from 'material-ui/IconButton';
-import ActionHome from 'material-ui/svg-icons/action/home';
+import RaisedButton from 'material-ui/RaisedButton';
 
 export default class  StudentHome extends React.Component {
+  constructor(props){
+    super(props);
+    this.state={
+    name : '',
+    }
+   }
 
   render(){
+    var name = this.props.location.state;
+    console.log(name);
     return(
-      <div style={{display:'flex', flexDirection:'row', justifyContent:'space-around', marginTop:'20%'}}>
+      <div>
+      <div style={userStyle}>
+      <h3>Logged In as : {name}</h3>
+      </div>
 
-
-         <div style={{padding:'0px 50px', backgroundColor:'rgb(0, 188, 212)', border:'2px solid black', borderRadius:'10px'}}>
-
-          <h3><Link to="/register" style={{textDecoration:'none',color:'black'}}>Take Exam</Link></h3>
-
-        </div>
-
-        <div style={{padding:'0px 50px', backgroundColor:'rgb(0, 188, 212)', border:'2px solid black', borderRadius:'10px'}}>
-          <h3><Link to="/results" style={{textDecoration:'none',color:'black'}}>Results</Link></h3>
-        </div>
-
-        <div style={{padding:'0px 50px',backgroundColor:'rgb(0, 188, 212)', border:'2px solid black', borderRadius:'10px'}}>
-          <h3><Link to="/register" style={{textDecoration:'none',color:'black'}}>Update Profile</Link></h3>
-        </div>
+      <div style={linkStyle}>
+      <Link href="/logout">
+          <RaisedButton label="Logout" primary={true} style={buttonStyle}/>
+      </Link>
+      <br/>
+      <h2><Link to="/register">Apply for Exam</Link></h2>
+      <br/>
+      <h2><Link to="/register">View Results</Link></h2>
+      <br/>
+      <h2><Link to="/register">Update Profile</Link></h2>
+      <br/>
+      </div>
       </div>
     )
   }
 }
-const style = {
+
+const linkStyle = {
   margin: 8,
- marginLeft: 600
+ marginLeft: "43%"
 };
+
+const buttonStyle = {
+  marginTop : 8,
+  position:'relative',
+  marginLeft: "85%"
+};
+
+const userStyle = {
+  position: 'absolute',
+  display : 'inline',
+  marginLeft : 25
+}
