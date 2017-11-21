@@ -7,7 +7,7 @@ export default class Nav extends React.Component{
 		return(
 			<div>
 			<AppBar
-				 title="Test Arena"
+				 title="Student Service"
 			 />
 		      </div>
 			);
