@@ -3,7 +3,7 @@ kafka:
   topicMcq:
     jsonMcq: McqQuestion
   topic:
-    json: response
+    json: QuestionFromService
   
     
     
@@ -26,3 +26,5 @@ spring:
       
 server:
   port: 8022
+
+##Mcq Evaluator Service

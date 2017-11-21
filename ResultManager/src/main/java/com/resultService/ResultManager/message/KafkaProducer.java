@@ -16,7 +16,7 @@ public class KafkaProducer {
 	@Autowired
 	private KafkaTemplate<String, QuestionBean> kafkaTemplate;
 
-	@Value("${kafka.topic.json}")
+	@Value("${kafka.topic2.json2}")
 	private String kafkaTopic;
 
 	public void send(QuestionBean questionBean) {

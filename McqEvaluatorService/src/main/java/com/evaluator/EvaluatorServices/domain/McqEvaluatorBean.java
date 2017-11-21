@@ -23,7 +23,7 @@ public class McqEvaluatorBean {
 	private String examStartTime;
 	private String examEndTime;
 	private String marksAttained;
-	private String questionFlag;
+	private String isEvaluated;
 	
 	public McqEvaluatorBean() {
 		super();
@@ -35,7 +35,7 @@ public class McqEvaluatorBean {
 	public McqEvaluatorBean(String examId, String studentId, String questionId, String question,
 			List<String> mcqOptions, String correctAnswer, String userAnswer, String questionType,
 			String subject, String level, String complexity, String marksAlloted, String timeTakenInSeconds,
-			String questionStartTime, String questionEndTime, String examStartTime, String examEndTime, String questionFlag) {
+			String questionStartTime, String questionEndTime, String examStartTime, String examEndTime, String isEvaluated) {
 		super();
 		this.examId = examId;
 		this.studentId = studentId;
@@ -54,7 +54,7 @@ public class McqEvaluatorBean {
 		this.questionEndTime = questionEndTime;
 		this.examStartTime = examStartTime;
 		this.examEndTime = examEndTime;
-		this.questionFlag = questionFlag;
+		this.isEvaluated = isEvaluated;
 	}
 	
 	public String getExamId() {
@@ -201,14 +201,14 @@ public class McqEvaluatorBean {
 		this.marksAttained = marksAttained;
 	}
 	
-	public String isQuestionFlag() {
-		return questionFlag;
+	public String getIsEvaluated() {
+		return isEvaluated;
 	}
 
-	public void setQuestionFlag(String questionFlag) {
-		this.questionFlag = questionFlag;
+	public void setIsEvaluated(String isEvaluated) {
+		this.isEvaluated = isEvaluated;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "EvaluatorBean [examId=" + examId + ", studentId=" + studentId + ", questionId=" + questionId
@@ -217,7 +217,7 @@ public class McqEvaluatorBean {
 				+ level + ", complexity=" + complexity + ", marksAlloted=" + marksAlloted + ", timeTakenInSeconds="
 				+ timeTakenInSeconds + ", questionStartTime=" + questionStartTime + ", questionEndTime="
 				+ questionEndTime + ", examStartTime=" + examStartTime + ", examEndTime=" + examEndTime
-				+ ", marksAttained=" + marksAttained + ", questionFlag="+questionFlag+"]";
+				+ ", marksAttained=" + marksAttained + ", isEvaluated="+isEvaluated+"]";
 	}
 		
 }

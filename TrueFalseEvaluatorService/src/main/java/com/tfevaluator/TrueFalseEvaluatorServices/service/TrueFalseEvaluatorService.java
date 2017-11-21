@@ -25,7 +25,7 @@ public class TrueFalseEvaluatorService {
 			evaluatorBean.setMarksAttained("0");
 		}
 		
-		evaluatorBean.setQuestionFlag("true");
+		evaluatorBean.setIsEvaluated("true");
 		
 		kafkaProducer.send(evaluatorBean);
 		

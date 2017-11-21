@@ -1,9 +1,9 @@
 kafka:
   bootstrap-servers: 172.23.238.133:9092
   topic:
-    json: Question
+    json: QuestionFromService
   topic2:
-    json2: responseQuestion
+    json2: EvaluatedQuestion
   
     
     
@@ -19,10 +19,12 @@ eureka:
     
 spring:
   application:
-    name: ResultService
+    name: ResultManagerService
   kafka:
     consumer:
       group-id: QuestionResult
       
 server:
   port: 8020
+
+##Result Manager Service
