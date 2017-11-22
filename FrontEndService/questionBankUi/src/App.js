@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import QuestionProperties from './QuestionProperties';
+import QuestionProperties from './questionProperties';
 class App extends Component {
 
   render() {

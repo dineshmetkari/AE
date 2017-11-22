@@ -4,15 +4,15 @@ import './index.css';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
-import QuestionProperties from './QuestionProperties';
-import QuestionLayout from './QuestionLayout';
-import {HashRouter, Route,Link} from 'react-router-dom'
-import AppBar from './NavBar'
+import {HashRouter, Route} from 'react-router-dom'
+import AppBar from './navBar'
+import NavButton from './navButton'
 class Index extends React.Component{
   render(){
     return(
       <MuiThemeProvider>
       <AppBar />
+      <NavButton />
       <App />
       </MuiThemeProvider>
     )
@@ -21,8 +21,7 @@ class Index extends React.Component{
 ReactDom.render(
   <HashRouter>
     <div>
-    <Route path="/questionsetup" component= {Index} />
-      <Route path = "/questionDetails" component={QuestionLayout} />
+    <Route path="/" component= {Index} />
     </div>
     </HashRouter>
 ,document.getElementById('root'));

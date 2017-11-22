@@ -2,10 +2,10 @@ import React from 'react';
 import Drawer from 'material-ui/Drawer';
 import AppBar from 'material-ui/AppBar';
 import RaisedButton from 'material-ui/RaisedButton';
-import McqQuestion from './McqQuestion';
-import TFQuestion from './TFQuestion';
-import PreviewTrueFalse from './PreviewTrueFalse';
-import PreviewMcq from './PreviewMcq';
+import McqQuestion from './mcqQuestion';
+import TFQuestion from './tFQuestion';
+import PreviewTrueFalse from './previewTrueFalse';
+import PreviewMcq from './previewMcq';
 import request from 'superagent';
 const style = {
   drawer:{

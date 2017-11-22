@@ -1,12 +1,10 @@
 import React from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
-import AppBar from 'material-ui/AppBar';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
-import QuestionLayout from './QuestionLayout';
+import QuestionLayout from './questionLayout';
 import {Card, CardHeader} from 'material-ui/Card';
 import TextField from 'material-ui/TextField';
-import Background from './image.jpg'
 const styles = {
   customWidth:{
     width: 150
@@ -23,7 +21,6 @@ const styles = {
     width: 650,
     height: 350,
     padding: 5,
-    backgroundImage: 'url(${Background})',
     },
     cardHeader:{
       marginLeft: 170,
@@ -39,10 +36,7 @@ const styles = {
       paddingLeft: 9,
       display: "inline-block",
       textAlign: "center"
-    },
-    background:{
-      backgroundImage: 'url(${Background})',
-    },
+    }
 };
 class QuestionProperties extends React.Component {
 constructor(props){
@@ -63,7 +57,7 @@ constructor(props){
   }
   render() {
     return (
-      <div className="QuestionProperties" style = {styles.background}>
+      <div className="QuestionProperties" >
 
       <br/>
       <Card style={styles.cardWidth} >

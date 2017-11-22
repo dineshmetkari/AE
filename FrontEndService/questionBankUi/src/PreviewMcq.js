@@ -21,7 +21,8 @@ import Checkbox from 'material-ui/Checkbox';
       marginLeft: 20
     },
     drawer:{
-      width: '53%'
+      width: '53%',
+      height: '100%'
     }
   };
 class PreviewMcq extends React.Component{
