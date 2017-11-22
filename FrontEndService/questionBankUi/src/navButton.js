@@ -1,6 +1,4 @@
 import React ,{ Component } from 'react';
-import RaisedButton from 'material-ui/RaisedButton';
-import {fullWhite} from 'material-ui/styles/colors';
 import FlatButton from 'material-ui/FlatButton';
 const style = {
   margin: 12,

@@ -1,24 +1,23 @@
 FROM node:9
 
 # Create app directory
-RUN mkdir -p /src/app
-WORKDIR /src/app
-
-# to make npm test run only once non-interactively
-ENV CI=true
+WORKDIR /usr/src/app
 
 # Install app dependencies
-COPY package.json /src/app/
-RUN npm install && \
-    npm install -g pushstate-server
+COPY package.json /usr/src/app
+# For npm@5 or later, copy package-lock.json as well
+# COPY package.json package-lock.json ./
+
+RUN npm install
+# If you are building your code for production
+# RUN npm install
 
 # Bundle app source
-COPY . /src/app
+COPY . /usr/src/app
 
-# Build and optimize react app
-RUN npm run build
+EXPOSE 5001
 
-EXPOSE 9000
+#RUN npm build --prod
 
-# defined in package.json
-CMD [ "npm", "run", "start:prod" ]
+
+CMD ["npm", "start"]

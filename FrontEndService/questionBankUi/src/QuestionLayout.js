@@ -1,15 +1,21 @@
 import React from 'react';
+import request from 'superagent';
+import TFQuestion from './tFQuestion';
+import PreviewMcq from './previewMcq';
+import McqQuestion from './mcqQuestion';
+import Dialog from 'material-ui/Dialog';
 import Drawer from 'material-ui/Drawer';
 import AppBar from 'material-ui/AppBar';
-import RaisedButton from 'material-ui/RaisedButton';
-import McqQuestion from './mcqQuestion';
-import TFQuestion from './tFQuestion';
+import Snackbar from 'material-ui/Snackbar';
+import FlatButton from 'material-ui/FlatButton';
 import PreviewTrueFalse from './previewTrueFalse';
-import PreviewMcq from './previewMcq';
-import request from 'superagent';
+import RaisedButton from 'material-ui/RaisedButton';
 const style = {
   drawer:{
     width: '100%'
+  },
+  dialog:{
+    width: '20%'
   },
   margin: 12,
 };
@@ -38,7 +44,10 @@ export default class QuestionLayout extends React.Component {
                   optionB: '',
                   optionC: '',
                   optionD: '',
-                  marks: ''}
+                  marks: '',
+                  openAlert: false,
+                  openSnackBar: false
+              }
     this.openPreview = this.openPreview.bind(this);
     this.closePreview =  this.closePreview.bind(this);
     this.getQuestion = this.getQuestion.bind(this);
@@ -50,6 +59,13 @@ export default class QuestionLayout extends React.Component {
     this.save = this.save.bind(this);
   }
   render() {
+    const actions = [
+      <FlatButton
+        label="Ok"
+        primary={true}
+        onClick={this.handleClose}
+      />,
+    ];
     return (
       <div>
         <Drawer width={style.drawer.width} openSecondary={true} open={this.state.mcq} >
@@ -65,7 +81,16 @@ export default class QuestionLayout extends React.Component {
                         optionA = {this.state.optionA} optionB = {this.state.optionB}
                         optionC = {this.state.optionC} optionD = {this.state.optionD}
             />
-
+            <Dialog
+              title="Field Empty"
+              actions={actions}
+              modal={false}
+              open={this.state.openAlert}
+              onRequestClose={this.handleClose}
+              contentStyle= {style.dialog}
+            >
+              please fill all the fields
+            </Dialog>
         </Drawer>
         <Drawer width={style.drawer.width} openSecondary={true} open={this.state.tf} >
           <AppBar title="True or False Question" />
@@ -75,6 +100,13 @@ export default class QuestionLayout extends React.Component {
             <RaisedButton label="save" primary={true} style={style} onClick = {this.save} />
             <PreviewTrueFalse open = {this.state.preview} setDefault = {this.closePreview} question = {this.state.question} />
         </Drawer>
+
+        <Snackbar
+          open={this.state.openSnackBar}
+          message="Question saved"
+          autoHideDuration={4000}
+          onRequestClose={this.handleRequestClose}
+        />
       </div>
     );
   }
@@ -153,23 +185,13 @@ export default class QuestionLayout extends React.Component {
   getAnswer(value){
     this.setState({answer: value});
   }
-  save(e){
-    console.log(this.state.complexity);
-    console.log(this.state.level);
-    console.log(this.state.topic);
-    console.log(this.state.domain);
-    console.log(this.state.type);
-    e.preventDefault();
-    // domain = this.state.domain;
-    //  complexity: this.state.complexity;
-    //  type: this.state.type;
-    //  topic: this.state.topic;
-    //  question: this.state.question;
-    //  answer: this.state.answer;
-    // optionA: this.state.optionA,
-    // optionB: this.state.optionB,
-    // optionC: this.state.optionC,
-     // optionD: this.state.optionD;
+  save(){
+if(!(((this.state.question).length >=1) && ((this.state.optionA).length) >=1 && ((this.state.optionB).length) >=1
+       && ((this.state.optionC).length) >=1  && ((this.state.optionD).length) >=1  && ((this.state.answer).length) >=1)
+ ){
+  this.setState({openAlert: true});
+  return
+}
     const questionDetails= {
 
     "subjectLists":[
@@ -215,7 +237,18 @@ export default class QuestionLayout extends React.Component {
       console.log("error -> ", err);
     }
   })
+  this.setState({openSnackBar: true});
+
+
   }
+  handleRequestClose = () => {
+  this.setState({
+    openSnackBar: false,
+  });
+};
+handleClose = () => {
+  this.setState({openAlert: false});
+};
 
 
 
