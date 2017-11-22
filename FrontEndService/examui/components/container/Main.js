@@ -2,16 +2,16 @@ import React from 'react';
 import SearchQ from '../presentation/SearchQ';
 import BluePrint from '../presentation/BluePrint';
 
-export default class Main2 extends React.Component
+export default class Main extends React.Component
 {
 	constructor(props)
 	   {
 		super(props);
-		this.state={dems:[]};		
+		this.state={paperjson:[]};		
 	}
 	render = () => 
 	{
-		if(this.state.dems==0)
+		if(this.state.paperjson==0)
 		{
 		return(
 			<div>
@@ -23,7 +23,7 @@ export default class Main2 extends React.Component
 		{
 			return(
 				<div>
-				<BluePrint vars={this.state.dems} />
+				<BluePrint vars={this.state.paperjson} />
 			</div>
 			);
 		}		
@@ -31,7 +31,7 @@ export default class Main2 extends React.Component
 	// this is a callback function...
 	preview = (x) => 
 	{
-		this.setState({dems:x});
+		this.setState({paperjson:x});
 		console.log(this.state.dems+"mainaaaaa");
 	}
 }

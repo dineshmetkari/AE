@@ -22,6 +22,12 @@ class SearchQ extends React.Component{
 
   constructor(props) {
     super(props);
+
+
+    this.add = this.add.bind(this);
+    this.state = {data : null}
+    this.blueprint = this.blueprint.bind(this);
+    this.state = {data : null}
     this.state = {
       value: undefined,
       topicValue : undefined,
@@ -156,8 +162,9 @@ add()
   blueprint()
   {
   
+  console.log(answer);
       this.props.questionData(answer);
-      console.log(answer+"done"); 
+      console.log("done"); 
   }
 
 
