@@ -4,7 +4,7 @@ package com.stackroute.assessmentengine.engineService.controller;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
@@ -39,48 +39,39 @@ public class Enginecontroller {
 	@Autowired
 	QuestionRepository questionRepository;
 	
+	int count=0;
 	
-	static List<Question> questions;
+	static List<Question> questions=new ArrayList<>();
 	static Map<Integer,Question> questionPaper;
 
 
 	@MessageMapping("/questions/{userId}")
     
-    public void questionData(@DestinationVariable String userId,Question question) throws Exception {
+    public void questionData(@DestinationVariable String userId,Question question)  {
 		
 		System.out.println("user:"+userId);
-        Thread.sleep(100); // simulated delay
+     
 		System.out.println("recieved from user"+question.toString());
 		Enginecontroller ec=new Enginecontroller();
-		ec.getall();
 		
+		if(count<=1) {
+			ec.getall();
+			count++;
+		}
+        if(questions.size()!=0)
+        {
 		System.out.println("set of questionPaper"+questionPaper);
-		
-		questionRepository.addquestion(question);
 		Question nextQuestion=null;
-		nextQuestion=questionRepository.getquestion(question); 
-		System.out.println("getting data from redis cache======"+nextQuestion);
 		
-//		QuestionBean questionBean=new QuestionBean();
-//		questionBean.setStudentId(question.getUserid());
-//		System.out.println("Question ID"+question.getId());
-//		questionBean.setQuestionId(question.getId());
-//		//questionBean.setQuestionId("4");
-//		questionBean.setQuestion(question.getQuestion());
-//		List<String> optionsList1=Arrays.asList(question.getOptions());
-//		questionBean.setOptions(optionsList1);
-//		questionBean.setCorrectAnswer(question.getCorrectAnswer());
-//		questionBean.setUserAnswer(question.getSelectedAnswer());
-//		questionBean.setQuestionType(question.getQuestionType());
-//		questionBean.setSubject(question.getSubject());
-//		questionBean.setComplexity(question.getComplexity());
-//		questionBean.setQuestionStartTime(question.getStartTime());
-//		DateFormat dateFormat1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//        Date date = new Date();
-//        String endtime = dateFormat1.format(date);
-//		questionBean.setQuestionEndTime(endtime);
-//		questionBean.setMarksAlloted(question.getMarksAllotted());
-//		questionBean.setLevel(question.getLevel());
+		try {
+			
+		questionRepository.addquestion(question);
+		
+		nextQuestion=questionRepository.getquestion(question); 
+		}
+		catch(Exception e) {
+			System.out.println(e);
+		}	
 		
 		QuestionBean questionBean=new QuestionBean();
 		
@@ -105,7 +96,7 @@ public class Enginecontroller {
         Date date = new Date();
         String endtime = dateFormat1.format(date);
 		questionBean.setQuestionEndTime(endtime);
-		questionBean.setMarksAlloted(current.getMarksAllotted());
+		questionBean.setMarksAllotted(current.getMarksAllotted());
 		questionBean.setLevel(current.getLevel());
 		
 		
@@ -116,9 +107,21 @@ public class Enginecontroller {
         String status="Close";
         
       try {
+    	  if(status.equalsIgnoreCase(question.getExamStatus()))
+          {
+          	try {
+          		producer.sendQuestion(questionBean);
+          		Thread.sleep(3000);
+          		producer.sendQuestion1(questionBean);
+      	    }
+      	    catch(Exception e) {
+      	    	throw new KafkaUnavialableException("Kafka server is down");
+      	    }
+       	   
+       	
+          }
+    	  else {
 		
-        if(questions.size()!=0)
-        {
         	if(nextQuestion!=null) {
         		
         		System.out.println("from cache========================");
@@ -129,13 +132,14 @@ public class Enginecontroller {
         		
         		questionBean1.setNoOfQuestions(String.valueOf(questionPaper.size()));
                 System.out.println("NextQuestion::::::::::::"+next);
+                questionBean1.setMsg("Exam Started");
                 questionBean1.setQuestionId(String.valueOf(next.getId()));
                 questionBean1.setQuestion(next.getQuestion());
                 questionBean1.setQuestionType(next.getQuestionType());
-                questionBean1.setMarksAlloted(next.getMarksAllotted());
+                questionBean1.setMarksAllotted(next.getMarksAllotted());
                 questionBean1.setSubject(next.getSubject());
                 questionBean1.setComplexity(next.getComplexity());
-                questionBean1.setCorrectAnswer(next.getCorrectAnswer());
+             //   questionBean1.setCorrectAnswer(next.getCorrectAnswer());
                 questionBean1.setUserAnswer(nextQuestion.getSelectedAnswer());
                 DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 Date date1 = new Date();
@@ -164,13 +168,14 @@ public class Enginecontroller {
         		
         		questionBean1.setNoOfQuestions(String.valueOf(questionPaper.size()));
                 System.out.println("NextQuestion::::::::::::"+next);
+                questionBean1.setMsg("Exam Started");
                 questionBean1.setQuestionId(String.valueOf(next.getId()));
                 questionBean1.setQuestion(next.getQuestion());
                 questionBean1.setQuestionType(next.getQuestionType());
-                questionBean1.setMarksAlloted(next.getMarksAllotted());
+                questionBean1.setMarksAllotted(next.getMarksAllotted());
                 questionBean1.setSubject(next.getSubject());
                 questionBean1.setComplexity(next.getComplexity());
-                questionBean1.setCorrectAnswer(next.getCorrectAnswer());
+             //   questionBean1.setCorrectAnswer(next.getCorrectAnswer());
                 DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 Date date1 = new Date();
                 String starttime = dateFormat.format(date1);
@@ -189,28 +194,22 @@ public class Enginecontroller {
         	}
         
         }
-        else {
-        	System.out.println("else block");
-        	simpMessagingTemplate.convertAndSend("/topic/question/"+question.getUserid() , new QuestionBean("Exam not yet started"));
+        
+        
         	
         }
-        if(status.equalsIgnoreCase(question.getExamStatus()))
-        {
-        	try {
-        		producer.sendQuestion1(questionBean);
-    	    }
-    	    catch(Exception e) {
-    	    	throw new KafkaUnavialableException("Kafka server is down");
-    	    }
-     	   
-     	
-        }
-      }
+        
+      
       catch(KafkaUnavialableException e) {
     	  System.out.println(e);
     	  
       }
-        
+        }
+	      else {
+	      	System.out.println("else block");
+	      	simpMessagingTemplate.convertAndSend("/topic/question/"+question.getUserid() , new QuestionBean("Exam not yet started"));
+	      	
+	      }
 		}
     
    // @KafkaListener(topics = "${kafka.topic.json}")
@@ -226,9 +225,27 @@ public class Enginecontroller {
         questionPaper=new HashMap<>();
         for(Question q:searchList) {
         	q.setId(String.valueOf(i));
+        	q.setMarksAllotted("1");
         	questionPaper.put(i, q);
         	i++;
         }
+//    	Integer i=1;
+//    	String opti[]= {"a","b","c","d"};
+//    	 List<Question> searchList= new ArrayList<Question>();
+//    	 searchList.add(new Question("","","","", "", "java","java","l", "a",
+//    				"mcq", "Quest", "asasas", "2", "",
+//    				 opti));
+//    	 searchList.add(new Question("","","","", "", "jsva","java","l", "a",
+// 				"mcq", "Quest", "asasas", "2", "",
+// 				 opti));
+//    	 questionPaper=new HashMap<>();
+//       for(Question q:searchList) {
+//       	q.setId(String.valueOf(i));
+//       	q.setMarksAllotted("1");
+//       	questionPaper.put(i, q);
+//       	i++;
+//       }
+    	 
         questions=searchList;
         System.out.println(searchList);
        }

@@ -18,14 +18,16 @@ public class RedisConfig {
 	@Bean
 	public RedisConnectionFactory redisConnectionFactory() {
 		JedisPoolConfig poolConfig = new JedisPoolConfig();
-		poolConfig.setMaxTotal(5);
+		poolConfig.setMaxTotal(500);
 		poolConfig.setTestOnBorrow(true);
 		poolConfig.setTestOnReturn(true);
+		poolConfig.setMaxWaitMillis(2);
 		
 		JedisConnectionFactory connectionFactory = new JedisConnectionFactory(poolConfig);
 		connectionFactory.setUsePool(true);
 		connectionFactory.setHostName("localhost");
 		connectionFactory.setPort(6379);
+		connectionFactory.setTimeout(100000);
 		
 		return connectionFactory;
 	}

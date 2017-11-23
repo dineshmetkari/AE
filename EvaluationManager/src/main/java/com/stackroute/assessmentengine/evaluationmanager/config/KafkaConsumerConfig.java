@@ -20,41 +20,41 @@ import com.stackroute.assessmentengine.evaluationmanager.message.KafkaConsumer;
 
 
 
-//@Configuration
+@Configuration
 public class KafkaConsumerConfig {
 
-//	@Value("${kafka.bootstrap-servers}")
-//	  private String bootstrapServers;
-//
-//	  @Bean
-//	  public Map<String, Object> consumerConfigs() {
-//	    Map<String, Object> props = new HashMap<>();
-//	    props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
-//	    props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
-//	    props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class);
-//	    props.put(ConsumerConfig.GROUP_ID_CONFIG, "json");
-//
-//	    return props;
-//	  }
-//
-//	  @Bean
-//	  public ConsumerFactory<String, QuestionBean> consumerFactory1() {
-//	    return new DefaultKafkaConsumerFactory<>(consumerConfigs(), new StringDeserializer(),
-//	        new JsonDeserializer<>(QuestionBean.class));
-//	  }
-//
-//	  @Bean
-//	  public ConcurrentKafkaListenerContainerFactory<String, QuestionBean> kafkaListenerContainerFactory() {
-//	    ConcurrentKafkaListenerContainerFactory<String, QuestionBean> factory =
-//	        new ConcurrentKafkaListenerContainerFactory<>();
-//	    factory.setConsumerFactory(consumerFactory1());
-//
-//	    return factory;
-//	  }
-//
-//
-//	  @Bean
-//	  public KafkaConsumer receiver() {
-//	    return new KafkaConsumer();
-//	  }
+	@Value("${kafka.bootstrap-servers}")
+	  private String bootstrapServers;
+
+	  @Bean
+	  public Map<String, Object> consumerConfigs() {
+	    Map<String, Object> props = new HashMap<>();
+	    props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
+	    props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
+	    props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class);
+	    props.put(ConsumerConfig.GROUP_ID_CONFIG, "json");
+
+	    return props;
+	  }
+
+	  @Bean
+	  public ConsumerFactory<String, QuestionBean> consumerFactory1() {
+	    return new DefaultKafkaConsumerFactory<>(consumerConfigs(), new StringDeserializer(),
+	        new JsonDeserializer<>(QuestionBean.class));
+	  }
+
+	  @Bean
+	  public ConcurrentKafkaListenerContainerFactory<String, QuestionBean> kafkaListenerContainerFactory() {
+	    ConcurrentKafkaListenerContainerFactory<String, QuestionBean> factory =
+	        new ConcurrentKafkaListenerContainerFactory<>();
+	    factory.setConsumerFactory(consumerFactory1());
+
+	    return factory;
+	  }
+
+
+	  @Bean
+	  public KafkaConsumer receiver() {
+	    return new KafkaConsumer();
+	  }
 	}

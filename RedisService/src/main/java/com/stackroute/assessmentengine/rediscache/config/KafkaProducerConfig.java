@@ -15,32 +15,32 @@ import org.springframework.kafka.support.serializer.JsonSerializer;
 import com.stackroute.assessmentengine.rediscache.domain.QuestionBean;
 import com.stackroute.assessmentengine.rediscache.domain.QuestionBean1;
 import com.stackroute.assessmentengine.rediscache.message.KafkaProducer;
-//@Configuration
+@Configuration
 public class KafkaProducerConfig {
 
-//  @Value("${kafka.bootstrap-servers}")
-//  private String bootstrapServers;
-//
-//  @Bean
-//  public Map<String, Object> producerConfigs() {
-//    Map<String, Object> props = new HashMap<>();
-//    props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
-//    props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
-//    props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
-//
-//    return props;
-//  }
-//
-// 
-//  @Bean
-//  public ProducerFactory<String, QuestionBean1> producerFactory1() {
-//    return new DefaultKafkaProducerFactory<>(producerConfigs());
-//  }
-//
-//  @Bean
-//  public KafkaTemplate<String, QuestionBean1> kafkaTemplate1() {
-//    return new KafkaTemplate<>(producerFactory1());
-//  }
+  @Value("${kafka.bootstrap-servers}")
+  private String bootstrapServers;
+
+  @Bean
+  public Map<String, Object> producerConfigs() {
+    Map<String, Object> props = new HashMap<>();
+    props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
+    props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
+    props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
+
+    return props;
+  }
+
+ 
+  @Bean
+  public ProducerFactory<String, QuestionBean1> producerFactory1() {
+    return new DefaultKafkaProducerFactory<>(producerConfigs());
+  }
+
+  @Bean
+  public KafkaTemplate<String, QuestionBean1> kafkaTemplate1() {
+    return new KafkaTemplate<>(producerFactory1());
+  }
 //  @Bean
 //  public ProducerFactory<String, String> producerFactory() {
 //    return new DefaultKafkaProducerFactory<>(producerConfigs());
@@ -50,8 +50,8 @@ public class KafkaProducerConfig {
 //  public KafkaTemplate<String, String> kafkaTemplate() {
 //    return new KafkaTemplate<>(producerFactory());
 //  }
-//  @Bean
-//  public KafkaProducer sender() {
-//    return new KafkaProducer();
-//  }
+  @Bean
+  public KafkaProducer sender() {
+    return new KafkaProducer();
+  }
 }

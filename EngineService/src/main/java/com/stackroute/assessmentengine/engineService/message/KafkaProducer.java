@@ -28,12 +28,12 @@ public class KafkaProducer {
   
 
   public void sendQuestion1(QuestionBean questionBean) {
-	    LOGGER.info("sending QuestionBean='{}'", questionBean.toString());
+	    LOGGER.info("sending QuestionBean='{}' For topic"+jsonTopic1+"", questionBean.toString());
 	    kafkaTemplate1.send(jsonTopic1, questionBean);
 	  }
 
   public void sendQuestion(QuestionBean questionBean) {
-	    LOGGER.info("sending QuestionBean='{}'", questionBean.toString());
+	    LOGGER.info("sending QuestionBean='{}'for topic"+""+jsonTopic+"", questionBean.toString());
 	    kafkaTemplate.send(jsonTopic, questionBean);
 	  }
 	  

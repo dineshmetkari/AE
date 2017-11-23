@@ -21,11 +21,15 @@ public class RedisConfig {
 		poolConfig.setMaxTotal(5);
 		poolConfig.setTestOnBorrow(true);
 		poolConfig.setTestOnReturn(true);
+		poolConfig.setMaxWaitMillis(2);
 		
 		JedisConnectionFactory connectionFactory = new JedisConnectionFactory(poolConfig);
 		connectionFactory.setUsePool(true);
 		connectionFactory.setHostName("localhost");
 		connectionFactory.setPort(6379);
+		connectionFactory.setTimeout(100000);
+		
+		
 		
 		return connectionFactory;
 	}
@@ -35,6 +39,7 @@ public class RedisConfig {
 		//redisTemplate.setDefaultSerializer(new StringRedisSerializer());
 		redisTemplate.setConnectionFactory(redisConnectionFactory());
 		redisTemplate.setEnableTransactionSupport(true);
+		
 		return redisTemplate;
 	}
 	@Bean

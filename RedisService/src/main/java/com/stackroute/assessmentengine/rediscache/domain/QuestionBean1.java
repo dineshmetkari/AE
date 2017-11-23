@@ -1,9 +1,11 @@
 package com.stackroute.assessmentengine.rediscache.domain;
+
 import java.io.Serializable;
 import java.util.List;
 
 import org.springframework.data.redis.core.RedisHash;
 import org.springframework.stereotype.Component;
+@Component
 
 public class QuestionBean1  {
 	    private String msg;
@@ -30,7 +32,7 @@ public class QuestionBean1  {
 
 	    private String complexity;
 
-	    private String marksAlloted;
+	    private String marksAllotted;
 
 	    private String timeTakenInSeconds;
 
@@ -44,9 +46,17 @@ public class QuestionBean1  {
 
 	    private String marksAttained;
 	    
-	   
+	    private String isEvaluated;
 
-	    public String getExamId() {
+		public String getMsg() {
+			return msg;
+		}
+
+		public void setMsg(String msg) {
+			this.msg = msg;
+		}
+
+		public String getExamId() {
 			return examId;
 		}
 
@@ -83,7 +93,7 @@ public class QuestionBean1  {
 		}
 
 		public void setOptions(List<String> options) {
-			this.Options = options;
+			Options = options;
 		}
 
 		public String getCorrectAnswer() {
@@ -134,12 +144,12 @@ public class QuestionBean1  {
 			this.complexity = complexity;
 		}
 
-		public String getMarksAlloted() {
-			return marksAlloted;
+		public String getMarksAllotted() {
+			return marksAllotted;
 		}
 
-		public void setMarksAlloted(String marksAlloted) {
-			this.marksAlloted = marksAlloted;
+		public void setMarksAllotted(String marksAllotted) {
+			this.marksAllotted = marksAllotted;
 		}
 
 		public String getTimeTakenInSeconds() {
@@ -190,51 +200,56 @@ public class QuestionBean1  {
 			this.marksAttained = marksAttained;
 		}
 
-		public QuestionBean1(String examId, String studentId, String questionId, String question,
-				List<String> Options, String correctAnswer, String userAnswer, String questionType,
-				String subject, String level, String complexity, String marksAlloted, String timeTakenInSeconds,
+		public String getIsEvaluated() {
+			return isEvaluated;
+		}
+
+		public void setIsEvaluated(String isEvaluated) {
+			this.isEvaluated = isEvaluated;
+		}
+
+		public QuestionBean1(String msg, String examId, String studentId, String questionId, String question,
+				List<String> options, String correctAnswer, String userAnswer, String questionType, String subject,
+				String level, String complexity, String marksAllotted, String timeTakenInSeconds,
 				String questionStartTime, String questionEndTime, String examStartTime, String examEndTime,
-				String marksAttained) {
+				String marksAttained, String isEvaluated) {
 			super();
+			this.msg = msg;
 			this.examId = examId;
 			this.studentId = studentId;
 			this.questionId = questionId;
 			this.question = question;
-			this.Options = Options;
+			Options = options;
 			this.correctAnswer = correctAnswer;
 			this.userAnswer = userAnswer;
 			this.questionType = questionType;
 			this.subject = subject;
 			this.level = level;
 			this.complexity = complexity;
-			this.marksAlloted = marksAlloted;
+			this.marksAllotted = marksAllotted;
 			this.timeTakenInSeconds = timeTakenInSeconds;
 			this.questionStartTime = questionStartTime;
 			this.questionEndTime = questionEndTime;
-			this.examStartTime = examStartTime; 	
+			this.examStartTime = examStartTime;
 			this.examEndTime = examEndTime;
 			this.marksAttained = marksAttained;
-			
-		}
-		public QuestionBean1(String k)
-		{
-			this.msg=k;
+			this.isEvaluated = isEvaluated;
 		}
 		public QuestionBean1() {
-	    	
-	    }
+			
+		}
 
 		@Override
 		public String toString() {
 			return "QuestionBean [msg=" + msg + ", examId=" + examId + ", studentId=" + studentId + ", questionId="
 					+ questionId + ", question=" + question + ", Options=" + Options + ", correctAnswer="
 					+ correctAnswer + ", userAnswer=" + userAnswer + ", questionType=" + questionType + ", subject="
-					+ subject + ", level=" + level + ", complexity=" + complexity + ", marksAlloted=" + marksAlloted
+					+ subject + ", level=" + level + ", complexity=" + complexity + ", marksAllotted=" + marksAllotted
 					+ ", timeTakenInSeconds=" + timeTakenInSeconds + ", questionStartTime=" + questionStartTime
 					+ ", questionEndTime=" + questionEndTime + ", examStartTime=" + examStartTime + ", examEndTime="
-					+ examEndTime + ", marksAttained=" + marksAttained + "]";
+					+ examEndTime + ", marksAttained=" + marksAttained + ", isEvaluated=" + isEvaluated + "]";
 		}
+		
+		
 
-	
-
-}
+	   }

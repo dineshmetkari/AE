@@ -65,11 +65,11 @@ public class EvaluationController {
 		list.add("option1");
 		list.add("option2");
 		
-		QuestionBean questionBean=new QuestionBean("asas","user1","1","Question1",
+		QuestionBean questionBean=new QuestionBean("asas","user2","1","Question1",
 		list,"option1", "option1","mcq","java","l1","easy","2","10",
 		"2011-12-31 07:11:01","2011-12-31 07:11:50","2011-12-31 07:00:01", "2011-12-31 10:00:01",
 		"0","false");
-		QuestionBean questionBean1=new QuestionBean("asas","user1","2","Question1",
+		QuestionBean questionBean1=new QuestionBean("asas","user2","2","Question1",
 		list,"option1", "option1","mcq","java","l1","easy","2","10",
 		"2011-12-31 07:11:01","2011-12-31 07:11:50","2011-12-31 07:00:01", "2011-12-31 10:00:01",
 		"0","false");
@@ -97,30 +97,30 @@ public class EvaluationController {
        
    	UserResultBean userexam = new UserResultBean();
 	
-	  userexam.setUserId("user1");
+	  userexam.setUserId("user2");
 	  userexam.setResultBean(questiobeanList);
 	  producer.sendUserExam(userexam);
 
       
 	}
-	@GetMapping("/test")
-	public void test() throws InterruptedException{
-		consumer.questionrecived("user1");
-		
-		List<String> list=new ArrayList();
-		list.add("option1");
-		list.add("option2");
-		
-		QuestionBean questionBean=new QuestionBean("asas","user1","1","Question1",
-		list,"option1", "option1","mcq","java","l1","easy","2","10",
-		"2011-12-31 07:11:01","2011-12-31 07:11:50","2011-12-31 07:00:01", "2011-12-31 10:00:01",
-		"0","false");
-		QuestionBean questionBean1=new QuestionBean("asas","user1","2","Question1",
-		list,"option1", "option1","mcq","java","l1","easy","2","10",
-		"2011-12-31 07:11:01","2011-12-31 07:11:50","2011-12-31 07:00:01", "2011-12-31 10:00:01",
-		"0","false");
-		
-		consumer.examstatus(questionBean);
-		
-	}
+//	@GetMapping("/test")
+//	public void test() throws InterruptedException{
+//		consumer.questionrecived("user1");
+//		
+//		List<String> list=new ArrayList();
+//		list.add("option1");
+//		list.add("option2");
+//		
+//		QuestionBean questionBean=new QuestionBean("asas","user1","1","Question1",
+//		list,"option1", "option1","mcq","java","l1","easy","2","10",
+//		"2011-12-31 07:11:01","2011-12-31 07:11:50","2011-12-31 07:00:01", "2011-12-31 10:00:01",
+//		"0","false");
+//		QuestionBean questionBean1=new QuestionBean("asas","user1","2","Question1",
+//		list,"option1", "option1","mcq","java","l1","easy","2","10",
+//		"2011-12-31 07:11:01","2011-12-31 07:11:50","2011-12-31 07:00:01", "2011-12-31 10:00:01",
+//		"0","false");
+//		
+//		consumer.examstatus(questionBean);
+//		
+//	}
 }

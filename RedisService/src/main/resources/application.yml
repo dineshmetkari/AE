@@ -1,9 +1,9 @@
 kafka:
   bootstrap-servers: 172.23.238.133:9092
   topic:
-    json: Evaluationmanager
+    json: test
     json1: statemanager
-    json2: evaluatedQuestion
+    json2: EvaluatedQuestion
 server:
   port: 8086
 
