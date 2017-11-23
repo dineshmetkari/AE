@@ -162,6 +162,22 @@ export default class QuestionLayout extends React.Component {
     }
   }
   openPreview(){
+        if(this.state.type === 'mcq'){
+    if(!(((this.state.question).length >=1) && ((this.state.optionA).length) >=1 && ((this.state.optionB).length) >=1
+           && ((this.state.optionC).length) >=1  && ((this.state.optionD).length) >=1  && ((this.state.answer).length) >=1)
+     ){
+      this.setState({openAlert: true});
+      return
+    }
+  }
+    if(this.state.type === 'tf'){
+      if(((this.state.question).length <1) || ((this.state.answer).length) <1 )
+      {
+        this.setState({openAlert: true});
+        return
+      }
+
+    }
     this.setState({preview: true});
   }
   closePreview(){
@@ -186,11 +202,26 @@ export default class QuestionLayout extends React.Component {
     this.setState({answer: value});
   }
   save(){
+    if(this.state.type === 'mcq'){
 if(!(((this.state.question).length >=1) && ((this.state.optionA).length) >=1 && ((this.state.optionB).length) >=1
        && ((this.state.optionC).length) >=1  && ((this.state.optionD).length) >=1  && ((this.state.answer).length) >=1)
- ){
+ )
+
+ {
   this.setState({openAlert: true});
   return
+}
+}
+
+
+if(this.state.type === 'tf'){
+  if(((this.state.question).length === 0) || ((this.state.answer).length) === 0 )
+  {
+    this.setState({openAlert: true});
+    return
+  }
+
+
 }
     const questionDetails= {
 
