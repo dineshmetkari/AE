@@ -6,13 +6,20 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import {HashRouter, Route} from 'react-router-dom'
 import AppBar from './navBar'
+let indexbg = './indexbg.jpeg';
+const style ={
+  background: 'url('+ indexbg +')'
+}
 class Index extends React.Component{
+
   render(){
     return(
+      <div background={style.background}>
       <MuiThemeProvider>
       <AppBar />
       <App />
       </MuiThemeProvider>
+      </div>
     )
   }
 }
