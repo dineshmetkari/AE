@@ -1,0 +1,15 @@
+{
+	"topic": [{
+			"java": ["collections", "strings", "threads", "polymophism"]
+		},
+		{
+			"database": ["datatypes", "tunning", "joins"]
+		},
+		{
+			"python": ["functions", "tuples", "modules"]
+		},
+		{
+			"reactjs": ["components", "routes", "react security"]
+		}
+	]
+}
