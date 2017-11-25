@@ -49,7 +49,7 @@ constructor(props){
    let a = this.refs.emailId.getValue();
    let b =this.refs.password.getValue();
    //console.log(a + " " + b);
-   let ur='http://172.23.239.157:8083/students/studentlogin/'+a+'/'+b;
+   let ur='http://172.23.238.205:8083/students/studentlogin/'+a+'/'+b;
    axios.get(ur).then((response) => {
      this.setState({
        data  : response.data

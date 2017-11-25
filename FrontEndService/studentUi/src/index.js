@@ -11,6 +11,7 @@ import ResultsHome from './container/ResultsHome';
 import AdminLogin from './container/AdminLogin';
 import HomePage from './container/HomePage';
 import AdminHome from './container/AdminHome';
+import StartExam from '../../FrontEndService/ExamEngineUI/exam-engine/src/StartExam';
 import {browserHistory, Route, Router, IndexRoute}  from 'react-router';
 
 
@@ -41,7 +42,9 @@ ReactDom.render(
 								<Route path='/home' component={HomePage} />
 								<Route path='results/:name' component={ResultsHome}/>
 								<Route path='/logout' component={HomePage} />
+								<Route path='/startexam' component={StartExam} />
 								<Route path='*' component={ComponentNotFound} />
         </Route>
 				</Router> , document.getElementById('root')
+
 );
