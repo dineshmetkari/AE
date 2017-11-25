@@ -33,14 +33,14 @@ class MCQTemplate extends Component{
             const Question = JSON.parse(this.props.jsonData).question;
             const QuestionId = JSON.parse(this.props.jsonData).questionId;
             const userAnswer=JSON.parse(this.props.jsonData).userAnswer;
-
+            
             var renderOptions = null;
 
             if(useranswer==""){
             if(userAnswer=="")
             {
                 console.log("UserAnswer is null");
-
+                
             renderOptions = Options.map(Option => {
                 return(
                     <div>
@@ -127,3 +127,5 @@ class MCQTemplate extends Component{
 }
 
 export default MCQTemplate;
+
+
