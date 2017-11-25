@@ -1,0 +1,7 @@
+ul.Pager li a:visited{
+	background-color: black;
+}
+
+ul.Pager {
+	cursor:pointer;
+}
