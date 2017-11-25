@@ -39,7 +39,7 @@ class ExamRenderer extends Component{
 			NumOfQuestions:null,
 			selectedAnswer:null,
 			isDisconnected:'opened',
-			msg:'Exam',
+			msg:'Exam Started',
 			flag: this.props.flag
 		};
 
