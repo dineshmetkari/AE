@@ -16,19 +16,27 @@ class NavPanel extends Component{
 
 	onNavPrevClick(){
 		if(this.state.QNumber>1){
-			this.state.QNumber= this.state.QNumber-1;
+			this.setState({
+				QNumber: this.state.QNumber-1
+			});
+
 		}
-		this.props.questionClick(this.state.QNumber);	
+		this.props.questionClick(this.state.QNumber);
 	}
 	onNavNextClick(){
 		if(this.state.QNumber< this.props.questionCount){
-			this.state.QNumber= this.state.QNumber+1;
+			this.setState({
+				QNumber: this.state.QNumber+1
+			});
 		}
-		this.props.questionClick(this.state.QNumber);	
+		this.props.questionClick(this.state.QNumber);
 	}
 
 	getQfromPager(NewQ){
-		this.state.QNumber = NewQ;
+		this.setState({
+			QNumber: NewQ
+		});
+	
 		this.props.questionClick(this.state.QNumber);
 	}
 	submit(){
@@ -39,9 +47,9 @@ class NavPanel extends Component{
 		<div style={{display:'flex', flexDirection:'row', justifyContent:'space-between', marginRight:'', marginLeft:'', alignItems:'center'}}>
 
 		<div style={{width:'40vw'}}>
-		<Pagination 
+		<Pagination
 			qCount={this.props.questionCount}
-			onPagerClick={this.getQfromPager.bind(this)}  
+			onPagerClick={this.getQfromPager.bind(this)}
 			style={{display:'flex', marginTop:''}} />
 		</div>
 
@@ -49,13 +57,13 @@ class NavPanel extends Component{
 				<div style={{flexDirection:'row', marginTop:'10px', alignItems:'flex-end', flexWrap:'wrap'}}>
 				<RaisedButton onClick={this.onNavPrevClick}
 				label="< Back" primary={true} style={{marginRight:'5px'}}/>
-				
+
 				<RaisedButton onClick={this.onNavNextClick}
 				label="Next >" primary={true} style={{marginRight:''}} />
 				</div>
-			
+
 				<RaisedButton label="Submit" onClick={this.submit} fullWidth={true} style={{marginTop:'5px'}} backgroundColor="#46d246" labelColor="white" />
-			
+
 		</div>
 
 

@@ -5,7 +5,7 @@ import MenuItem from 'material-ui/MenuItem';
 import QuestionLayout from './questionLayout';
 import {Card, CardHeader} from 'material-ui/Card';
 import TextField from 'material-ui/TextField';
-import domainjson from './domain.json'
+
 const styles = {
   customWidth:{
     width: 151

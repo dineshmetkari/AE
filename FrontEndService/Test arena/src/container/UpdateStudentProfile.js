@@ -1,17 +1,14 @@
 import React from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
-import axios from 'axios';
 import Snackbar from 'material-ui/Snackbar';
 import request from 'superagent';
-import {browserHistory} from 'react';
 import {Link} from 'react-router';
 
 const style = {
  margin: 15,
 marginLeft: 600
 };
-let email=[];
 export default class  UpdateStudentProfile extends React.Component {
  constructor(props) {
    super(props);
@@ -67,7 +64,7 @@ handleValidation(){
           errors["contact"] = "Can not be empty";
        }
        if(typeof fields["contact"] !== "undefined"){
-            if(!fields["contact"].match(/^[0-9\+]{9,15}$/)){
+            if(!fields["contact"].match(/^[0-9+]{9,15}$/)){
                 formIsValid = false;
                 errors["contact"] = "Invalid contact";
             }
@@ -120,7 +117,7 @@ handleValidation(){
             //      formIsValid = false;
             //      errors["confirmPassword"] = "Password and confirmPassword must be match";
             //  }
-               if(!(this.refs.password.getValue()==this.refs.confirmPassword.getValue())){
+               if(!(this.refs.password.getValue() === this.refs.confirmPassword.getValue())){
                      formIsValid = false;
                      errors["confirmPassword"] = "Password and confirmPassword must be match";
                }
@@ -132,7 +129,7 @@ handleValidation(){
 
 
 handleSubmit(e) {
-  var t=this;
+  
    e.preventDefault();
   //  const emailId=this.refs.emailId.getValue();
   var user = this.props.location.state;
@@ -163,7 +160,7 @@ console.log(payload);
                               })
                               //  alert("Profile Updated successfully");
                                //this.setState({open:true});
-                               {this.handleTouchTap()}
+                               this.handleTouchTap();
                               //browserHistory.push('/error');
 
 

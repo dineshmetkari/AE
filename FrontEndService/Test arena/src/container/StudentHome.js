@@ -1,4 +1,4 @@
-import React from 'react';
+ import React from 'react';
 import {Link} from 'react-router';
 import RaisedButton from 'material-ui/RaisedButton';
 import {browserHistory} from 'react-router';
@@ -58,7 +58,7 @@ export default class  StudentHome extends React.Component {
       <Link onClick={this.handleStartexam.bind(this)} >
      <div className='tabs'>
         <div className='logos'>
-          <img src={ExamLogo} />
+          <img src = {ExamLogo} alt = "Exam Logo"/>
         </div>
 
         <h2 style={{color:'white'}}>Take Exam</h2>
@@ -72,7 +72,7 @@ export default class  StudentHome extends React.Component {
       <div className='tabs'>
 
         <div className='logos'>
-          <img src={ResultLogo} />
+          <img src={ResultLogo} alt="Result Logo" />
         </div>
         <h2 style={{color:'white'}}>Results</h2>
       </div>
@@ -82,7 +82,7 @@ export default class  StudentHome extends React.Component {
       <div className='tabs'>
 
         <div className='logos'>
-          <img src={ResultLogo} />
+          <img src={ResultLogo} alt="Result Logo" />
         </div>
         <h2 style={{color:'white'}}>Update Profile</h2>
       </div>

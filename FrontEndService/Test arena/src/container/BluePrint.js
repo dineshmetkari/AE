@@ -2,10 +2,7 @@ import React, { Component } from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 import request from 'superagent';
 
-let obj={};
-
 let data=[];
-let answer=[];
 let value=[];
 var obj1;
 class BluePrint extends Component{

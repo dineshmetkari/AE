@@ -110,9 +110,10 @@ setAnswer(selectedAnswer){
   }
 
 	render(){
-		const {qNumber,	qData, isDisconnected, flag, msg } = this.state;
-		if(msg == 'Exam Started'){
-		if(this.state.flag=='Timeup' && isDisconnected== 'opened'){
+		const {isDisconnected, msg } = this.state;
+		if(msg === 'Exam Started'){
+		if(this.state.flag === 'Timeup' && isDisconnected === 'opened'){
+						this.disconnect();
 			return(
 				<div style={{display:'flex', alignSelf:'center',height:'80vh', alignItems:'center'}}>
 				<div style={{display:'flex', flexDirection:'column',alignItems:'center', height:'30vh', width:'65vw', border:'solid 1px green', backgroundColor:'#CEFFCE', margin:'auto', borderRadius:'10px'}}>
@@ -122,7 +123,6 @@ setAnswer(selectedAnswer){
 				</div>
 				);
 
-				this.disconnect();
 		}
 		else{
 		return(

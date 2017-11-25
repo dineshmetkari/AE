@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router';
-import {browserHistory} from 'react';
+
 
 class ComponentNotFound extends React.Component{
 

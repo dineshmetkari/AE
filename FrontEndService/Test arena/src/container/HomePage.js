@@ -1,9 +1,5 @@
 import React from 'react';
-import RaisedButton from 'material-ui/RaisedButton';
-import TextField from 'material-ui/TextField';
 import {Link} from 'react-router';
-import axios from 'axios';
-import {browserHistory} from 'react-router';
 import Paper from 'material-ui/Paper';
 import AdminLogo from './ic_business_center_black_48px.svg';
 import StudentLogo from './ic_school_black_48px.svg';
@@ -33,7 +29,7 @@ render() {
             <Link to="/adminlogin">
               <Paper zDepth={3}>
                 <div style={{height:'10vh', width:'20vw', border:'2px solid black', backgroundColor:'#00bcd4',display:'flex', flexDirection:'row',alignItems:'center',alignSelf:'center',justifyContent:'center',}}>
-                  <img src={AdminLogo} />
+                  <img src={AdminLogo} alt="Admin Logo" />
                   <h2 style={{marginLeft:'10px'}}>Admin login</h2>
                 </div>
               </Paper>
@@ -41,7 +37,7 @@ render() {
             <Link to="/studentLogin">
               <Paper zDepth={3}>
                 <div style={{height:'10vh', width:'20vw', border:'2px solid black', backgroundColor:'#00bcd4',display:'flex', flexDirection:'row',alignItems:'center',alignSelf:'center',justifyContent:'center'}}>
-                  <img src={StudentLogo} />
+                  <img src={StudentLogo} alt="Student Logo" />
                   <h2 style={{marginLeft:'10px'}}>Student login</h2>
                 </div>
               </Paper>

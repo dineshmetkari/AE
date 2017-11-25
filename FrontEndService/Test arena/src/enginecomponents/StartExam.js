@@ -1,14 +1,7 @@
 import React, { Component } from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
-import SockJS from "sockjs-client"
-import Stomp from "@stomp/stompjs"
 import './StartExam.css';
 import ExamRenderer from './ExamRenderer';
-
-
-var socket = null;
-var stompClient =null;
-
 
 class StartExam extends Component{
 	constructor(props) {

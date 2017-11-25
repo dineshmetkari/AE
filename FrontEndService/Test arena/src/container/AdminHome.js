@@ -1,6 +1,4 @@
 import React, {Component} from 'react';
-import RaisedButton from 'material-ui/RaisedButton';
-import {Link} from 'react-router';
 import './AdminHome.css';
 import App from '../addquestionscomponent/App';
 import Main2 from './Main2';
@@ -28,7 +26,6 @@ export default class AdminHome extends Component {
     super(props);
 
     this.state={
-    name1 : '',
     renderContent:''
     }
     this.renderAddQuestion=this.renderAddQuestion.bind(this);
@@ -43,7 +40,7 @@ export default class AdminHome extends Component {
 
  render(){
    var name = this.props.location.state;
-   const {name1}= this.state;
+
    console.log(name);
    return(
      <div style={userStyle}>

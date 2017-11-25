@@ -1,7 +1,6 @@
 import React from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
-import {Link} from 'react-router';
 import axios from 'axios';
 import {browserHistory} from 'react-router';
 const style = {
@@ -13,7 +12,7 @@ export default class Login extends React.Component {
 constructor(props){
   super(props);
   this.state={
-  loggedin: false,
+  // loggedin: false,
   data : '',
   name : '',
   }
@@ -32,13 +31,13 @@ constructor(props){
 
      let output= this.state.data;
 
-     if(output == "Login Successfull"){
-       loggedin : true;
+     if(output === "Login Successfull"){
+      //  loggedin : true;
 
        browserHistory.push({pathname : '/adminMain', state : this.state.name});
        return;
      }else{
-       loggedin : false;
+      //  loggedin : false;
        browserHistory.push('/error');
        return;
      }
@@ -56,7 +55,6 @@ render() {
              />
            <br/>
              <TextField ref='password'
-               type="password"
                hintText="Enter your Password"
                floatingLabelText="Password"
                type="password"

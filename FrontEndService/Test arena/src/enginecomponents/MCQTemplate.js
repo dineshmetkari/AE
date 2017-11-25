@@ -19,15 +19,17 @@ class MCQTemplate extends Component{
 		});
 	}
 
-	
+
 	render(){
 		const {answered, isChecked} = this.state;
 		if(this.props.jsonData != null){
 			const Options = JSON.parse(this.props.jsonData).options;
 			const Question = JSON.parse(this.props.jsonData).question;
 			const QuestionId = JSON.parse(this.props.jsonData).questionId;
-			
+			const userAnswer=JSON.parse(this.props.jsonData).userAnswer;
+
 			var renderOptions = null;
+			if(userAnswer==""){
 			renderOptions = Options.map(Option => {
 				return(
 					<div>
@@ -36,7 +38,7 @@ class MCQTemplate extends Component{
 								key={Option}
 								id={Option}
 								value={Option}
-					
+
 								name={Question}
 								onChange={this.handleChange}/>
 							 </span>
@@ -47,6 +49,28 @@ class MCQTemplate extends Component{
 					</div>
 					)
 				});
+     }
+		 else{
+			 renderOptions = Options.map(Option => {
+ 				return(
+ 					<div>
+ 							<span style={{marginRight:'10px'}}>
+ 								<input type='radio'
+ 								key={Option}
+ 								id={Option}
+ 								value={Option}
+ 								checked={userAnswer===Option}
+ 								name={Question}
+ 								onChange={this.handleChange}/>
+ 							 </span>
+ 							<label>
+ 								{Option}
+ 							</label>
+ 							<br/>
+ 					</div>
+ 					)
+ 				});
+		 }
 
 		return(
 			<div style={{margin:'20px'}}>
