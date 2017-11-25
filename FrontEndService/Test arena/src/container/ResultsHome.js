@@ -1,20 +1,15 @@
 import React from 'react';
-import {Link} from 'react-router';
 import RaisedButton from 'material-ui/RaisedButton';
-import axios from 'axios';
 
-const style = {
-  margin: 8,
- marginLeft: 600
-};
+
+
 let obj={};
 let res=[];
 
 export default class ResultsHome extends React.Component{
 	constructor(props){
 		super(props);
-    var user=this.props.location.name;
-		this.state={data: [],
+    this.state={data: [],
 			content:null
 		}
 		this.onSubmit=this.getResult.bind(this);

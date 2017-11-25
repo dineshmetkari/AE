@@ -20,11 +20,14 @@ class MCQTemplate extends Component{
 			useranswer:event.target.value
 		});
 
+<<<<<<< HEAD
 		}
     shouldComponentUpdate(NextProps,nextState){
     	this.setState({useranswer: ""})
     	return true;
     }
+=======
+>>>>>>> 8bec38f348020193130c7f0735560c3461339f29
 
 	render(){
 		const {answered, isChecked,useranswer} = this.state;
@@ -33,6 +36,7 @@ class MCQTemplate extends Component{
 			const Question = JSON.parse(this.props.jsonData).question;
 			const QuestionId = JSON.parse(this.props.jsonData).questionId;
 			const userAnswer=JSON.parse(this.props.jsonData).userAnswer;
+<<<<<<< HEAD
 			
 			var renderOptions = null;
 
@@ -41,6 +45,11 @@ class MCQTemplate extends Component{
 			{
 				console.log("UserAnswer is null");
 				
+=======
+
+			var renderOptions = null;
+			if(userAnswer==""){
+>>>>>>> 8bec38f348020193130c7f0735560c3461339f29
 			renderOptions = Options.map(Option => {
 				return(
 					<div>
@@ -49,6 +58,10 @@ class MCQTemplate extends Component{
 								key={Option}
 								id={Option}
 								value={Option}
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8bec38f348020193130c7f0735560c3461339f29
 								name={Question}
 								onChange={this.handleChange}/>
 							 </span>
@@ -108,7 +121,32 @@ class MCQTemplate extends Component{
 
 					)
 				});
+<<<<<<< HEAD
 			}
+=======
+     }
+		 else{
+			 renderOptions = Options.map(Option => {
+ 				return(
+ 					<div>
+ 							<span style={{marginRight:'10px'}}>
+ 								<input type='radio'
+ 								key={Option}
+ 								id={Option}
+ 								value={Option}
+ 								checked={userAnswer===Option}
+ 								name={Question}
+ 								onChange={this.handleChange}/>
+ 							 </span>
+ 							<label>
+ 								{Option}
+ 							</label>
+ 							<br/>
+ 					</div>
+ 					)
+ 				});
+		 }
+>>>>>>> 8bec38f348020193130c7f0735560c3461339f29
 
 		return(
 			<div style={{margin:'20px'}}>

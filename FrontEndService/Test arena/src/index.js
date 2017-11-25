@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDom from 'react-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Main from './container/Main';
-import Appbar from './container/Appbar';
 import ComponentNotFound from './container/ComponentNotFound';
 import Register from './container/Register';
 import StudentLogin from './container/StudentLogin';
@@ -18,7 +17,6 @@ import StartExam from './enginecomponents/StartExam';
 import App from './addquestionscomponent/App';
 import QuestionLayout from './addquestionscomponent/questionLayout';
 import SearchQ from './container/SearchQ';
-import Nav2 from './container/Nav2';
 import Appbar2 from './container/Appbar2';
 import {browserHistory, Route, Router, IndexRoute}  from 'react-router';
 

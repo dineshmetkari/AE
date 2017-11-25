@@ -11,7 +11,7 @@ export default class Main2 extends React.Component
 	}
 	render = () =>
 	{
-		if(this.state.dems==0)
+		if(this.state.dems === 0)
 		{
 		return(
 			<div>

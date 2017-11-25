@@ -3,7 +3,6 @@ import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import axios from 'axios';
 import request from 'superagent';
-import {browserHistory} from 'react';
 import Snackbar from 'material-ui/Snackbar';
 import {Link} from 'react-router';
 
@@ -12,7 +11,7 @@ const style = {
  flexDirection:'column',
  alignItems:'center'
 };
-let email=[];
+
 export default class  Register extends React.Component {
  constructor(props) {
    super(props);
@@ -70,7 +69,7 @@ handleValidation(){
             let lastAtPos = fields["emailId"].lastIndexOf('@');
             let lastDotPos = fields["emailId"].lastIndexOf('.');
 
-            if (!(lastAtPos < lastDotPos && lastAtPos > 0 && fields["emailId"].indexOf('@@') == -1 && lastDotPos > 2 && (fields["emailId"].length - lastDotPos) > 2)) {
+            if (!(lastAtPos < lastDotPos && lastAtPos > 0 && fields["emailId"].indexOf('@@') === -1 && lastDotPos > 2 && (fields["emailId"].length - lastDotPos) > 2)) {
               formIsValid = false;
               errors["emailId"] = "Email is not valid";
             }
@@ -82,7 +81,7 @@ handleValidation(){
           errors["contact"] = "Can not be empty";
        }
        if(typeof fields["contact"] !== "undefined"){
-            if(!fields["contact"].match(/^[0-9\+]{9,15}$/)){
+            if(!fields["contact"].match(/^[0-9+]{10}$/)){
                 formIsValid = false;
                 errors["contact"] = "Invalid contact";
             }
@@ -135,7 +134,7 @@ handleValidation(){
             //      formIsValid = false;
             //      errors["confirmPassword"] = "Password and confirmPassword must be match";
             //  }
-               if(!(this.refs.password.getValue()==this.refs.confirmPassword.getValue())){
+               if(!(this.refs.password.getValue() === this.refs.confirmPassword.getValue())){
                      formIsValid = false;
                      errors["confirmPassword"] = "Password and confirmPassword must be match";
                }
@@ -147,7 +146,7 @@ handleValidation(){
 
 
 handleSubmit(e) {
-  var t=this;
+
    e.preventDefault();
   //  const emailId=this.refs.emailId.getValue();
 
@@ -172,7 +171,7 @@ console.log(payload);
                             });
                             let output= this.state.data;
                             //console.log("Output for Login : " + output);
-                            if(output == "User Already existed"){
+                            if(output === "User Already existed"){
                               alert("User Already existed");
                               return;
                             }else{
@@ -187,9 +186,9 @@ console.log(payload);
                                   console.log("this is err", err);
                                 }
                               })
-                              
+
                                //alert("Registration successfully completed");
-                               {this.handleTouchTap()}
+                               this.handleTouchTap();
                               //browserHistory.push('/error');
                               return;
                             }

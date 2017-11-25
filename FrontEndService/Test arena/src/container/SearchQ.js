@@ -2,25 +2,15 @@ import React from 'react';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import axios from 'axios';
-import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
 import request from 'superagent';
-import {Link} from 'react-router';
-
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
-import AutoComplete from 'material-ui/AutoComplete';
 import lodash from 'lodash';
 import SelectField from 'material-ui/SelectField';
 
-let encoding = 'utf8';
 let answer =[];
 let obj={};
-let answer2=[];
-let subjectObj={};
-let topicObj={};
-let topicAnswer=[];
-let studentObj={};
-//let studentKeys=[];
+
 class SearchQ extends React.Component{
 
   constructor(props) {
@@ -104,11 +94,7 @@ componentWillMount=()=>{
 
             }
           })
-
-
-
-
- }
+}
  selectionRenderer = (values) => {
     switch (values.length) {
       case 0:
@@ -139,10 +125,10 @@ menuItems(studentInfo) {
 
 handleStudentChange = (event, index, studentValues) => this.setState({studentValues});
 
-getOuestions = () => {
-  let subject=this.state.value;
-  let topic=this.state.topicValue;
-}
+// getOuestions = () => {
+//   let subject=this.state.value;
+//   let topic=this.state.topicValue;
+// }
   render() {
     console.log(this.state.values);
     return (

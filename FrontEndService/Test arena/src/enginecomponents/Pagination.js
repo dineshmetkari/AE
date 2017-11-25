@@ -1,15 +1,11 @@
 import React, { Component } from 'react';
-import Paper from 'material-ui/Paper';
 import './Pagination.css';
 
 class Pagination extends Component{
 
-		
+
 	constructor(props){
 		super(props);
-		this.state ={
-			QuestionCount:'10'
-		}
 		this.handleClick=this.handleClick.bind(this);
 	}
 
@@ -18,7 +14,6 @@ class Pagination extends Component{
 	}
 
  render(){
- 	const {QuestionCount} = this.state;
  	const QuestionNumbers=[];
  	for(var i=1; i<= this.props.qCount ; i++){QuestionNumbers.push(i);}
 
@@ -34,7 +29,7 @@ class Pagination extends Component{
             </li>
           );
         });
-        	
+
  	return(
  		<div>
  		<ul className="Pager">
