@@ -8,15 +8,15 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 class Index extends React.Component{
 	render() {
-			return (	
+			return (
 				<MuiThemeProvider>
 				<div>
 				<Header />
 				{this.props.children}
 				</div>
-				</MuiThemeProvider>		
+				</MuiThemeProvider>
 			);
-	}		
+	}
 }
 ReactDom.render(
 <Router history = {browserHistory}>
@@ -26,4 +26,3 @@ ReactDom.render(
 </Route>
 </Router>, document.getElementById('root')
 );
-

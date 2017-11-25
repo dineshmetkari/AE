@@ -8,12 +8,17 @@ import NavButton from './navButton'
 const style = {
   menu:{
     float: 'right'
+  },
+  bar:{
+    height : '55px',
+    width : '100%',
+    backgroundColose: '#00bcd4 '
   }
 }
 class AppBar extends Component{
     render(){
         return(
-        <div style={{height:'55px', width:'100vw',backgroundColor:'#00bcd4 '}}>
+        <div style={style.bar}>
         <NavButton/>
         <img src={logo} alt="logo" style={{height:'51px',width:'250px', marginTop:'2px'}}  />
 
