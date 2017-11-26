@@ -9,7 +9,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
@@ -22,6 +22,7 @@ import org.springframework.web.client.RestTemplate;
 import com.stackroute.assessmentengine.engineService.domain.Question;
 import com.stackroute.assessmentengine.engineService.domain.QuestionBean;
 import com.stackroute.assessmentengine.engineService.exceptions.KafkaUnavialableException;
+import com.stackroute.assessmentengine.engineService.exceptions.ResourceNotFoundException;
 import com.stackroute.assessmentengine.engineService.message.KafkaProducer;
 import com.stackroute.assessmentengine.engineService.repository.QuestionRepository;
 
@@ -33,34 +34,41 @@ import com.stackroute.assessmentengine.engineService.repository.QuestionReposito
 public class Enginecontroller {
 	@Autowired
 	public SimpMessagingTemplate simpMessagingTemplate;
+	
 	@Autowired
 	KafkaProducer producer;
 	
 	@Autowired
 	QuestionRepository questionRepository;
 	
-	int count=0;
 	
 	static List<Question> questions=new ArrayList<>();
-	static Map<Integer,Question> questionPaper;
+	static HashMap<Integer,Question> questionPaper;
+	static HashMap<String,HashMap<Integer,Question>> usermap= new HashMap<>();
 
 
 	@MessageMapping("/questions/{userId}")
-    
     public void questionData(@DestinationVariable String userId,Question question)  {
 		
 		System.out.println("user:"+userId);
-     
-		System.out.println("recieved from user"+question.toString());
 		Enginecontroller ec=new Enginecontroller();
 		
-		if(count<=1) {
-			ec.getall();
-			count++;
+		HashMap<Integer,Question> questionPaper1;
+		questionPaper1=usermap.get(userId);
+		if(questionPaper1==null)
+		{
+			
+			System.out.println("--------------------------------------calling getall method");
+			ec.getall(userId);
 		}
-        if(questions.size()!=0)
+		
+		System.out.println("recieved from user"+question.toString());
+		questionPaper=usermap.get(userId);
+		
+		
+        if(questionPaper.size()!=0)
         {
-		System.out.println("set of questionPaper"+questionPaper);
+		System.out.println("set of questionPaper"+questionPaper1);
 		Question nextQuestion=null;
 		
 		try {
@@ -69,14 +77,15 @@ public class Enginecontroller {
 		
 		nextQuestion=questionRepository.getquestion(question); 
 		}
-		catch(Exception e) {
-			System.out.println(e);
+		catch(ResourceNotFoundException e) {
+			System.out.println("can't get it from jedis pool");
 		}	
 		
 		QuestionBean questionBean=new QuestionBean();
 		
 		Integer qno=Integer.parseInt(question.getId());
 		System.out.println("nextquestion no:  "+qno);
+		
 		Question current=questionPaper.get(qno);
 		
 		
@@ -109,53 +118,59 @@ public class Enginecontroller {
       try {
     	  if(status.equalsIgnoreCase(question.getExamStatus()))
           {
-          	try {
-          		producer.sendQuestion(questionBean);
-          		Thread.sleep(3000);
-          		producer.sendQuestion1(questionBean);
-      	    }
-      	    catch(Exception e) {
-      	    	throw new KafkaUnavialableException("Kafka server is down");
-      	    }
+	          	try {
+	          		producer.sendQuestion(questionBean);
+	          		Thread.sleep(3000);
+	          		producer.sendQuestion1(questionBean);
+	      	    }
+	      	    catch(Exception e) {
+	      	    	throw new KafkaUnavialableException("Kafka server is down");
+	      	    }
        	   
        	
           }
     	  else {
 		
-        	if(nextQuestion!=null) {
-        		
-        		System.out.println("from cache========================");
-        		Integer n=Integer.parseInt(question.getNextQuestion());
-        		System.out.println("nextquestion no:  "+n);
-        		Question next=questionPaper.get(n);
-        		
-        		
-        		questionBean1.setNoOfQuestions(String.valueOf(questionPaper.size()));
-                System.out.println("NextQuestion::::::::::::"+next);
-                questionBean1.setMsg("Exam Started");
-                questionBean1.setQuestionId(String.valueOf(next.getId()));
-                questionBean1.setQuestion(next.getQuestion());
-                questionBean1.setQuestionType(next.getQuestionType());
-                questionBean1.setMarksAllotted(next.getMarksAllotted());
-                questionBean1.setSubject(next.getSubject());
-                questionBean1.setComplexity(next.getComplexity());
-             //   questionBean1.setCorrectAnswer(next.getCorrectAnswer());
-                questionBean1.setUserAnswer(nextQuestion.getSelectedAnswer());
-                DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                Date date1 = new Date();
-                String starttime = dateFormat.format(date1);
-                questionBean1.setQuestionStartTime(starttime);
-                questionBean1.setLevel(next.getLevel());
-                List<String> optionsList=Arrays.asList(next.getOptions());
-                questionBean1.setOptions(optionsList);
-                System.out.println("hgashgafsgshgashgahgs-------ok");
-          	    simpMessagingTemplate.convertAndSend("/topic/question/"+question.getUserid() ,questionBean1);
-          	    try {
-          	    producer.sendQuestion(questionBean);
-          	    }
-          	    catch(Exception e) {
-          	    	throw new KafkaUnavialableException("Kafka server is down");
-          	    }
+	        if(nextQuestion!=null) {
+	        		
+	        		System.out.println("from cache========================");
+	        		Integer n=Integer.parseInt(question.getNextQuestion());
+	        		System.out.println("nextquestion no:  "+n);
+	        		Question next=questionPaper.get(n);
+	        		
+	        		
+	        		questionBean1.setNoOfQuestions(String.valueOf(questionPaper.size()));
+	                System.out.println("NextQuestion::::::::::::"+next);
+	                questionBean1.setMsg("Exam Started");
+	                questionBean1.setQuestionId(String.valueOf(next.getId()));
+	                questionBean1.setQuestion(next.getQuestion());
+	                questionBean1.setQuestionType(next.getQuestionType());
+	                questionBean1.setMarksAllotted(next.getMarksAllotted());
+	                questionBean1.setSubject(next.getSubject());
+	                questionBean1.setComplexity(next.getComplexity());
+	                
+	                if(nextQuestion.getSelectedAnswer()!=null) {
+	                	questionBean1.setUserAnswer(nextQuestion.getSelectedAnswer());
+	                }
+	                else {
+	                	questionBean1.setUserAnswer("");
+	                }
+	                
+	                DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	                Date date1 = new Date();
+	                String starttime = dateFormat.format(date1);
+	                questionBean1.setQuestionStartTime(starttime);
+	                questionBean1.setLevel(next.getLevel());
+	                List<String> optionsList=Arrays.asList(next.getOptions());
+	                questionBean1.setOptions(optionsList);
+	                System.out.println("hgashgafsgshgashgahgs-------ok");
+	          	    simpMessagingTemplate.convertAndSend("/topic/question/"+question.getUserid() ,questionBean1);
+	          	    try {
+	          	    producer.sendQuestion(questionBean);
+	          	    }
+	          	    catch(KafkaUnavialableException e) {
+	          	    	throw new KafkaUnavialableException("Kafka server is down");
+	          	    }
     			
     		}
         	else {
@@ -175,7 +190,7 @@ public class Enginecontroller {
                 questionBean1.setMarksAllotted(next.getMarksAllotted());
                 questionBean1.setSubject(next.getSubject());
                 questionBean1.setComplexity(next.getComplexity());
-             //   questionBean1.setCorrectAnswer(next.getCorrectAnswer());
+                questionBean1.setUserAnswer("");
                 DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 Date date1 = new Date();
                 String starttime = dateFormat.format(date1);
@@ -187,25 +202,21 @@ public class Enginecontroller {
 	        	  simpMessagingTemplate.convertAndSend("/topic/question/"+question.getUserid() ,questionBean1);
 	        	  try {
 	            	    producer.sendQuestion(questionBean);
-	            	    }
-	            	    catch(Exception e) {
+	            	}
+	        	  catch(KafkaUnavialableException e) {
 	            	    	throw new KafkaUnavialableException("Kafka server is down");
 	            	    }
-        	}
+        	      }
         
-        }
-        
-        
+                }
         	
+             }
+	      catch(KafkaUnavialableException e) {
+	    	  System.out.println("Kafka server is down");
+	    	  
+	      }
         }
-        
-      
-      catch(KafkaUnavialableException e) {
-    	  System.out.println(e);
-    	  
-      }
-        }
-	      else {
+	    else {
 	      	System.out.println("else block");
 	      	simpMessagingTemplate.convertAndSend("/topic/question/"+question.getUserid() , new QuestionBean("Exam not yet started"));
 	      	
@@ -213,9 +224,10 @@ public class Enginecontroller {
 		}
     
    // @KafkaListener(topics = "${kafka.topic.json}")
-    private static void getall()
+    private static void getall(String user)
     {
-        final String uri = "http://172.23.238.217:8074/all";
+    	
+        final String uri = "http://172.23.238.217:8074/all/"+user+"/";
         RestTemplate restTemplate = new RestTemplate();
         System.out.println("in data");
         Question[] forNow = restTemplate.getForObject(uri, Question[].class);
@@ -225,30 +237,31 @@ public class Enginecontroller {
         questionPaper=new HashMap<>();
         for(Question q:searchList) {
         	q.setId(String.valueOf(i));
-        	q.setMarksAllotted("1");
+        	//q.setMarksAllotted("1");
         	questionPaper.put(i, q);
         	i++;
         }
-//    	Integer i=1;
-//    	String opti[]= {"a","b","c","d"};
-//    	 List<Question> searchList= new ArrayList<Question>();
-//    	 searchList.add(new Question("","","","", "", "java","java","l", "a",
-//    				"mcq", "Quest", "asasas", "2", "",
-//    				 opti));
-//    	 searchList.add(new Question("","","","", "", "jsva","java","l", "a",
-// 				"mcq", "Quest", "asasas", "2", "",
-// 				 opti));
-//    	 questionPaper=new HashMap<>();
-//       for(Question q:searchList) {
-//       	q.setId(String.valueOf(i));
-//       	q.setMarksAllotted("1");
-//       	questionPaper.put(i, q);
-//       	i++;
-//       }
-    	 
+    	
+//    List<Question> searchList= new ArrayList<>();
+//    
+//    String[] s= {"a","b","c","d"};
+//    searchList.add(new Question("ok","1","","", "","oops", "java", "l1", "easy",
+//			"mcq", "Question1","A", "1", "",s));
+//    searchList.add(new Question("ok","2","","", "","oops", "java", "l1", "easy",
+//			"mcq", "Question2","A", "1", "",s));
+//      Integer i=1;
+//      questionPaper=new HashMap<>();
+//      for(Question q:searchList) {
+//      	q.setId(String.valueOf(i));
+//      	q.setUserid(user);
+//      	//q.setMarksAllotted("1");
+//      	questionPaper.put(i, q);
+//      	i++;
+//      }
+        usermap.put(user,questionPaper);
+        System.out.println("User Map:"+usermap);
         questions=searchList;
-        System.out.println(searchList);
+        System.out.println("List of Questios:"+searchList);
        }
-
 }
 		

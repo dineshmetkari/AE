@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.stackroute.assessmentengine.rediscache.domain.QuestionBean;
 import com.stackroute.assessmentengine.rediscache.domain.QuestionBean1;
+import com.stackroute.assessmentengine.rediscache.exceptions.KafkaUnavialableException;
 
 
 public class KafkaProducer {
@@ -21,10 +22,14 @@ public class KafkaProducer {
 	@Value("${kafka.topic.json}")
 	String kafkaTopic;
 	
-	public void send(QuestionBean1 questionbean) {
+	public void send(QuestionBean1 questionbean) throws KafkaUnavialableException {
 	    log.info("sending data='{}' For Topic : " + kafkaTopic);
-	    
+	    try {
 	    kafkaTemplate.send(kafkaTopic,questionbean);
+	    }
+	    catch(Exception e) {
+	    	throw new KafkaUnavialableException("Kafka server is Down");
+	    }
 	}
 	
 }
