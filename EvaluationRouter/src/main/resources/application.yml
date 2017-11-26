@@ -6,4 +6,4 @@ kafka:
     json2: TFQuestion
     
 server:
-  port: 8088
+  port: 9996
