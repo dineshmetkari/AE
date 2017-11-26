@@ -12,7 +12,7 @@ import TextField from 'material-ui/TextField';
 //   {value: 2, name: 'Raju'},
 //   {value: 3, name: 'Sai'},
 //   {value: 4, name: 'Ram'}
-  
+
 // ];
 
 let obj={};
@@ -22,10 +22,10 @@ export default class Papaers extends React.Component
 	constructor(props)
 	{
 		super(props);
-		
+
 		this.students = this.students.bind(this);
 		this.state = {data : null}
-		
+
 	}
 
 render()
@@ -44,33 +44,28 @@ render()
 students()
 	{
 		let a = this.refs.s1.getValue();
-		 
-		let ur='http://172.23.238.205:8083/specquestions/'+a;	
-		
+
+		let ur='http://172.23.238.205:8083/specquestions/'+a;
+
 		 axios.get(ur).then((response) =>
 		{
 			 var myJsonString = JSON.stringify(response.data);
-			  response.data.map(function(x)	
+			  response.data.map(function(x)
 			{
-				
 				obj=
 				{
 					'Student_Email':x.emailId,
 					'Student_Name':x.studentName
-			
 				}
-				answer.push(obj);	
+				answer.push(obj);
 			});
-			 
-			  
-			  
-   			// this.props.fun1(answer);				
+   			// this.props.fun1(answer);
 		})
-		.catch( (error) => 
+		.catch( (error) =>
 		{
 			console.log(error);
-		}); 
-		
+		});
+
 	}
 
 

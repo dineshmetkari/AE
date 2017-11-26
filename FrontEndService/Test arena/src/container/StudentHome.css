@@ -1,0 +1,30 @@
+.tabs{
+	display: flex;
+	flex-direction: row;
+	
+	height: 14vh;
+}
+
+.tabs h2{
+	width: 10vw;
+	margin-left: -25px;
+	padding: 20px;
+	padding-left: 35px;
+	background-color: #00bcd4;
+	z-index: -1;
+	line-height: 2vh;
+	border-radius: 15px;
+	border:2px solid black;
+
+}
+
+.logos{
+	height: 7vw;
+	width: 7vw;
+	border-radius: 7vw;
+	background-color: #00bcd4;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border:2px solid black;
+}

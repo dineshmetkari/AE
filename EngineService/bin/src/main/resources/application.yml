@@ -1,0 +1,26 @@
+kafka:
+  bootstrap-servers: 172.23.238.133:9092
+  topic:
+    json: statemanager
+    json1: Examstatus
+    
+#eureka:
+#  client:
+#    register-with-eureka: true
+#    fetch-registry: true 
+#    serviceUrl:
+#      defaultZone: http://localhost:8070/eureka/
+#  instance:
+#    hostname: localhost
+    
+server:
+  port: 8081
+  session:
+    timeout: 600000
+    cookie:
+     max-age: 600000
+ 
+spring:
+  application:
+    name: EngineService
+    

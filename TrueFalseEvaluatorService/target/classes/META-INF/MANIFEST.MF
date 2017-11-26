@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Implementation-Title: EvaluatorService
 Implementation-Version: 0.0.1-SNAPSHOT
-Built-By: saicharan
+Built-By: param
 Implementation-Vendor-Id: com.evaluator
-Build-Jdk: 1.8.0_151
+Build-Jdk: 1.8.0_121
 Implementation-URL: http://projects.spring.io/spring-boot/EvaluatorSer
  vice/
 Created-By: Maven Integration for Eclipse

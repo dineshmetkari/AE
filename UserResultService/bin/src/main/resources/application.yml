@@ -1,0 +1,24 @@
+kafka:
+  bootstrap-servers: 172.23.238.133:9092
+  topic3:
+    json3: Resultmanager
+    
+    
+    
+    
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    serviceUrl:
+      defaultZone: http://172.23.238.205:8071//eureka/
+  instance:
+    hostname: localhost
+    
+spring:
+  application:
+    name: UserResultService
+  kafka:
+    consumer:
+      group-id: ResultDisplay
+      

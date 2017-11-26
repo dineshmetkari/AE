@@ -1,5 +1,5 @@
 FROM openjdk:8
-ADD target/Student_demo-0.0.1-SNAPSHOT.jar studentDocker.jar
-EXPOSE 8088
-RUN bash -c 'touch /studentDocker.jar'
-ENTRYPOINT ["java", "-Dspring.data.mongodb.uri=mongodb://mongodb/users","-Djava.security.egd=file:/dev/./urandom","-jar","/studentDocker.jar"]
+ADD target/UserResultService-0.0.1-SNAPSHOT.jar useresultdocker.jar
+EXPOSE 9999
+RUN bash -c 'touch /useresultdocker.jar'
+ENTRYPOINT ["java", "-Dspring.data.mongodb.uri=mongodb://mongodb/users","-Djava.security.egd=file:/dev/./urandom","-jar","/useresultdocker.jar"]

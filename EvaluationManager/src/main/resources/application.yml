@@ -7,7 +7,7 @@ kafka:
     json3: Resultmanager
     
 server:
-  port: 8095
+  port: 9997
   
 spring:
   application:
