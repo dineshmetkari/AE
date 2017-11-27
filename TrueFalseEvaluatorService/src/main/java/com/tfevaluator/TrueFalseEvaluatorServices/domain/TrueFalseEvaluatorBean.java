@@ -18,7 +18,7 @@ public class TrueFalseEvaluatorBean {
 	private String subject;
 	private String level;
 	private String complexity;
-	private String marksAlloted;
+	private String marksAllotted;
 	private String timeTakenInSeconds;
 	private String questionStartTime;
 	private String questionEndTime;
@@ -37,7 +37,7 @@ public class TrueFalseEvaluatorBean {
 
 	public TrueFalseEvaluatorBean(String examId, String studentId, String questionId, String question,
 			List<String> Options, String correctAnswer, String userAnswer, String questionType,
-			String subject, String level, String complexity, String marksAlloted, String timeTakenInSeconds,
+			String subject, String level, String complexity, String marksAllotted, String timeTakenInSeconds,
 			String questionStartTime, String questionEndTime, String examStartTime, String examEndTime, String isEvaluated) {
 		super();
 		this.examId = examId;
@@ -51,7 +51,7 @@ public class TrueFalseEvaluatorBean {
 		this.subject = subject;
 		this.level = level;
 		this.complexity = complexity;
-		this.marksAlloted = marksAlloted;
+		this.marksAllotted = marksAllotted;
 		this.timeTakenInSeconds = timeTakenInSeconds;
 		this.questionStartTime = questionStartTime;
 		this.questionEndTime = questionEndTime;
@@ -148,12 +148,12 @@ public class TrueFalseEvaluatorBean {
 		this.complexity = complexity;
 	}
 
-	public String getMarksAlloted() {
-		return marksAlloted;
+	public String getMarksAllotted() {
+		return marksAllotted;
 	}
 
-	public void setMarksAlloted(String marksAlloted) {
-		this.marksAlloted = marksAlloted;
+	public void setMarksAlloted(String marksAllotted) {
+		this.marksAllotted = marksAllotted;
 	}
 
 	public String getTimeTakenInSeconds() {
@@ -222,7 +222,7 @@ public class TrueFalseEvaluatorBean {
 		return "EvaluatorBean [examId=" + examId + ", studentId=" + studentId + ", questionId=" + questionId
 				+ ", question=" + question + ", Options=" + Options + ", correctAnswer=" + correctAnswer
 				+ ", userAnswer=" + userAnswer + ", questionType=" + questionType + ", subject=" + subject + ", level="
-				+ level + ", complexity=" + complexity + ", marksAlloted=" + marksAlloted + ", timeTakenInSeconds="
+				+ level + ", complexity=" + complexity + ", marksAllotted=" + marksAllotted + ", timeTakenInSeconds="
 				+ timeTakenInSeconds + ", questionStartTime=" + questionStartTime + ", questionEndTime="
 				+ questionEndTime + ", examStartTime=" + examStartTime + ", examEndTime=" + examEndTime
 				+ ", marksAttained=" + marksAttained + ", isEvaluated=" + isEvaluated +"]";

@@ -16,9 +16,9 @@ public class TrueFalseEvaluatorService {
 	
 	public String evaluateMcqQuestion(TrueFalseEvaluatorBean evaluatorBean) {
 		
-		if(evaluatorBean.getCorrectAnswer().equals(evaluatorBean.getUserAnswer()))
+		if(evaluatorBean.getCorrectAnswer().equalsIgnoreCase(evaluatorBean.getUserAnswer()))
 		{
-			evaluatorBean.setMarksAttained(evaluatorBean.getMarksAlloted());
+			evaluatorBean.setMarksAttained(evaluatorBean.getMarksAllotted());
 		}
 		else
 		{

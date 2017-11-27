@@ -6,14 +6,14 @@ kafka:
     json: EvaluatedQuestion    
     
     
-eureka:
-  client:
-    register-with-eureka: true
-    fetch-registry: true
-    serviceUrl:
-      defaultZone: http://172.23.238.205:8071//eureka/
-  instance:
-    hostname: localhost
+#eureka:
+#  client:
+#    register-with-eureka: true
+#    fetch-registry: true
+#    serviceUrl:
+#      defaultZone: http://172.23.238.205:8071//eureka/
+#  instance:
+#    hostname: localhost
     
 spring:
   application:
