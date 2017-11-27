@@ -4,29 +4,35 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.mongodb.AggregationOutput;
-import com.mongodb.DBCollection;
+
 import com.stackroute.assessmentengine.questionbank.domain.QuestionBank;
+import com.stackroute.assessmentengine.questionbank.exception.CustomExceptions;
 import com.stackroute.assessmentengine.questionbank.service.QuestionBankService;
 
 import java.util.*;
 @RestController
-
+@CrossOrigin("*")	
 public class QuestionBankController {
 	@Autowired
 	private QuestionBankService questionBankService;
-	
+	@CrossOrigin("*")
 	@RequestMapping("/questions")
-	public ResponseEntity<List<QuestionBank>> getallQuestions() {
+	public ResponseEntity<List<QuestionBank>> getallQuestions() throws CustomExceptions {
 		
 		return ResponseEntity.ok( questionBankService.getallquestions());
 		
 	}
 	@RequestMapping("/questions/{id}")
-	public ResponseEntity<QuestionBank> getQuestion(@PathVariable String id) {
-		
-		return ResponseEntity.ok(questionBankService.getquestion(id));
-		
+	public ResponseEntity<QuestionBank> getQuestion(@PathVariable String id) throws CustomExceptions{
+		QuestionBank q;
+			try {
+				q=questionBankService.getquestion(id);
+			} catch (CustomExceptions e) {
+				
+				throw new CustomExceptions("no question available");
+			}
+			return ResponseEntity.ok(q);
+			
 	}
 	@CrossOrigin("*")
 	@RequestMapping(method=RequestMethod.POST,value="/questions")

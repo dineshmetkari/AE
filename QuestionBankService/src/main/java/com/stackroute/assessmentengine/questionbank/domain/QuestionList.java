@@ -13,7 +13,7 @@ public class QuestionList {
 	private List<Options> options;
 	private String correctAnswer;
 	private String marksAlloted;
-	private BasicDBObject cdate;
+	
 	
 	
 	public String getId() {
@@ -66,9 +66,6 @@ public class QuestionList {
 		this.marksAlloted = marksAlloted;
 	}
 	
-	Date now = new Date();
-
-	BasicDBObject timeNow = new BasicDBObject("date", now);
 
 	public QuestionList() {
 		super();
@@ -76,14 +73,7 @@ public class QuestionList {
 		this.options=new ArrayList<>();
 	}
 
-	public BasicDBObject getCdate() {
-		return cdate;
-	}
-
-	public void setCdate() {
-		
-		this.cdate = timeNow;
-	}
+	
 	
 	
 	

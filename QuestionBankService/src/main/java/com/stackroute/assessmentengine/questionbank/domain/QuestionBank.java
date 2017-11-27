@@ -1,19 +1,30 @@
 package com.stackroute.assessmentengine.questionbank.domain;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.annotation.Id;
+
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import com.mongodb.AggregationOutput;
-import com.mongodb.DBObject;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 
 
 @Document(collection = "questionBank")
 public class QuestionBank {
+	@JsonFormat(pattern="yyyy-MM-dd")
+	private Date createdDate=new Date();
 	private List<SubjectList> subjectLists;
+	
+	
+	public Date getCreatedDate() {
+		return createdDate;
+	}
+
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = createdDate;
+	}
 
 	public List<SubjectList> getSubjectLists() {
 		return subjectLists;

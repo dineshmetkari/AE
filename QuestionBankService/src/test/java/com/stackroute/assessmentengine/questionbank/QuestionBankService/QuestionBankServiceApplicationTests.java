@@ -1,4 +1,4 @@
-package com.wipro.Assessment_qb;
+package com.stackroute.assessmentengine.questionbank.QuestionBankService;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class AssessmentQbApplicationTests {
+public class QuestionBankServiceApplicationTests {
 
 	@Test
 	public void contextLoads() {
