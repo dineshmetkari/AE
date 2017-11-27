@@ -1,8 +1,5 @@
+com/tfevaluator/TrueFalseEvaluatorServices/config/SwaggerConfig.class
 com/tfevaluator/TrueFalseEvaluatorServices/config/KafkaConsumerConfig.class
 com/tfevaluator/TrueFalseEvaluatorServices/service/TrueFalseEvaluatorService.class
-com/tfevaluator/TrueFalseEvaluatorServices/TrueFalseEvaluatorServiceApplication.class
-com/tfevaluator/TrueFalseEvaluatorServices/message/KafkaConsumer.class
-com/tfevaluator/TrueFalseEvaluatorServices/config/SwaggerConfig.class
 com/tfevaluator/TrueFalseEvaluatorServices/domain/TrueFalseEvaluatorBean.class
-com/tfevaluator/TrueFalseEvaluatorServices/config/KafkaProducerConfig.class
 com/tfevaluator/TrueFalseEvaluatorServices/message/KafkaProducer.class
