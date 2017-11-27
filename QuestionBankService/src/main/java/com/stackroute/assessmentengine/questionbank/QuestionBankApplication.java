@@ -7,7 +7,6 @@ import org.springframework.cloud.netflix.feign.EnableFeignClients;
 
 @EnableFeignClients
 @SpringBootApplication
-@EnableDiscoveryClient
 public class QuestionBankApplication {
 
 	public static void main(String[] args) {

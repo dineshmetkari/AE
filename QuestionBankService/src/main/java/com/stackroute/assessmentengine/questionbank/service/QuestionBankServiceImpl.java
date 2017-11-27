@@ -22,6 +22,7 @@ import com.mongodb.DBObject;
 import com.stackroute.assessmentengine.questionbank.config.SpringMongoConfig;
 import com.stackroute.assessmentengine.questionbank.domain.QuestionBank;
 import com.stackroute.assessmentengine.questionbank.domain.QuestionList;
+import com.stackroute.assessmentengine.questionbank.exception.CustomExceptions;
 import com.stackroute.assessmentengine.questionbank.repository.QuestionBankMongoRepository;
 
 @Service
@@ -37,15 +38,24 @@ public class QuestionBankServiceImpl implements QuestionBankService {
 	QuestionBankMongoRepository mongoRepository;
 
 	@Override
-	public List getallquestions() {
+	public List getallquestions() throws CustomExceptions {
 		List<QuestionBank> l=mongoRepository.findAll();
-		return l;
+		if(l.isEmpty()) {
+			throw new CustomExceptions("No questions are existed in database");
+		}
+		else{
+			return l;
+		}
+		
 	}
 
 	@Override
-	public QuestionBank getquestion(String id) {
+	public QuestionBank getquestion(String id) throws CustomExceptions{
 		QuestionBank questionBank=mongoRepository.findOne(id);
-		return questionBank;
+		
+			return questionBank;
+		
+		
 		
 	}
 
@@ -76,6 +86,7 @@ public class QuestionBankServiceImpl implements QuestionBankService {
 				.andOperator(Criteria.where("subjectLists.topicList.levelList.complexityList.questionTypeList.questionType").in(questionType))))));
 	
 		List<QuestionBank> userTest11 = mongoOperation.find(query11, QuestionBank.class);
+		System.out.println("yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy"+userTest11.size());
 		System.out.println("query11 - " + query11.toString());
 		ArrayList questions=new ArrayList<>();
 		
@@ -90,7 +101,7 @@ public class QuestionBankServiceImpl implements QuestionBankService {
 		}
 		
 		
-		final int[] ints = new Random().ints(1, list.size()).distinct().limit(n).toArray();
+		final int[] ints = new Random().ints(0, list.size()).distinct().limit(n).toArray();
 		for(int i=0;i<ints.length;i++) {
 			System.out.println("DDDDDDDDDDDDDDDDDDDDD"+ints[i]);
 		}
