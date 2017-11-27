@@ -79,6 +79,6 @@ mcqevaluatordocker:
 userresultdocker:
  build: ./UserResultService
  ports:
-  - "8081:9994"
+  - "8091:9994"
  links:
   - kafka

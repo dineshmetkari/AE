@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.stackroute.assessmentengine.rediscache.domain.QuestionBean;
 import com.stackroute.assessmentengine.rediscache.domain.QuestionBean1;
+import com.stackroute.assessmentengine.rediscache.exceptions.RedisServerDownException;
 import com.stackroute.assessmentengine.rediscache.repository.QuestionRepository;
 
 
@@ -70,21 +71,30 @@ public class RedisController {
 //	
 //	}
 	@GetMapping("/Statemanager/v0.1/getall/{userId}")
-	public List< QuestionBean> getAll(@PathVariable String userId){
+	public List< QuestionBean> getAll(@PathVariable String userId) throws RedisServerDownException{
+		try {
 		Map<String, QuestionBean> questions=questionRepository.getAllquestions(userId);
 		List<QuestionBean> list = new ArrayList<QuestionBean>(questions.values());
 		return list;
+		}
+		catch(RedisServerDownException e) {
+			throw new RedisServerDownException("REdis server is down");
+		}
 
 	}
 	
 	@DeleteMapping("/Statemanager/v0.1/deleteByID/{userId}")
-	public void deleteAll(@PathVariable String userId){
+	public void deleteAll(@PathVariable String userId) throws RedisServerDownException{
+		try {
 		Map<String, QuestionBean> questions=questionRepository.getAllquestions(userId);
 		List<QuestionBean> list = new ArrayList<QuestionBean>(questions.values());
 		for(QuestionBean questionbean:list) {
 			questionRepository.deletequestions(userId, questionbean.getQuestionId());
 		}
 		
-
+	   }
+		catch(RedisServerDownException e) {
+			throw new RedisServerDownException("REdis server is down");
+		}
 	}
 }

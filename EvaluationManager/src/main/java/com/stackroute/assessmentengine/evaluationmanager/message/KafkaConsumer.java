@@ -17,6 +17,7 @@ import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.web.client.RestTemplate;
 import com.stackroute.assessmentengine.evaluationmanager.domain.QuestionBean;
 import com.stackroute.assessmentengine.evaluationmanager.domain.UserResultBean;
+import com.stackroute.assessmentengine.evaluationmanager.exception.KafkaUnavialableException;
 import com.stackroute.assessmentengine.evaluationmanager.service.EvaluationManagerService;
 
 import ch.qos.logback.core.net.SyslogOutputStream;
@@ -36,20 +37,13 @@ public class KafkaConsumer {
     public void questionrecived(QuestionBean questionBean) {
 		
 		log.info("Question for Evaluation:", questionBean.toString());
+		try {
 		producer.sendQuestion(questionBean);
-		
-//        final String uri = "http://localhost:8086/Statemanager/v0.1/getall/"+user.getStudentId();
-//        RestTemplate restTemplate = new RestTemplate();
-//        QuestionBean[] forNow = restTemplate.getForObject(uri, QuestionBean[].class);
-//        List<QuestionBean> searchList= Arrays.asList(forNow);
-//        System.out.println("============================"+searchList);
-//        String flag="true";
-//        for(QuestionBean questionBean:searchList) {
-//        	if(!flag.equalsIgnoreCase(questionBean.getIsEvaluated())) {
-//        		System.out.println("sending Question");
-//        		producer.sendQuestion(questionBean);
-//        	}
-//         }
+		}
+		catch(KafkaUnavialableException e) {
+			
+			System.out.println("Kafka server is Down");
+		}
      
      }
 	
@@ -59,86 +53,5 @@ public class KafkaConsumer {
     	
     	evaluationmanager.users(q.getStudentId());
     	
-//    	 String flag="true";
-//    	 System.out.println(q.toString());
-//    	log.info("Exam status is closed for UserId:", q.getStudentId());
-//		Set<String> userset=new HashSet<>();
-//		userset.add(q.getStudentId());
-
-//		 final String uri = "http://localhost:8086/Statemanager/v0.1/getall/"+q.getStudentId();
-//	        RestTemplate restTemplate1 = new RestTemplate();
-//	        QuestionBean[] forNow = restTemplate1.getForObject(uri, QuestionBean[].class);
-//	        List<QuestionBean> searchList= Arrays.asList(forNow);
-//	        System.out.println("getting from redis cache:::"+searchList);
-//	        int i=0;
-//	       
-//	        for(QuestionBean questionBeans:searchList) {
-//	        	if(flag.equalsIgnoreCase(questionBeans.getIsEvaluated())) {
-//	        		System.out.println(questionBeans.getIsEvaluated());
-//	        		System.out.println("in loop");
-//	        		i++;
-//	        	}
-//	         }
-//	     System.out.println("list sizeis"+searchList.size()+"I value"+i);
-//	     
-//		if(searchList.size()==i) {
-//			System.out.println("Evaluation completed for user and sending it to resultset ");
-//		        
-//		        UserResultBean userexam = new UserResultBean();
-//		
-//		       userexam.setUserId(q.getStudentId());
-//		       userexam.setResultBean(searchList);
-//		
-//		     producer.sendUserExam(userexam);
-//		
-//		    }
-//		else {
-//				userset.add(q.getStudentId());
-//				for(QuestionBean questionBean:searchList) {
-//		        	if(!flag.equalsIgnoreCase(questionBean.getIsEvaluated())) {
-//		        		System.out.println("-----------"+questionBean);
-//		        		producer.sendQuestion(questionBean);
-//		        	}
-//		         }
-//				
-//		}
-/*System.out.println(userset.size()+"//////////////////////////////////////////");
-		RestTemplate restTemplate1 = new RestTemplate();
-		while(userset.size()>0) {
-			
-			
-			for(String user:userset) {
-					String uri_getall = "http://localhost:8086/Statemanager/v0.1/getall/"+user;
-			        QuestionBean[] userquestions = restTemplate1.getForObject(uri_getall, QuestionBean[].class);
-			        List<QuestionBean> questionList= Arrays.asList(userquestions);
-			        int j=0;
-			        System.out.println(questionList);
-			        for(QuestionBean questions:questionList) {
-			        	if(flag.equalsIgnoreCase(questions.getIsEvaluated())) {
-			        		
-			        		j++;
-			        	}
-			         }
-			        System.out.println("list sizeis"+questionList.size()+"I value"+j);
-			        if(questionList.size()==j) {
-			        	
-			        	System.out.println("Evaluation completed for user and sending it to resultset ");
-					      
-					        UserResultBean userexam = new UserResultBean();
-					
-					       userexam.setUserId(user);
-					       userexam.setResultBean(questionList);
-					
-					     
-					       producer.sendUserExam(userexam);
-					      userset.remove(user);
-					      
-			        	
-			        }
-			 }//end of for each for set
-			
-		}//end of while
-		System.out.println(userset.size());
-		*/
-    }//end of examstatus method
+   }//end of examstatus method
 }

@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.stackroute.assessmentengine.rediscache.domain.QuestionBean;
 import com.stackroute.assessmentengine.rediscache.domain.QuestionBean1;
+import com.stackroute.assessmentengine.rediscache.exceptions.RedisServerDownException;
 
 @Repository
 @Transactional
@@ -20,39 +21,52 @@ public class QuestionRepository {
 	  @Resource(name="redisTemplate")
 	  private HashOperations<String, String, QuestionBean> hashOps;	
 	  
-	  @Resource(name="redisTemplate")
-	  private HashOperations<String, String, QuestionBean1> hashOps1;
-	  public Map<String, QuestionBean1> getAllquestions1(String studentid) {
-		  return hashOps1.entries(studentid);
+	  public void addquestion(QuestionBean questionBean,String studentid) throws RedisServerDownException {
+		  try {
+			  hashOps.put(studentid, questionBean.getQuestionId(), questionBean);
+		  }
+		 catch(Exception e) {
+			 throw new RedisServerDownException("Redis server is Down");
+		 }
 	  }
-	  public QuestionBean1 getquestion1(String id,String studentid) {
-		  return hashOps1.get(studentid, id);
-	  }
-	  public void addquestion1(QuestionBean1 questionBean,String studentid) {
-		  hashOps1.putIfAbsent(studentid, questionBean.getQuestionId(), questionBean);
-	  }
-	  public void updatequestion1(QuestionBean1 questionBean) {
-		  hashOps1.put(questionBean.getStudentId(), questionBean.getQuestionId(), questionBean);
-	  }	
-	  
-	  
-	  public void addquestion(QuestionBean questionBean,String studentid) {
-		  hashOps.put(studentid, questionBean.getQuestionId(), questionBean);
-	  }
-	  public void updatequestion(QuestionBean questionBean) {
+	  public void updatequestion(QuestionBean questionBean) throws RedisServerDownException {
+		  try {
 		  hashOps.put(KEY, questionBean.getQuestionId(), questionBean);
+		  }
+		  catch(Exception e) {
+				 throw new RedisServerDownException("Redis server is Down");
+			 }
 	  }	  
-	  public QuestionBean getquestion(String id,String studentid) {
+	  public QuestionBean getquestion(String id,String studentid) throws RedisServerDownException {
+		  try {
 		  return hashOps.get(studentid, id);
+		  }
+		  catch(Exception e) {
+				 throw new RedisServerDownException("Redis server is Down");
+			 }
 	  }
-	  public long getNumberOfquestions(String studentid) {
+	  public long getNumberOfquestions(String studentid) throws RedisServerDownException {
+		  try {
 		  return hashOps.size(studentid);
+		  }
+		  catch(Exception e) {
+				 throw new RedisServerDownException("Redis server is Down");
+			 }
 	  }
-	  public Map<String, QuestionBean> getAllquestions(String studentid) {
+	  public Map<String, QuestionBean> getAllquestions(String studentid) throws RedisServerDownException {
+		  try {
 		  return hashOps.entries(studentid);
+		  }catch(Exception e) {
+				 throw new RedisServerDownException("Redis server is Down");
+			 }
 	  }
-	  public long deletequestions(String id,String qid) {
+	  public long deletequestions(String id,String qid) throws RedisServerDownException {
+		  try {
 		  return hashOps.delete(id,qid);
+		  }
+		  catch(Exception e) {
+				 throw new RedisServerDownException("Redis server is Down");
+			 }
 		  
 	  }	  		
 
