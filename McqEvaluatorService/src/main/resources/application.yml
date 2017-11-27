@@ -3,7 +3,7 @@ kafka:
   topicMcq:
     jsonMcq: McqQuestion
   topic:
-    json: QuestionFromService
+    json: EvaluatedQuestion
   
     
     
