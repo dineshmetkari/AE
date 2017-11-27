@@ -18,6 +18,13 @@ eurekaserver:
  ports:
   - "8070:8070"
 
+redis:
+ build: ./RedisService
+ ports:
+  - "8100:8100"
+ links:
+  - kafka
+
 authenticationservice:
  build: ./AuthenticationService
  ports:
@@ -27,6 +34,8 @@ configserver:
  build: ./ConfigService/config-server
  ports:
   - "8888:8888"
+ links:
+  - eurekaserver
 
 studentdocker:
  build: ./StudentService
@@ -34,12 +43,16 @@ studentdocker:
   - "8083:9999"
  links:
   - mongodb
+  - kafka
+  - eurekaserver
 enginerdocker:
  build: ./EngineService
  ports:
   - "8084:9998"
  links:
   - kafka
+  - eureka
+  - configserver
 
 evaluationdocker:
  build: ./evaluationManager
@@ -47,6 +60,8 @@ evaluationdocker:
   - "8085:9997"
  links:
   - kafka
+  - eurekaserver
+  -configserver
 
 evalrouterdocker:
  build : ./EvaluationRouter
@@ -54,6 +69,9 @@ evalrouterdocker:
   - "8086:9996"
  links:
   - kafka
+  - eurekaserver
+  - configserver
+
 
 examdocker:
  build: ./ExamService
@@ -62,6 +80,8 @@ examdocker:
  links:
   - kafka
   - mongodb
+  - eurekaserver
+  - configserver
 
 mcqevaluatordocker:
  build: ./McqEvaluatorService
@@ -69,6 +89,8 @@ mcqevaluatordocker:
   - "8090:8022"
  links:
   - kafka
+  - eurekaserver
+  - configserver
 # truefalseevaldocker:
 #  build: ./TrueFalseEvaluatorService
 #  ports:
@@ -82,3 +104,5 @@ userresultdocker:
   - "8091:9994"
  links:
   - kafka
+  - eurekaserver
+  - configserver
