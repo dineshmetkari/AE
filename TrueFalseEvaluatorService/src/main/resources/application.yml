@@ -3,7 +3,7 @@ kafka:
   topicTf:
     jsonTf: TFQuestion
   topic:
-    json: QuestionFromService    
+    json: EvaluatedQuestion    
     
     
 eureka:
