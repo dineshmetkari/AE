@@ -45,64 +45,65 @@ studentdocker:
   - mongodb
   - kafka
   - eurekaserver
-enginerdocker:
- build: ./EngineService
- ports:
-  - "8084:9998"
- links:
-  - kafka
-  - eureka
-  - configserver
-
-evaluationdocker:
- build: ./evaluationManager
- ports:
-  - "8085:9997"
- links:
-  - kafka
-  - eurekaserver
-  -configserver
-
-evalrouterdocker:
- build : ./EvaluationRouter
- ports:
-  - "8086:9996"
- links:
-  - kafka
-  - eurekaserver
-  - configserver
-
-
-examdocker:
- build: ./ExamService
- ports:
-  - "8087:8074"
- links:
-  - kafka
-  - mongodb
-  - eurekaserver
-  - configserver
-
-mcqevaluatordocker:
- build: ./McqEvaluatorService
- ports:
-  - "8090:8022"
- links:
-  - kafka
-  - eurekaserver
-  - configserver
-# truefalseevaldocker:
-#  build: ./TrueFalseEvaluatorService
+# enginerdocker:
+#  build: ./EngineService
 #  ports:
-#   - "8092:8023"
+#   - "8084:9998"
 #  links:
 #   - kafka
-
-userresultdocker:
- build: ./UserResultService
- ports:
-  - "8091:9994"
- links:
-  - kafka
-  - eurekaserver
-  - configserver
+#   - eureka
+#   - configserver
+#
+# evaluationdocker:
+#  build: ./evaluationManager
+#  ports:
+#   - "8085:9997"
+#  links:
+#   - kafka
+#   - eurekaserver
+#   -configserver
+#
+# evalrouterdocker:
+#  build : ./EvaluationRouter
+#  ports:
+#   - "8086:9996"
+#  links:
+#   - kafka
+#   - eurekaserver
+#   - configserver
+#
+#
+# examdocker:
+#  build: ./ExamService
+#  ports:
+#   - "8087:8074"
+#  links:
+#   - kafka
+#   - mongodb
+#   - eurekaserver
+#   - configserver
+#
+# mcqevaluatordocker:
+#  build: ./McqEvaluatorService
+#  ports:
+#   - "8090:8022"
+#  links:
+#   - kafka
+#   - eurekaserver
+#   - configserver
+#
+# # truefalseevaldocker:
+# #  build: ./TrueFalseEvaluatorService
+# #  ports:
+# #   - "8092:8023"
+# #  links:
+# #   - kafka
+#
+# userresultdocker:
+#  build: ./UserResultService
+#  ports:
+#   - "8091:9994"
+#  links:
+#   - kafka
+#   - eurekaserver
+#   - configserver

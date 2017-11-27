@@ -1,0 +1,9 @@
+kafka:
+  bootstrap-servers: 172.23.238.133:9092
+  topic:
+    json: EvaluationRouter
+    json1: McqQuestion
+    json2: TFQuestion
+    
+server:
+  port: 9996

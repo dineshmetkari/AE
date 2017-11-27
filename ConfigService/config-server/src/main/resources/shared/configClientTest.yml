@@ -1,3 +1,0 @@
-message: Message is from Server
-# Message is a property being pushed to the client.
-#'configClientTest' is the name defined in the application.yml of the service
