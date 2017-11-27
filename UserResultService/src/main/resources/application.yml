@@ -11,9 +11,8 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
     serviceUrl:
-      defaultZone: http://172.23.238.205:8071//eureka/
-  instance:
-    hostname: localhost
+      defaultZone: http://172.23.238.225:8070/eureka/
+
 
 spring:
   application:
@@ -22,3 +21,4 @@ spring:
     consumer:
       group-id: ResultDisplay
 server.port: 9994
+

@@ -3,7 +3,6 @@ package com.stackroute.servicestudent.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+
 import com.stackroute.servicestudent.domain.StudentBean;
 import com.stackroute.servicestudent.exception.UserAlreadyExistException;
 import com.stackroute.servicestudent.service.StudentService;
@@ -19,7 +19,7 @@ import com.stackroute.servicestudent.service.StudentService;
 
 @RestController
 @RequestMapping("/students")
-
+@CrossOrigin("*")
 public class StudentController {
 	
 	@Autowired
@@ -30,14 +30,14 @@ public class StudentController {
 	public ResponseEntity<List<StudentBean>> getAllUsers() {
 		
 		return ResponseEntity.ok(studentService.getAllUsers());
-		// ResponseEntity returns List along with HTTP Status.
+		// ResponseEntity returns List along witidh HTTP Status.
 	}
 	
-	@RequestMapping(method=RequestMethod.GET,value="{id}")
+	@RequestMapping(method=RequestMethod.GET,value="{emailId}")
 	// This Annotation takes care to map specific response to a method with fixed value attribute
-	public ResponseEntity<String> getUser(@PathVariable String id) {
-		studentService.getUserById(id);
-		return ResponseEntity.ok("User Getting Successfully");
+	public ResponseEntity<List<StudentBean>> getUser(@PathVariable String emailId) {
+		studentService.getStudentById(emailId);
+		return ResponseEntity.ok(studentService.getStudentById(emailId));
 		// ResponseEntity returns message along with HTTP Status.
 		
 	}
@@ -46,7 +46,7 @@ public class StudentController {
 	// This Annotation takes care to map specific response to a method with fixed value attribute
 	public ResponseEntity<String> addUser(@RequestBody StudentBean userBean) throws UserAlreadyExistException{
 		try {
-			studentService.addUser(userBean);
+			studentService.addStudent(userBean);
 		}catch(UserAlreadyExistException ue){
 			throw new UserAlreadyExistException("User Already Exists");
 		}
@@ -59,7 +59,7 @@ public class StudentController {
 	// This Annotation takes care to map specific response to a method with fixed value attribute
 	public ResponseEntity<String> updateUser(@RequestBody StudentBean userBean) {
 		
-		studentService.updateUser(userBean);
+		studentService.updateStudent(userBean);
 		return ResponseEntity.ok("User Updated successfully");
 		// ResponseEntity returns message along with HTTP Status.
 	}
@@ -68,10 +68,25 @@ public class StudentController {
 	// This Annotation takes care to map specific response to a method with fixed value attribute
 	public ResponseEntity<String> deleteUser(@PathVariable String id) {
 		
-		studentService.deleteUser(id);
+		studentService.deleteStudent(id);
 		 
 		 return ResponseEntity.ok("User Deleted successfully");
 		// ResponseEntity returns message along with HTTP Status.
+	}
+	
+	
+	@RequestMapping(method=RequestMethod.GET,value="/specificusers/{emailId}")
+	public String getSpecificUsers(@PathVariable String emailId) {
+		
+		if((studentService.getSpecUsers(emailId)).toString().equals("[]")) {
+			return "User Not existed";
+		}
+		else {
+			return "User Already existed";
+		}
+		
+		
+		
 	}
 	
 	@RequestMapping(method=RequestMethod.GET,value="/studentlogin/{emailId}/{password}")

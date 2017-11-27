@@ -1,18 +1,20 @@
 package com.stackroute.servicestudent.domain;
 
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection="StudentData")
 public class StudentBean {
 	
 	private String studentName;
+	@Id
 	private String emailId;
 	private String contactNumber;
 	private String skillSet;
 	private String address;
 	private String password;
-	private String confirmPassword;
+
 	
 	
 	public String getStudentName() {
@@ -51,14 +53,9 @@ public class StudentBean {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public String getConfirmPassword() {
-		return confirmPassword;
-	}
-	public void setConfirmPassword(String confirmPassword) {
-		this.confirmPassword = confirmPassword;
-	}
+
 	public StudentBean(String studentName, String emailId, String contactNumber, String skillSet,
-			String address, String password, String confirmPassword) {
+			String address, String password) {
 		super();
 		
 		this.studentName = studentName;
@@ -67,7 +64,7 @@ public class StudentBean {
 		this.skillSet = skillSet;
 		this.address = address;
 		this.password = password;
-		this.confirmPassword = confirmPassword;
+		
 	}
 	public StudentBean() {
 		super();
