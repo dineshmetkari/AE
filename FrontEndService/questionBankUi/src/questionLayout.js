@@ -130,12 +130,34 @@ export default class QuestionLayout extends React.Component {
     else if(this.state.domainValue ===3){
       this.setState({domain: "database"});
     }
+    else if(this.state.domainValue ===4){
+      this.setState({domain: "Secondry School"});
+    }
+    else if(this.state.domainValue ===5){
+      this.setState({domain: "finance"});
+    }
+    else if(this.state.domainValue ===5){
+      this.setState({domain: "history"});
+    }
     if(this.state.topicValue ===1){
       this.setState({topic: "Strings"});
     }
     else if(this.state.topicValue ===2){
       this.setState({topic: "collections"});
     }
+    else if(this.state.topicValue ===3){
+      this.setState({topic: "Indian History"});
+    }
+    else if(this.state.topicValue ===4){
+      this.setState({topic: "Investment"});
+    }
+    else if(this.state.topicValue ===5){
+      this.setState({topic: "Class ninth Math"});
+    }
+    else if(this.state.topicValue ===5){
+      this.setState({topic: "Class eight Math"});
+    }
+
     if(this.state.complexityValue ===1){
       this.setState({complexity: "easy"});
     }

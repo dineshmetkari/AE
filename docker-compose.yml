@@ -29,13 +29,13 @@ authenticationservice:
  build: ./AuthenticationService
  ports:
   - "8088:8088"
-
-configserver:
- build: ./ConfigService/config-server
- ports:
-  - "8888:8888"
- links:
-  - eurekaserver
+# 
+# configserver:
+#  build: ./ConfigService/config-server
+#  ports:
+#   - "8888:8888"
+#  links:
+#   - eurekaserver
 
 studentdocker:
  build: ./StudentService

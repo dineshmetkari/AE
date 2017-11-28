@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.data.mongodb.core.MongoOperations;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
@@ -16,47 +17,70 @@ import com.stackroute.servicestudent.exception.UserAlreadyExistException;
 import com.stackroute.servicestudent.repository.StudentRepository;
 @Service
 public class StudentServiceImpl implements StudentService{
+	
+	
 
 	ApplicationContext ctx = new AnnotationConfigApplicationContext(SpringMongoConfig.class);
 	MongoOperations mongoOperation = (MongoOperations) ctx.getBean("mongoTemplate");
 
+	@Autowired
+	MongoTemplate mongoTemplate;
+
+	
 	@Autowired
 	StudentRepository studentRepository;
 	StudentBean userBean;
 
 	@Override
 	public List<StudentBean> getAllUsers() {
-
+		
 		return (List<StudentBean>) studentRepository.findAll();
 	}
 
 	@Override
-	public StudentBean getUserById(String id) {
-
-		return studentRepository.findOne(id);
+	public List<StudentBean> getStudentById(String emailId) {
+		
+		return (List<StudentBean>) studentRepository.getStudentById(emailId);
 	}
 
 	@Override
-	public StudentBean addUser(StudentBean userBean) throws UserAlreadyExistException{
-
-
+	public StudentBean addStudent(StudentBean userBean) throws UserAlreadyExistException{
+		
+			
+	
 			return studentRepository.save(userBean);
-		}
-
-
+		}	
+		
+	
 
 	@Override
-	public StudentBean updateUser(StudentBean userBean) {
-
+	public StudentBean updateStudent(StudentBean userBean) {
+		
 		return studentRepository.save(userBean);
 	}
 
 	@Override
-	public String deleteUser(String id) {
+	public String deleteStudent(String id) {
 		studentRepository.delete(id);
 		return "";
 	}
-
+	
+	
+	@Override
+	public List getSpecUsers(String emailId) {
+		
+		Query query11 = new Query();
+		query11.addCriteria(Criteria.where("emailId").in(emailId));
+	
+		List<StudentBean> userTest11 = mongoOperation.find(query11, StudentBean.class);
+		System.out.println("query11 - " + query11.toString());
+		for (StudentBean studentBean : userTest11) {
+			System.out.println("userTest11 - " + studentBean);
+		}
+		
+		return userTest11;
+	}
+	
 	@Override
 	public String getLoginDetails(String emailId,String password) {
 
@@ -72,4 +96,6 @@ public class StudentServiceImpl implements StudentService{
 		//System.out.println(userTest11.toString());
 		return userTest11.toString();
 	}
+	
+
 }

@@ -27,7 +27,7 @@ public class QuestionBean {
 
 	    private String complexity;
 
-	    private String marksAlloted;
+	    private String marksAllotted;
 
 	    private String timeTakenInSeconds;
 
@@ -139,12 +139,12 @@ public class QuestionBean {
 			this.complexity = complexity;
 		}
 
-		public String getMarksAlloted() {
-			return marksAlloted;
+		public String getMarksAllotted() {
+			return marksAllotted;
 		}
 
-		public void setMarksAlloted(String marksAlloted) {
-			this.marksAlloted = marksAlloted;
+		public void setMarksAllotted(String marksAlloted) {
+			this.marksAllotted = marksAlloted;
 		}
 
 		public String getTimeTakenInSeconds() {
@@ -212,7 +212,7 @@ public class QuestionBean {
 			this.subject = subject;
 			this.level = level;
 			this.complexity = complexity;
-			this.marksAlloted = marksAlloted;
+			this.marksAllotted = marksAlloted;
 			this.timeTakenInSeconds = timeTakenInSeconds;
 			this.questionStartTime = questionStartTime;
 			this.questionEndTime = questionEndTime;
@@ -234,7 +234,7 @@ public class QuestionBean {
 			return "QuestionBean [msg=" + msg + ", examId=" + examId + ", studentId=" + studentId + ", questionId="
 					+ questionId + ", question=" + question + ", Options=" + Options + ", correctAnswer="
 					+ correctAnswer + ", userAnswer=" + userAnswer + ", questionType=" + questionType + ", subject="
-					+ subject + ", level=" + level + ", complexity=" + complexity + ", marksAlloted=" + marksAlloted
+					+ subject + ", level=" + level + ", complexity=" + complexity + ", marksAllotted=" + marksAllotted
 					+ ", timeTakenInSeconds=" + timeTakenInSeconds + ", questionStartTime=" + questionStartTime
 					+ ", questionEndTime=" + questionEndTime + ", examStartTime=" + examStartTime + ", examEndTime="
 					+ examEndTime + ", marksAttained=" + marksAttained + "]";

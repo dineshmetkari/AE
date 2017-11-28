@@ -5,10 +5,9 @@ import MenuItem from 'material-ui/MenuItem';
 import QuestionLayout from './questionLayout';
 import {Card, CardHeader} from 'material-ui/Card';
 import TextField from 'material-ui/TextField';
-import domainjson from './domain.json'
 const styles = {
   customWidth:{
-    width: 151
+    width: 150
   },
   textbox:{
     width: 150,
@@ -45,22 +44,22 @@ constructor(props){
   this.state= {
                 typeValue: 1,
                 levelValue: 1,
-                domainValue:[],
+                domainValue: 1,
                 complexityValue: 1,
                 topicValue: 1,
                 markValue: 1,
                 mcq: false,
                 tf : false,
-                name: [],
+                name: []
               }
   this.openLayout=this.openLayout.bind(this);
   this.closeLayout = this.closeLayout.bind(this);
+  this.handleUpdateInput=this.handleUpdateInput.bind(this);
   }
-
   render() {
-    {this.state.domainValue}
     return (
       <div className="QuestionProperties" >
+
       <br/>
       <Card style={styles.cardWidth} >
         <CardHeader
@@ -69,14 +68,23 @@ constructor(props){
         />
         <ul style= {styles.ul}>
         <li style= {styles.ul}>
-          <DropDownMenu value={this.state.domainValue.value} onChange={this.handleDomainChange}  style={styles.customWidth}>
-
+          <DropDownMenu value={this.state.domainValue} onChange={this.handleDomainChange}  style={styles.customWidth}>
+            <MenuItem value={3} primaryText="Database" />
+            <MenuItem value={1} primaryText="Java" />
+            <MenuItem value={2} primaryText="Python" />
+            <MenuItem value={4} primaryText="Secondry School" />
+            <MenuItem value = {5} primaryText="finance" />
+            <MenuItem value = {6} primaryText = "History" />
           </DropDownMenu>
         </li>
         <li style= {styles.ul}>
           <DropDownMenu value={this.state.topicValue} onChange={this.handleTopicChange}  style={styles.customWidth}>
-            <MenuItem value={1} primaryText="Strings" />
-            <MenuItem value={2} primaryText="collections" />
+            <MenuItem value={1} primaryText="collections" />
+            <MenuItem value={2} primaryText="Strings" />
+            <MenuItem value = {3} primaryText="Indian History" />
+            <MenuItem value = {4} primaryText = "Investment" />
+            <MenuItem value = {5} primaryText = "Class ninth Math" />
+            <MenuItem value = {6} primaryText = "Class eight Math" />
           </DropDownMenu>
         </li>
         <li style= {styles.ul}>
@@ -161,14 +169,9 @@ constructor(props){
           });
         };
         componentDidMount(){
-            let domain = JSON.stringify(domainjson);
-            domain = JSON.parse(domain);
-            //console.log(domain);
-            console.log(Array.count(domain));
-            this.state.domainValue.push(domain.domain[0]);
-            //this.setState({domainValue: domain.domain});
-        //    console.log(this.state.domainValue);
+
         }
+
 
 
 }

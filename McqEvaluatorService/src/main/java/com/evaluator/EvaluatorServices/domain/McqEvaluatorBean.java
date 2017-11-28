@@ -9,14 +9,14 @@ public class McqEvaluatorBean {
 	private String studentId;
 	private String questionId;
 	private String question;
-	private List<String> mcqOptions;
+	private List<String> Options;
 	private String correctAnswer;
 	private String userAnswer;
 	private String questionType;
 	private String subject;
 	private String level;
 	private String complexity;
-	private String marksAlloted;
+	private String marksAllotted;
 	private String timeTakenInSeconds;
 	private String questionStartTime;
 	private String questionEndTime;
@@ -27,28 +27,28 @@ public class McqEvaluatorBean {
 	
 	public McqEvaluatorBean() {
 		super();
-		this.mcqOptions = new ArrayList<>();
+		this.Options = new ArrayList<>();
 	}
 
 	
 
 	public McqEvaluatorBean(String examId, String studentId, String questionId, String question,
-			List<String> mcqOptions, String correctAnswer, String userAnswer, String questionType,
-			String subject, String level, String complexity, String marksAlloted, String timeTakenInSeconds,
+			List<String> Options, String correctAnswer, String userAnswer, String questionType,
+			String subject, String level, String complexity, String marksAllotted, String timeTakenInSeconds,
 			String questionStartTime, String questionEndTime, String examStartTime, String examEndTime, String isEvaluated) {
 		super();
 		this.examId = examId;
 		this.studentId = studentId;
 		this.questionId = questionId;
 		this.question = question;
-		this.mcqOptions = mcqOptions;
+		this.Options = Options;
 		this.correctAnswer = correctAnswer;
 		this.userAnswer = userAnswer;
 		this.questionType = questionType;
 		this.subject = subject;
 		this.level = level;
 		this.complexity = complexity;
-		this.marksAlloted = marksAlloted;
+		this.marksAllotted = marksAllotted;
 		this.timeTakenInSeconds = timeTakenInSeconds;
 		this.questionStartTime = questionStartTime;
 		this.questionEndTime = questionEndTime;
@@ -89,12 +89,12 @@ public class McqEvaluatorBean {
 		this.question = question;
 	}
 
-	public List<String> getMcqOptions() {
-		return mcqOptions;
+	public List<String> getOptions() {
+		return Options;
 	}
 
-	public void setMcqOptions(List<String> mcqOptions) {
-		this.mcqOptions = mcqOptions;
+	public void setMcqOptions(List<String> Options) {
+		this.Options = Options;
 	}
 
 	public String getCorrectAnswer() {
@@ -145,12 +145,12 @@ public class McqEvaluatorBean {
 		this.complexity = complexity;
 	}
 
-	public String getMarksAlloted() {
-		return marksAlloted;
+	public String getMarksAllotted() {
+		return marksAllotted;
 	}
 
-	public void setMarksAlloted(String marksAlloted) {
-		this.marksAlloted = marksAlloted;
+	public void setMarksAllotted(String marksAllotted) {
+		this.marksAllotted = marksAllotted;
 	}
 
 	public String getTimeTakenInSeconds() {
@@ -212,9 +212,9 @@ public class McqEvaluatorBean {
 	@Override
 	public String toString() {
 		return "EvaluatorBean [examId=" + examId + ", studentId=" + studentId + ", questionId=" + questionId
-				+ ", question=" + question + ", mcqOptions=" + mcqOptions + ", correctAnswer=" + correctAnswer
+				+ ", question=" + question + ", mcqOptions=" + Options + ", correctAnswer=" + correctAnswer
 				+ ", userAnswer=" + userAnswer + ", questionType=" + questionType + ", subject=" + subject + ", level="
-				+ level + ", complexity=" + complexity + ", marksAlloted=" + marksAlloted + ", timeTakenInSeconds="
+				+ level + ", complexity=" + complexity + ", marksAllotted=" + marksAllotted + ", timeTakenInSeconds="
 				+ timeTakenInSeconds + ", questionStartTime=" + questionStartTime + ", questionEndTime="
 				+ questionEndTime + ", examStartTime=" + examStartTime + ", examEndTime=" + examEndTime
 				+ ", marksAttained=" + marksAttained + ", isEvaluated="+isEvaluated+"]";

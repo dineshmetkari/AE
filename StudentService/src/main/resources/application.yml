@@ -4,9 +4,4 @@ eureka:
     fetch-registry: true 
     serviceUrl:
       defaultZone: http://172.23.238.225:8070/eureka/
-
-    
-kafka:
- bootstrap-servers: 172.23.238.133:9092
- topic:
-   json: raju
+  
