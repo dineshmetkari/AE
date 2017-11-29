@@ -10,7 +10,7 @@ kafka:
   - "9092:9092"
   - "2181:2181"
  environment:
-  - ADVERTISED_HOST= 172.23.238.133
+  - ADVERTISED_HOST= 172.23.239.174
   - ADVERTISED_PORT= 9092
 
 eurekaserver:
@@ -29,7 +29,7 @@ authenticationservice:
  build: ./AuthenticationService
  ports:
   - "8088:8088"
-# 
+#
 # configserver:
 #  build: ./ConfigService/config-server
 #  ports:

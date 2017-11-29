@@ -70,11 +70,12 @@ constructor(props){
         <li style= {styles.ul}>
           <DropDownMenu value={this.state.domainValue} onChange={this.handleDomainChange}  style={styles.customWidth}>
             <MenuItem value={3} primaryText="Database" />
+            <MenuItem value = {5} primaryText="finance" />
+            <MenuItem value = {6} primaryText = "History" />
             <MenuItem value={1} primaryText="Java" />
             <MenuItem value={2} primaryText="Python" />
             <MenuItem value={4} primaryText="Secondry School" />
-            <MenuItem value = {5} primaryText="finance" />
-            <MenuItem value = {6} primaryText = "History" />
+
           </DropDownMenu>
         </li>
         <li style= {styles.ul}>
