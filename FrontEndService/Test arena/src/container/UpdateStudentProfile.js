@@ -129,7 +129,7 @@ handleValidation(){
 
 
 handleSubmit(e) {
-  
+
    e.preventDefault();
   //  const emailId=this.refs.emailId.getValue();
   var user = this.props.location.state;
@@ -148,7 +148,9 @@ console.log(payload);
       if(this.handleValidation()){
 
                               request
-                              .post('http://172.23.239.157:8083/students')
+                            //  .post('http://172.23.238.205:9999/students')
+                            //  .post('http://172.23.239.157:9999/students')
+                              .post('http://172.23.239.163:8079/api/student/students')
                               .set('Content-type', 'application/json')
                               .send(payload)
                               .end((res, err) =>{

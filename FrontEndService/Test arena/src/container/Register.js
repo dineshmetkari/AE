@@ -93,7 +93,7 @@ handleValidation(){
            errors["skill"] = "Can not be empty";
         }
         if(typeof fields["skill"] !== "undefined"){
-             if(!fields["skill"].match(/^[a-zA-Z]+$/)){
+             if(!fields["skill"].match(/^[a-zA-Z]+(?:[ ]?[a-zA-Z])*$/)){
                  formIsValid = false;
                  errors["skill"] = "Only letters";
              }
@@ -105,7 +105,7 @@ handleValidation(){
            errors["address"] = "Can not be empty";
         }
         if(typeof fields["address"] !== "undefined"){
-             if(!fields["address"].match(/^[a-zA-Z]+$/)){
+             if(!fields["address"].match(/^[a-zA-Z]+(?:[ ]?[a-zA-Z])*$/)){
                  formIsValid = false;
                  errors["address"] = "Invalid Address";
              }
@@ -164,7 +164,8 @@ console.log(payload);
       if(this.handleValidation()){
                           let a = this.refs.emailId.getValue();
 
-                           let ur='http://172.23.239.157:8083/students/specificusers/'+a+'/';
+                        //   let ur='http://172.23.238.205:9999/students/specificusers/'+a+'/';
+                            let ur='http://172.23.239.163:8079/api/student/students/specificusers/'+a+'/';
                           axios.get(ur).then((response) => {
                              this.setState({
                               data  : response.data
@@ -176,7 +177,9 @@ console.log(payload);
                               return;
                             }else{
                               request
-                              .post('http://172.23.239.157:8083/students')
+                              //.post('http://172.23.239.157:9999/students')
+                            //  .post('http://172.23.238.205:9999/students')
+                              .post('http://172.23.239.163:8079/api/student/students')
                               .set('Content-type', 'application/json')
                               .send(payload)
                               .end((res, err) =>{

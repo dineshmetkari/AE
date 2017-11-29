@@ -23,7 +23,7 @@ export default class ResultsHome extends React.Component{
 		var x=this;
           // console.log("rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr"+user);
 				let result=[];
-          fetch('http://172.23.239.157:8086/results/'+name+'/',{
+          fetch('http://172.23.239.163:8079/api/userresult/results/'+name+'/',{
           method: 'GET'
 
           })
@@ -40,7 +40,7 @@ export default class ResultsHome extends React.Component{
 						res.push(obj);
 
 					 })
-					 console.log("hhhhhhhhhhhhhhhhhhhhhhh"+JSON.stringify(res));
+					 console.log("------------------------>"+JSON.stringify(res));
 					 x.setState({content:JSON.stringify(body)});
         });
   }

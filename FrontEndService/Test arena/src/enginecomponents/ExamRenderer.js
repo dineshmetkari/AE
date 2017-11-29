@@ -32,7 +32,7 @@ class ExamRenderer extends Component{
 		  this.disconnect=this.disconnect.bind(this)
 		  this.setIsDisconnected=this.setIsDisconnected.bind(this)
 		this.state={
-			userid:'inthu@gmail.com',
+			userid:this.props.userName,
 			qNumber:1,
 			currentQNumber:1,
 			qData:null,
@@ -63,15 +63,15 @@ class ExamRenderer extends Component{
 
 	sendQuestion() {
 		var t = this;
-    stompClient.send("/app/questions/"+t.props.userName, {}, JSON.stringify({'examStatus':t.state.isDisconnected,'userid':t.state.userid,'id':t.state.currentQNumber,'question': 'Question1','nextQuestion':t.state.qNumber,'selectedAnswer':t.state.selectedAnswer,'options':t.state.options}));
+    stompClient.send("/app/questions/"+t.state.userid, {}, JSON.stringify({'examStatus':t.state.isDisconnected,'userid':t.state.userid,'id':t.state.currentQNumber,'question': 'Question1','nextQuestion':t.state.qNumber,'selectedAnswer':t.state.selectedAnswer,'options':t.state.options}));
 }
 		sendQuestionAfterSubmit() {
 		var t = this;
-    stompClient.send("/app/questions/"+t.props.userName, {}, JSON.stringify({'examStatus':'close','userid':t.state.userid,'id':t.state.currentQNumber,'question': 'Question1','nextQuestion':t.state.qNumber,'selectedAnswer':t.state.selectedAnswer,'options':t.state.options}));
+    stompClient.send("/app/questions/"+t.state.userid, {}, JSON.stringify({'examStatus':'close','userid':t.state.userid,'id':t.state.currentQNumber,'question': 'Question1','nextQuestion':t.state.qNumber,'selectedAnswer':t.state.selectedAnswer,'options':t.state.options}));
 }
 	connect() {
     var that=this;
-    socket = new SockJS("http://172.23.238.225:8081/engine");
+    socket = new SockJS("http://172.23.239.163:8081/engine");
     stompClient = Stomp.over(socket);
     stompClient.connect({}, function (frame) {
         stompClient.subscribe('/topic/question/'+that.state.userid, function (greeting) {

@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import './AdminHome.css';
 import App from '../addquestionscomponent/App';
 import Main2 from './Main2';
+import {Link} from 'react-router';
+import RaisedButton from 'material-ui/RaisedButton';
 import Paper from 'material-ui/Paper';
 
 const userStyle={
@@ -43,6 +45,12 @@ export default class AdminHome extends Component {
 
    console.log(name);
    return(
+     <div>
+     <div style={linkStyle}>
+     <Link href="/logout">
+         <RaisedButton label="Logout" primary={true} style={buttonStyle}/>
+     </Link>
+     </div>
      <div style={userStyle}>
       <div style={{marginRight:'5vw'}}>
             <Paper zDepth={1}>
@@ -60,6 +68,16 @@ export default class AdminHome extends Component {
               {this.state.renderContent}
               </div>
       </div>
+      </div>
    );
  }
 }
+const linkStyle = {
+  margin:'',
+ marginLeft:''
+};
+const buttonStyle = {
+  marginTop : 8,
+  position:'relative',
+  marginLeft: "93%"
+};

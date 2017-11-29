@@ -257,7 +257,7 @@ if(this.state.type === 'tf'){
     ]
 }
   request
-  .post('http://172.23.239.157:8081/questions')
+  .post('http://172.23.239.163:8079/api/questionbank/questions')
   .set('content-type', 'application/json')
   .send(questionDetails)
   .end((res,err) =>{

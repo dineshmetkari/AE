@@ -30,9 +30,7 @@ class StartExam extends Component{
 						<h2 style={{alignSelf:'center'}}>Instructions</h2>
 						<div style={{marginLeft:'50px', fontSize:'14px'}}>
 						<ul>
-						<li>Exam Duration : 90 Minutes</li>
-						<li>Contains 10 to 30 questions.</li>
-						<li>Contains MCQ and True/False.</li>
+						<li>Exam Contains MCQ and True/False.</li>
 						<li>Refer Timer at top right to see duration left.</li>
 						<li>Click question Number to navigate to particular question.</li>
 						<li>Press Submit only if you wish to finish exam.</li>
