@@ -24,7 +24,7 @@ public class KafkaConsumer {
 	@KafkaListener(topics = "${kafka.topicMcq.jsonMcq}")
 	 public void receive(McqEvaluatorBean mcqEvaluatorBean) {
 		
-	   log.info("received evaluatorBean='{}'", mcqEvaluatorBean.toString());
+	//   log.info("received evaluatorBean='{}'", mcqEvaluatorBean.toString());
 	   System.out.println("------------------------"+mcqEvaluatorBean.getQuestion());
 	   mcqEvaluatorService.evaluateMcqQuestion(mcqEvaluatorBean);
 	   latch.countDown();
