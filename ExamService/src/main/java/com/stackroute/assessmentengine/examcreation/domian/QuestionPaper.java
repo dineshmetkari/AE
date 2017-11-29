@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection="questionPaper")
+@Document(collection="questionpaper")
 public class QuestionPaper 
 {
 	public QuestionPaper() {
@@ -21,8 +21,6 @@ public class QuestionPaper
 	private String questionType;
 	private String question;
 	private String[] options;
-	
-	
 	private String correctAnswer;
 	private String marksAllotted;
 	
@@ -78,10 +76,10 @@ public class QuestionPaper
 	public void setCorrectAnswer(String correctAnswer) {
 		this.correctAnswer = correctAnswer;
 	}
-	public String getMarksAlloted() {
+	public String getMarksAllotted() {
 		return marksAllotted;
 	}
-	public void setMarksAlloted(String marksAlloted) {
+	public void setMarksAllotted(String marksAlloted) {
 		this.marksAllotted = marksAlloted;
 	}
 	public String[] getOptions() {
@@ -91,7 +89,7 @@ public class QuestionPaper
 		this.options = options;
 	}
 	public QuestionPaper(String questionId,String subject, String topic, String level, String complexity, String questionType,
-			String question, String[] options, String correctAnswer, String marksAlloted) {
+			String question, String[] options, String correctAnswer, String marksAllotted) {
 		super();
 		this.questionId=questionId;
 		this.subject = subject;
@@ -102,7 +100,7 @@ public class QuestionPaper
 		this.question = question;
 		this.options = options;
 		this.correctAnswer = correctAnswer;
-		this.marksAllotted = marksAlloted;
+		this.marksAllotted = marksAllotted;
 	}
 	
 	
