@@ -17,5 +17,6 @@ public interface QuestionBankService {
 	public String deletequestion(String id);
 	
 	public List getSpecificquestions(String subject,String topic,String level,String complexity,String questionType,String num);
+	public List getbysubject(String subject);
 	
 }

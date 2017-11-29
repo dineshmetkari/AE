@@ -8,6 +8,7 @@ import com.stackroute.assessmentengine.userresultservice.controller.UserResultco
 import com.stackroute.assessmentengine.userresultservice.domain.ResultBean;
 import com.stackroute.assessmentengine.userresultservice.domain.UserResultBean;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
 
@@ -27,7 +28,7 @@ public class Consumer {
     
     @KafkaListener(topics = "${kafka.topic3.json3}")
      public void receive(UserResultBean userResultBean) {
-    	
+    	/*
         int usum=0;
         int uqm=0;
         
@@ -44,10 +45,35 @@ public class Consumer {
     	}
     	
     	userResultBean.setTotalMarksobtained(Integer.toString(usum));
-    	userResultBean.setTotalExamMarks(Integer.toString(esum));
+    	userResultBean.setTotalExamMarks(Integer.toString(esum));*/
     	
        //log.info("received questionBean='{}'", resultBean.toString());
+    	
+     /*ResultBean r=new ResultBean();
+     List<ResultBean> list=userResultBean.getResultBean();
+     List<ResultBean> modifiedlist=new ArrayList<>();
+     for(ResultBean resultBean:list) {
+    	
+    	 r.setComplexity(resultBean.getComplexity());
+    	 r.setStudentId(resultBean.getStudentId());
+    	 r.setUserAnswer(resultBean.getUserAnswer());
+    	 r.setCorrectAnswer(resultBean.getCorrectAnswer());
+    	 r.setQuestionStartTime(resultBean.getQuestionStartTime());
+    	 r.setLevel(resultBean.getLevel());
+    	 r.setMarksAlloted(resultBean.getMarksAlloted());
+    	 r.setMarksAttained(resultBean.getMarksAttained());
+    	 r.setQuestion(resultBean.getQuestion());
+    	 r.setOptions(resultBean.getOptions());
+    	 r.setQuestionId(resultBean.getQuestionId());
+    	 r.setQuestionType(resultBean.getQuestionType());
+    	 r.setSubject(resultBean.getSubject());
+    	 r.setIsEvaluated(resultBean.getIsEvaluated());
+    	 modifiedlist.add(r);
+    	 
+     }*/
+     
        System.out.println("------------------------"+userResultBean.toString());
+      
        userResultcontroller.addUsersResult(userResultBean);
        
 //       kafkaProducer.send(resultBean);

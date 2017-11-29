@@ -116,4 +116,13 @@ public class QuestionBankServiceImpl implements QuestionBankService {
 		return questions;
 	}
 
+	@Override
+	public List getbysubject(String subject) {
+		Query query = new Query();
+		query.addCriteria(Criteria.where("subjectLists.subject").in(subject));
+		List<QuestionBank> userTest = mongoOperation.find(query, QuestionBank.class);
+
+		return userTest;
+	}
+
 }

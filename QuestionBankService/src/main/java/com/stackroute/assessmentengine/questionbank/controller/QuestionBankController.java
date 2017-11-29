@@ -63,7 +63,12 @@ public class QuestionBankController {
 		
 	}
 	
-	
+	@RequestMapping(method=RequestMethod.GET,value="/specsubject/{subject}")
+	public ResponseEntity<List<QuestionBank>> getSpecificSubject(@PathVariable String subject) {
+		
+		return ResponseEntity.ok( questionBankService.getbysubject(subject));
+		
+	}
 	
 
 }

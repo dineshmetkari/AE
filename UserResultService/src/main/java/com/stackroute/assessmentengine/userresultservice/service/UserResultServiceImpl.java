@@ -41,7 +41,7 @@ public class UserResultServiceImpl implements UserResultService {
 	    		uqm=Integer.parseInt(u.getMarksAttained());
 	    		usum=usum+uqm;
 	    		
-	    		eqm=Integer.parseInt(u.getMarksAlloted());
+	    		eqm=Integer.parseInt(u.getMarksAllotted());
 	    		esum=esum+eqm;
 	    		
 	    	}

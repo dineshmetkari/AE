@@ -3,5 +3,5 @@ eureka:
     register-with-eureka: true
     fetch-registry: true 
     serviceUrl:
-      defaultZone: http://172.23.238.225:8070/eureka/
+      defaultZone: http://172.23.239.163:8070/eureka/
   
