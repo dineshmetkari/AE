@@ -5,7 +5,7 @@ kafka:
     json1: statemanager
     json2: EvaluatedQuestion
 server:
-  port: 8100
+  port: 8086
 
 spring:
   application:

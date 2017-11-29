@@ -78,7 +78,7 @@ public class RedisController {
 		return list;
 		}
 		catch(RedisServerDownException e) {
-			throw new RedisServerDownException("REdis server is down");
+			throw new RedisServerDownException("Redis server is down");
 		}
 
 	}
@@ -94,7 +94,7 @@ public class RedisController {
 		
 	   }
 		catch(RedisServerDownException e) {
-			throw new RedisServerDownException("REdis server is down");
+			throw new RedisServerDownException("Redis server is down");
 		}
 	}
 }

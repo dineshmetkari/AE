@@ -59,6 +59,7 @@ public class EvaluationManagerService {
 						
 						       userexam.setUserId(user);
 						       userexam.setResultBean(questionList);
+						       System.out.println(questionList);
 						
 						     try {
 						       producer.sendUserExam(userexam);

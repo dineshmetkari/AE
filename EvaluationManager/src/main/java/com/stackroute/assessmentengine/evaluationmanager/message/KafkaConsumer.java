@@ -31,7 +31,7 @@ public class KafkaConsumer {
 	@Autowired
 	EvaluationManagerService evaluationmanager;
 
-//	
+	
 	@KafkaListener(topics="${kafka.topic.json}")
 	
     public void questionrecived(QuestionBean questionBean) {

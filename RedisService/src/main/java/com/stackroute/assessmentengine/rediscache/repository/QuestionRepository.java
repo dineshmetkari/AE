@@ -21,9 +21,10 @@ public class QuestionRepository {
 	  @Resource(name="redisTemplate")
 	  private HashOperations<String, String, QuestionBean> hashOps;	
 	  
-	  public void addquestion(QuestionBean questionBean,String studentid) throws RedisServerDownException {
+	  public QuestionBean addquestion(QuestionBean questionBean,String studentid) throws RedisServerDownException {
 		  try {
 			  hashOps.put(studentid, questionBean.getQuestionId(), questionBean);
+			  return questionBean;
 		  }
 		 catch(Exception e) {
 			 throw new RedisServerDownException("Redis server is Down");
@@ -67,7 +68,6 @@ public class QuestionRepository {
 		  catch(Exception e) {
 				 throw new RedisServerDownException("Redis server is Down");
 			 }
-		  
 	  }	  		
 
 }

@@ -226,21 +226,25 @@ public class Enginecontroller {
    // @KafkaListener(topics = "${kafka.topic.json}")
     private static void getall(String user)
     {
-    	
-        final String uri = "http://172.23.238.217:8074/all/"+user+"/";
-        RestTemplate restTemplate = new RestTemplate();
-        System.out.println("in data");
-        Question[] forNow = restTemplate.getForObject(uri, Question[].class);
-       
-        List<Question> searchList= Arrays.asList(forNow);
-        Integer i=1;
-        questionPaper=new HashMap<>();
-        for(Question q:searchList) {
-        	q.setId(String.valueOf(i));
-        	//q.setMarksAllotted("1");
-        	questionPaper.put(i, q);
-        	i++;
-        }
+	    	try {
+	        final String uri = "http://localhost:8074/all/"+user+"/";
+	        RestTemplate restTemplate = new RestTemplate();
+	        System.out.println("in data");
+	        Question[] forNow = restTemplate.getForObject(uri, Question[].class);
+	       
+	        List<Question> searchList= Arrays.asList(forNow);
+	        Integer i=1;
+	        String[] arr= {"true","false"};
+	        questionPaper=new HashMap<>();
+	        for(Question q:searchList) {
+	        	if(q.getQuestionType().equalsIgnoreCase("truefalse")) {
+	        	q.setOptions(arr);
+	        	}
+	        	q.setId(String.valueOf(i));
+	        	q.setMarksAllotted("1");
+	        	questionPaper.put(i, q);
+	        	i++;
+	        }
     	
 //    List<Question> searchList= new ArrayList<>();
 //    
@@ -254,7 +258,7 @@ public class Enginecontroller {
 //      for(Question q:searchList) {
 //      	q.setId(String.valueOf(i));
 //      	q.setUserid(user);
-//      	//q.setMarksAllotted("1");
+//      	q.setMarksAllotted("1");
 //      	questionPaper.put(i, q);
 //      	i++;
 //      }
@@ -262,6 +266,10 @@ public class Enginecontroller {
         System.out.println("User Map:"+usermap);
         questions=searchList;
         System.out.println("List of Questios:"+searchList);
+	    	}
+	    	catch(Exception e) {
+	    		System.out.println("can't get data");
+	    	}
        }
 }
 		

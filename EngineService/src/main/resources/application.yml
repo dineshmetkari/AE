@@ -4,14 +4,12 @@ kafka:
     json: statemanager
     json1: Examstatus
     
-#eureka:
-#  client:
-#    register-with-eureka: true
-#    fetch-registry: true 
-#    serviceUrl:
-#      defaultZone: http://localhost:8070/eureka/
-#  instance:
-#    hostname: localhost
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true 
+    serviceUrl:
+      defaultZone: http://localhost:8070/eureka/
     
 server:
   port: 8081
