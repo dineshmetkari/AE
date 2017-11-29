@@ -9,7 +9,7 @@ import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 @EnableFeignClients
-
+@EnableDiscoveryClient
 @SpringBootApplication
 public class ExamCreationApplication {
 
