@@ -7,21 +7,19 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-import org.apache.commons.math.util.MultidimensionalCounter.Iterator;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.aggregation.Aggregation;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
-import com.mongodb.DBObject;
+
 import com.stackroute.assessmentengine.questionbank.config.SpringMongoConfig;
 import com.stackroute.assessmentengine.questionbank.domain.QuestionBank;
-import com.stackroute.assessmentengine.questionbank.domain.QuestionList;
 import com.stackroute.assessmentengine.questionbank.exception.CustomExceptions;
 import com.stackroute.assessmentengine.questionbank.repository.QuestionBankMongoRepository;
 
