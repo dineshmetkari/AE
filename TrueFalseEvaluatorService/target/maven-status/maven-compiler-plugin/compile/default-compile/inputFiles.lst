@@ -1,9 +1,0 @@
-/Users/param/workspace/Assessment_Engine/TrueFalseEvaluatorService/src/main/java/com/tfevaluator/TrueFalseEvaluatorServices/TrueFalseEvaluatorServiceApplication.java
-/Users/param/workspace/Assessment_Engine/TrueFalseEvaluatorService/src/main/java/com/tfevaluator/TrueFalseEvaluatorServices/message/KafkaProducer.java
-/Users/param/workspace/Assessment_Engine/TrueFalseEvaluatorService/src/main/java/com/tfevaluator/TrueFalseEvaluatorServices/service/TrueFalseEvaluatorService.java
-/Users/param/workspace/Assessment_Engine/TrueFalseEvaluatorService/src/main/java/com/tfevaluator/TrueFalseEvaluatorServices/domain/TrueFalseOptionsBean.java
-/Users/param/workspace/Assessment_Engine/TrueFalseEvaluatorService/src/main/java/com/tfevaluator/TrueFalseEvaluatorServices/config/KafkaProducerConfig.java
-/Users/param/workspace/Assessment_Engine/TrueFalseEvaluatorService/src/main/java/com/tfevaluator/TrueFalseEvaluatorServices/config/KafkaConsumerConfig.java
-/Users/param/workspace/Assessment_Engine/TrueFalseEvaluatorService/src/main/java/com/tfevaluator/TrueFalseEvaluatorServices/config/SwaggerConfig.java
-/Users/param/workspace/Assessment_Engine/TrueFalseEvaluatorService/src/main/java/com/tfevaluator/TrueFalseEvaluatorServices/message/KafkaConsumer.java
-/Users/param/workspace/Assessment_Engine/TrueFalseEvaluatorService/src/main/java/com/tfevaluator/TrueFalseEvaluatorServices/domain/TrueFalseEvaluatorBean.java
